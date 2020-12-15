@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3a1c70ae-283c-4ded-bfeb-ae9436d3ac86" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpServers">
+    <servers>
+      <server host="faktury" id="5725b46d-7dd6-44dd-8a74-7ce5a0232902" name="Unnamed" />
+    </servers>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4" />
+  <component name="ProjectId" id="1lhUFf4HaX48uH5wH4o26gpGH99" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" browser="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" server_name="Unnamed">
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3a1c70ae-283c-4ded-bfeb-ae9436d3ac86" name="Default Changelist" comment="" />
+      <created>1608048713614</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608048713614</updated>
+      <workItem from="1608048714655" duration="1535000" />
+      <workItem from="1608050256803" duration="294000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="254" y="168" key="#PHP" timestamp="1608049104310">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="254" y="168" key="#PHP/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608049104310" />
+    <state x="127" y="180" key="#Servers" timestamp="1608049082812">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="127" y="180" key="#Servers/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608049082812" />
+    <state x="1" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608049088004">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="1" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608049088004" />
+    <state x="381" y="448" key="NewPhpFileDialog" timestamp="1608048850505">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="381" y="448" key="NewPhpFileDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608048850505" />
+    <state x="48" y="170" key="SettingsEditor" timestamp="1608050250443">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="48" y="170" key="SettingsEditor/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608050250443" />
+  </component>
+</project>
