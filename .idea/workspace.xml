@@ -30,6 +30,14 @@
   <component name="ComposerSettings">
     <execution />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -50,8 +58,14 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\GSzwa\source\WEB\2021_AI1_Faktury" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" browser="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" server_name="Unnamed">
@@ -105,10 +119,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="1" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608049088004" />
-    <state x="381" y="448" key="NewPhpFileDialog" timestamp="1608048850505">
+    <state x="381" y="448" key="NewPhpFileDialog" timestamp="1608151160624">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="381" y="448" key="NewPhpFileDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608048850505" />
+    <state x="381" y="448" key="NewPhpFileDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608151160624" />
     <state x="48" y="170" key="SettingsEditor" timestamp="1608050250443">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
