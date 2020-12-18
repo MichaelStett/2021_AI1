@@ -9,9 +9,46 @@ switch ($action) {
     case 'invoice-list':
         //InvoiceController::index();
         break;
-    case 'invoice-show':
+    case 'invoiceSale-show':
         //InvoiceController::show();
+        echo InvoiceSaleController::index();
         break;
+    case 'invoiceSale-add':
+        break;
+    case 'invoicePurhase-show':
+
+        break;
+    case 'invoicePurhase-add':
+
+        break;
+    case 'otherDocuments-show':
+
+        break;
+    case 'otherDocuments-add':
+
+        break;
+    case 'license-show':
+
+        break;
+    case 'license-add':
+
+        break;
+    case 'generateRaport-show':
+
+        break;
+    case 'generateRaport-set':
+
+        break;
+    case 'admin':
+
+        break;
+    case 'equipment-show':
+
+        break;
+    case 'equipment-add':
+
+        break;
+
     case 'login':
         LoginController::index();
         break;
