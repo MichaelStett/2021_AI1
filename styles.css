@@ -46,5 +46,20 @@
     }
 }
 
+td.invoiceSaleIndexTableWider:nth-child(10) {
+    margin: auto;
+    vertical-align: center;
+    padding: 4px;
+}
+
+td.invoiceSaleIndexTableWider a.btn {
+    margin: 0px;
+    padding: 0px;
+}
+
+.pdfIcon {
+    width:  36px;
+    height: 36px;
+}
 
 

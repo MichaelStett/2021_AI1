@@ -31,6 +31,7 @@ class InvoiceSaleController
                 .$val->getAmountNetCurrencyValue().',\''
                 .$val->getAmountNetCurrency()
                 .'\']);">...</a></td>';
+            echo '<td class="invoiceSaleIndexTableWider"><a class="btn" href="index.php?action=getFile&fileType=invoiceSale&fileNumber='.$val->getId().'"><img class="pdfIcon" src="./images/pdf_image.png"></a></td>';
         }
         $result = ob_get_clean();
 
