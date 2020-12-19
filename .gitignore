@@ -1,5 +1,6 @@
 **\.idea\*
+
 **/config.php
 mybuffer.txt
 test.php
-.idea/workspace.xml
+.idea/*
