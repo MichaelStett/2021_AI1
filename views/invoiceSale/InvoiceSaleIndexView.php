@@ -72,31 +72,28 @@ class InvoiceSaleIndexView
                 <div class="col-md col-md-auto">
                     <div id="invoice-sale-index">
 
-                        <table class="table table-striped">
+                        <table id="invoiceSaleIndexTable" class="table table-striped">
                             <thead>
                             <tr>
                                 <th scope="col">Nr Fv</th>
                                 <th scope="col">Nazwa kotrahenta</th>
-<!--                                <th scope="col">VAT ID</th>-->
                                 <th scope="col">Data dodania</th>
-                                <th scope="col">Szczegóły</th>
+                                <th scope="col" class="invoiceSaleIndexTableWider">VAT ID</th>
+                                <th scope="col" class="invoiceSaleIndexTableWider">Kwota netto</th>
+                                <th scope="col" class="invoiceSaleIndexTableWider">Kwota brutto</th>
+                                <th scope="col" class="invoiceSaleIndexTableWider">Kwota podatku VAT</th>
+                                <th scope="col" class="invoiceSaleIndexTableWider">Kwota netto (waluta)</th>
+                                <th scope="col" class="invoiceSaleIndexTableTight">Szczegóły</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <?= $records ?>
-<!--                                <th scope="row">1</th>-->
-<!--                                <td>Mark</td>-->
-<!--                                <td>Otto</td>-->
-<!--                                <td>-->
-<!--                                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#invoiceSaleIndexModal">-->
-<!--                                        ...-->
-<!--                                    </button>-->
-<!--                                </td>-->
                             </tr>
 
                             </tbody>
                         </table>
+
                     </div>
                 </div>
 

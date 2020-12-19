@@ -12,20 +12,25 @@ class InvoiceSaleController
         ob_start();
         $i = 0;
         foreach ($records as $val) {
-            echo '<th scope="row">'.$val->getTaxId().'</th>';
+            echo '<th scope="row">'.$val->getInvoiceNumber().'</th>';
             echo '<td>'.$val->getContractorName().'</td>';
             echo '<td>'.$val->getAddDate().'</td>';
-            echo '<td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick="javascript:changeDataInInvoiceSaleIndexModal('.
-                $val->getInvoiceNumber().','
-                .$val->getContractorName().','
-                .$val->getTaxId().','
-                .$val->getAddDate().','
+            echo '<td class="invoiceSaleIndexTableWider">'.$val->getTaxId().'</td>';
+            echo '<td class="invoiceSaleIndexTableWider">'.$val->getAmountNet().'</td>';
+            echo '<td class="invoiceSaleIndexTableWider">'.$val->getAmountGross().'</td>';
+            echo '<td class="invoiceSaleIndexTableWider">'.$val->getAmountTax().'</td>';
+            echo '<td class="invoiceSaleIndexTableWider">'.$val->getAmountNetCurrencyValue().' ('.$val->getAmountNetCurrency().')</td>';
+            echo '<td class="invoiceSaleIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick="changeDataInInvoiceSaleIndexModal(['
+                .$val->getInvoiceNumber().',\''
+                .$val->getContractorName().'\','
+                .$val->getTaxId().',\''
+                .$val->getAddDate().'\','
                 .$val->getAmountNet().','
                 .$val->getAmountGross().','
                 .$val->getAmountTax().','
-                .$val->getAmountNetCurrencyValue().','
+                .$val->getAmountNetCurrencyValue().',\''
                 .$val->getAmountNetCurrency()
-                .')"></button></td>';
+                .'\']);">...</a></td>';
         }
         $result = ob_get_clean();
 

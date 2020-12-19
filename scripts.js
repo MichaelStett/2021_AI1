@@ -16,11 +16,18 @@ function validateLoginForm() {
 
 }
 
-function valdiate() {
+const changeDataInInvoiceSaleIndexModal = function (){
+    const modalTable = document.querySelectorAll('#invoiceSaleIndexModalTable td');
 
-}
-
-
+    return function (args){
+        if (args.length === 9) {
+            for (let i = 0; i < 8; i++) {
+                modalTable[i].innerText = args[i];
+            }
+            modalTable[7].previousElementSibling.innerText = "Kwotta netto ("+args[8]+")";
+        }
+    }
+}();
 
 function ready(fn) {
     if (document.readyState != 'loading'){
@@ -29,6 +36,3 @@ function ready(fn) {
         document.addEventListener('DOMContentLoaded', fn);
     }
 }
-ready(() => {
-//
-});

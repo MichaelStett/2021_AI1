@@ -2,6 +2,7 @@
 
 class InvoiceSale
 {
+    private $id;
     private $invoiceNumber;
     private $contractorName;
     private $taxId;
@@ -11,6 +12,24 @@ class InvoiceSale
     private $amountTax;
     private $amountNetCurrency;
     private $amountNetCurrencyValue;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     * @return InvoiceSale
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
 
     /**
      * @return mixed
