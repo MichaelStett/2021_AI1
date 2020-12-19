@@ -194,5 +194,23 @@ class InvoiceSale
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getStringfy()
+    {
+        return json_encode( array(
+            $this->id,
+            $this->invoiceNumber,
+            $this->contractorName,
+            $this->addDate,
+            $this->taxId,
+            $this->amountNet,
+            $this->amountGross,
+            $this->amountTax,
+            $this->amountNetCurrencyValue,
+            $this->amountNetCurrency)
+        );
+    }
 
 }

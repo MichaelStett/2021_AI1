@@ -57,7 +57,7 @@ class InvoiceSaleIndexView
                                 </tr>
                                 <tr>
                                     <th scope="row">Plik</th>
-                                    <td><a class="btn" href="index.php?action=getFile&fileType=invoiceSale&fileNumber=1"><img class="pdfIcon" src="./images/pdf_image.png"></a></td>
+                                    <td><a class="btn" href="#"><img class="pdfIcon" src="./images/pdf_image.png"></a></td>
                                 </tr>
 
                                 </tbody>

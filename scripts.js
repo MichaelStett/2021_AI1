@@ -20,11 +20,13 @@ const changeDataInInvoiceSaleIndexModal = function (){
     const modalTable = document.querySelectorAll('#invoiceSaleIndexModalTable td');
 
     return function (args){
-        if (args.length === 9) {
+        //args = JSON.parse(args);
+        if (args.length === 10) {
             for (let i = 0; i < 8; i++) {
-                modalTable[i].innerText = args[i];
+                modalTable[i].innerText = args[i+1];
             }
-            modalTable[7].previousElementSibling.innerText = "Kwotta netto ("+args[8]+")";
+            modalTable[7].previousElementSibling.innerText = "Kwotta netto ("+args[args.length - 1]+")";
+            modalTable[8].firstElementChild.href = "index.php?action=getFile&fileType=invoiceSale&fileNumber="+args[0];
         }
     }
 }();
