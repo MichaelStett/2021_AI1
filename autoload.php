@@ -10,7 +10,7 @@ require_once __DIR__ . '/models/repositories/InvoiceSaleRepository.php';
 # Views
 require_once __DIR__ . '/views/Layout.php';
 require_once __DIR__ . '/views/login/LoginIndexView.php';
-require_once __DIR__ . '/views/invoiceSale/InvoiceSaleIndexView.php';
+require_once __DIR__ . '/views/showData/dataIndexView.php';
 
 
 # Controllers 

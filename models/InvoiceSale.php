@@ -1,17 +1,17 @@
 <?php
 
-class InvoiceSale
+class InvoiceSale implements \JsonSerializable
 {
     private $id;
-    private $invoiceNumber;
-    private $contractorName;
-    private $taxId;
-    private $addDate;
-    private $amountNet;
-    private $amountGross;
-    private $amountTax;
-    private $amountNetCurrency;
-    private $amountNetCurrencyValue;
+    private $numerFaktury;
+    private $dataDodania;
+    private $vatID;
+    private $nazwa;
+    private $kwotaNetto;
+    private $kwotaPodatku;
+    private $kwotaBrutto;
+    private $kwotaNettoWWalucie;
+    private $nazwaWaluty;
 
     /**
      * @return mixed
@@ -34,163 +34,162 @@ class InvoiceSale
     /**
      * @return mixed
      */
-    public function getAddDate()
+    public function getNumerFaktury()
     {
-        return $this->addDate;
+        return $this->numerFaktury;
     }
 
     /**
-     * @param mixed $addDate
+     * @param mixed $numerFaktury
      * @return InvoiceSale
      */
-    public function setAddDate($addDate)
+    public function setNumerFaktury($numerFaktury)
     {
-        $this->addDate = $addDate;
+        $this->numerFaktury = $numerFaktury;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getInvoiceNumber()
+    public function getDataDodania()
     {
-        return $this->invoiceNumber;
+        return $this->dataDodania;
     }
 
     /**
-     * @param mixed $invoiceNumber
+     * @param mixed $dataDodania
      * @return InvoiceSale
      */
-    public function setInvoiceNumber($invoiceNumber)
+    public function setDataDodania($dataDodania)
     {
-        $this->invoiceNumber = $invoiceNumber;
+        $this->dataDodania = $dataDodania;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getContractorName()
+    public function getVatID()
     {
-        return $this->contractorName;
+        return $this->vatID;
     }
 
     /**
-     * @param mixed $contractorName
+     * @param mixed $vatID
      * @return InvoiceSale
      */
-    public function setContractorName($contractorName)
+    public function setVatID($vatID)
     {
-        $this->contractorName = $contractorName;
-        return $this;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getTaxId()
-    {
-        return $this->taxId;
-    }
-
-    /**
-     * @param mixed $taxId
-     * @return InvoiceSale
-     */
-    public function setTaxId($taxId)
-    {
-        $this->taxId = $taxId;
+        $this->vatID = $vatID;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getAmountNet()
+    public function getNazwa()
     {
-        return $this->amountNet;
+        return $this->nazwa;
     }
 
     /**
-     * @param mixed $amountNet
+     * @param mixed $nazwa
      * @return InvoiceSale
      */
-    public function setAmountNet($amountNet)
+    public function setNazwa($nazwa)
     {
-        $this->amountNet = $amountNet;
+        $this->nazwa = $nazwa;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getAmountGross()
+    public function getKwotaNetto()
     {
-        return $this->amountGross;
+        return $this->kwotaNetto;
     }
 
     /**
-     * @param mixed $amountGross
+     * @param mixed $kwotaNetto
      * @return InvoiceSale
      */
-    public function setAmountGross($amountGross)
+    public function setKwotaNetto($kwotaNetto)
     {
-        $this->amountGross = $amountGross;
+        $this->kwotaNetto = $kwotaNetto;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getAmountTax()
+    public function getKwotaPodatku()
     {
-        return $this->amountTax;
+        return $this->kwotaPodatku;
     }
 
     /**
-     * @param mixed $amountTax
+     * @param mixed $kwotaPodatku
      * @return InvoiceSale
      */
-    public function setAmountTax($amountTax)
+    public function setKwotaPodatku($kwotaPodatku)
     {
-        $this->amountTax = $amountTax;
+        $this->kwotaPodatku = $kwotaPodatku;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getAmountNetCurrency()
+    public function getKwotaBrutto()
     {
-        return currencyEnum::currencyTable[$this->amountNetCurrency];
+        return $this->kwotaBrutto;
     }
 
     /**
-     * @param mixed $amountNetCurrency
+     * @param mixed $kwotaBrutto
      * @return InvoiceSale
      */
-    public function setAmountNetCurrency(currencyEnum $amountNetCurrency)
+    public function setKwotaBrutto($kwotaBrutto)
     {
-        $this->amountNetCurrency = $amountNetCurrency;
+        $this->kwotaBrutto = $kwotaBrutto;
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getAmountNetCurrencyValue()
+    public function getKwotaNettoWWalucie()
     {
-        return $this->amountNetCurrencyValue;
+        return $this->kwotaNettoWWalucie;
     }
 
     /**
-     * @param mixed $amountNetCurrencyValue
+     * @param mixed $kwotaNettoWWalucie
      * @return InvoiceSale
      */
-    public function setAmountNetCurrencyValue($amountNetCurrencyValue)
+    public function setKwotaNettoWWalucie($kwotaNettoWWalucie)
     {
-        $this->amountNetCurrencyValue = $amountNetCurrencyValue;
+        $this->kwotaNettoWWalucie = $kwotaNettoWWalucie;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNazwaWaluty()
+    {
+        return currencyEnum::currencyTable[$this->nazwaWaluty];
+    }
+
+    /**
+     * @param mixed $nazwaWaluty
+     * @return InvoiceSale
+     */
+    public function setNazwaWaluty(currencyEnum $nazwaWaluty)
+    {
+        $this->nazwaWaluty = $nazwaWaluty;
         return $this;
     }
 
@@ -201,16 +200,44 @@ class InvoiceSale
     {
         return json_encode( array(
             $this->id,
-            $this->invoiceNumber,
-            $this->contractorName,
-            $this->addDate,
-            $this->taxId,
-            $this->amountNet,
-            $this->amountGross,
-            $this->amountTax,
-            $this->amountNetCurrencyValue,
-            $this->amountNetCurrency)
+            $this->numerFaktury,
+            $this->nazwa,
+            $this->dataDodania,
+            $this->vatID,
+            $this->kwotaNetto,
+            $this->kwotaBrutto,
+            $this->kwotaPodatku,
+            $this->kwotaNettoWWalucie,
+            $this->nazwaWaluty)
         );
     }
 
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return
+                $this->id.
+                $this->numerFaktury.
+                $this->nazwa.
+                $this->dataDodania.
+                $this->vatID.
+                $this->kwotaNetto.
+                $this->kwotaBrutto.
+                $this->kwotaPodatku.
+                $this->kwotaNettoWWalucie.
+                $this->nazwaWaluty;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
+
+        return $vars;
+    }
 }

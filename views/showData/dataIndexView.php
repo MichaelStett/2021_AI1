@@ -1,17 +1,17 @@
 <?php
 require_once __DIR__ . '/../../autoload.php';
 
-class InvoiceSaleIndexView
+class dataIndexView
 {
 
-    public static function render($records)
+    public static function render($id,$records)
     {
         ob_start();
         ?>
         <?= Layout::header() ?>
 
             <!-- Modal -->
-            <div class="modal fade" id="invoiceSaleIndexModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="<?= $id ?>Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -21,7 +21,7 @@ class InvoiceSaleIndexView
                             </button>
                         </div>
                         <div class="modal-body">
-                            <table id="invoiceSaleIndexModalTable" class="table table-striped">
+                            <table id="<?= $id ?>ModalTable" class="table table-striped">
                                 <tbody>
                                 <tr>
                                     <th scope="row">Nr Fv</th>
@@ -76,18 +76,18 @@ class InvoiceSaleIndexView
                 <div class="col-md col-md-auto">
                     <div id="invoice-sale-index">
 
-                        <table id="invoiceSaleIndexTable" class="table table-striped">
+                        <table id="<?= $id ?>Table" class="table table-striped">
                             <thead>
                             <tr>
                                 <th scope="col">Nr Fv</th>
                                 <th scope="col">Nazwa kotrahenta</th>
                                 <th scope="col">Data dodania</th>
-                                <th scope="col" class="invoiceSaleIndexTableWider">VAT ID</th>
-                                <th scope="col" class="invoiceSaleIndexTableWider">Kwota netto</th>
-                                <th scope="col" class="invoiceSaleIndexTableWider">Kwota brutto</th>
-                                <th scope="col" class="invoiceSaleIndexTableWider">Kwota podatku VAT</th>
-                                <th scope="col" class="invoiceSaleIndexTableWider">Kwota netto (waluta)</th>
-                                <th scope="col" class="invoiceSaleIndexTableTight">Szczegóły</th>
+                                <th scope="col" class="showDataIndexTableWider">VAT ID</th>
+                                <th scope="col" class="showDataIndexTableWider">Kwota netto</th>
+                                <th scope="col" class="showDataIndexTableWider">Kwota brutto</th>
+                                <th scope="col" class="showDataIndexTableWider">Kwota podatku VAT</th>
+                                <th scope="col" class="showDataIndexTableWider">Kwota netto (waluta)</th>
+                                <th scope="col" class="showDataIndexTableTight">Szczegóły</th>
                             </tr>
                             </thead>
                             <tbody>

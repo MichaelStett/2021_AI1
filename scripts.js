@@ -26,10 +26,27 @@ const changeDataInInvoiceSaleIndexModal = function (){
                 modalTable[i].innerText = args[i+1];
             }
             modalTable[7].previousElementSibling.innerText = "Kwotta netto ("+args[args.length - 1]+")";
-            modalTable[8].firstElementChild.href = "index.php?action=getFile&fileType=invoiceSale&fileNumber="+args[0];
+            modalTable[8].firstElementChild.href = "index.php?action=getFile&fileType=showData&fileNumber="+args[0];
         }
     }
 }();
+
+const filterDataInInvoiceSaleIndexTable = function () {
+    const contractorNameAttributes = document.querySelectorAll('#invoiceSaleIndexModalTable tbody tr');
+    //const dateAddAttributes = document.querySelectorAll('#invoiceSaleIndexModalTable td.invoiceSaleIndexTableAddDate');
+
+    return function (contractorName,dateAddStart,dateAddEnd) {
+        if (contractorName.length >= 2 && dateAddStart !== undefined && dateAddEnd !== undefined) {
+
+        } else if (contractorName.length >= 2) {
+
+        } else  if (dateAddStart !== undefined && dateAddEnd !== undefined) {
+
+        } else {
+
+        }
+    }
+}
 
 function ready(fn) {
     if (document.readyState != 'loading'){
