@@ -20,14 +20,26 @@ const changeDataInInvoiceSaleIndexModal = function (){
     const modalTable = document.querySelectorAll('#invoiceSaleIndexModalTable td');
 
     return function (args){
-        //args = JSON.parse(args);
-        if (args.length === 10) {
-            for (let i = 0; i < 8; i++) {
-                modalTable[i].innerText = args[i+1];
-            }
-            modalTable[7].previousElementSibling.innerText = "Kwotta netto ("+args[args.length - 1]+")";
-            modalTable[8].firstElementChild.href = "index.php?action=getFile&fileType=showData&fileNumber="+args[0];
-        }
+        modalTable[0].innerText = args['invoiceNumber'];
+        modalTable[1].innerText = args['name'];
+        modalTable[2].innerText = args['vatID'];
+        modalTable[3].innerText = args['addDate'];
+        modalTable[4].innerText = args['amountNet'];
+        modalTable[5].innerText = args['amountGross'];
+        modalTable[6].innerText = args['amountTax'];
+        modalTable[7].previousElementSibling.innerText = "Kwotta netto ("+args['amountNetCurrency']+")";
+        modalTable[7].innerText = args['amountNetCurrencyValue'];
+        modalTable[8].firstElementChild.href = "index.php?action=getFile&fileType=showData&fileNumber="+args['id'];
+
+
+        // args = JSON.parse(args);
+        // if (args.length === 10) {
+        //     for (let i = 0; i < 8; i++) {
+        //         modalTable[i].innerText = args[i+1];
+        //     }
+        //     modalTable[7].previousElementSibling.innerText = "Kwotta netto ("+args[args.length - 1]+")";
+        //     modalTable[8].firstElementChild.href = "index.php?action=getFile&fileType=showData&fileNumber="+args[0];
+        // }
     }
 }();
 

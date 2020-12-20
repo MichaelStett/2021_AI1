@@ -12,16 +12,16 @@ class InvoiceSaleController
         ob_start();
         $i = 0;
         foreach ($records as $val) {
-            echo '<th scope="row">'.$val->getNumerFaktury().'</th>';
-            echo '<td class="invoiceSaleIndexTableContractorName">'.$val->getNazwa().'</td>';
-            echo '<td class="invoiceSaleIndexTableAddDate">'.$val->getDataDodania().'</td>';
+            echo '<th scope="row">'.$val->getInvoiceNumber().'</th>';
+            echo '<td class="invoiceSaleIndexTableContractorName">'.$val->getName().'</td>';
+            echo '<td class="invoiceSaleIndexTableAddDate">'.$val->getAddDate().'</td>';
             echo '<td class="showDataIndexTableWider">'.$val->getVatID().'</td>';
-            echo '<td class="showDataIndexTableWider">'.$val->getKwotaNetto().'</td>';
-            echo '<td class="showDataIndexTableWider">'.$val->getKwotaBrutto().'</td>';
-            echo '<td class="showDataIndexTableWider">'.$val->getKwotaPodatku().'</td>';
-            echo '<td class="showDataIndexTableWider">'.$val->getKwotaNettoWWalucie().' ('.$val->getNazwaWaluty().')</td>';
+            echo '<td class="showDataIndexTableWider">'.$val->getAmountNet().'</td>';
+            echo '<td class="showDataIndexTableWider">'.$val->getAmountGross().'</td>';
+            echo '<td class="showDataIndexTableWider">'.$val->getAmountTax().'</td>';
+            echo '<td class="showDataIndexTableWider">'.$val->getAmountNetCurrencyValue().' ('.$val->getAmountNetCurrency().')</td>';
             echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInInvoiceSaleIndexModal('
-                .$val->getStringfy()
+                .json_encode($val)
                 .');\'>...</a></td>';
             echo '<td class="showDataIndexTableWider"><a class="btn" href="index.php?action=getFile&fileType=showData&fileNumber='.$val->getId().'"><img class="pdfIcon" src="./images/pdf_image.png"></a></td>';
         }
