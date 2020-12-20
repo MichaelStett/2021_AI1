@@ -5,11 +5,16 @@ global $config;
 class InvoiceSaleRepository
 {
 
-    private static function changeKeys(&$arrayIn, $prefix)
+    /**
+     * @param array $arrayIn
+     * @param string $keyPrefix
+     * @return array
+     */
+    private static function changeKeys(&$arrayIn, $keyPrefix)
     {
         $newArr = [];
         foreach($arrayIn as $key => &$val){
-            $newArr[':'.$key] = $val;
+            $newArr[$keyPrefix.$key] = $val;
             unset($arrayIn[$key]);
         }
         unset($arrayIn);
@@ -17,27 +22,32 @@ class InvoiceSaleRepository
     }
 
     /**
+     * @param int $limit
+     * @param string $order
      * @return InvoiceSale[]
+     * @throws Exception
      */
-    public function getAll($limit = 25,$order="addDate") {
+    public function getAll( $limit = 25, $order="addDate") {
         global $config;
 
         $pdo = new PDO($config['dsn'], $config['login'], $config['password']);
-        $sth = $pdo->prepare("SELECT `id`, `invoiceNumber`, `addDate`, `k`.`vatID`,`name`, `amountNet`, `amountTax`, `amountGross`, `amountNetCurrencyValue`, `amountNetCurrency` FROM `invoiceSale` as `f` INNER JOIN `kontrahent` as `k` on k.vatID=f.vatID ORDER BY :orderBy");
-        $sth->execute(array(":orderBy" => "$order"));
-
-        if ($sth != false) {
-            $result = $sth->fetchAll(PDO::FETCH_CLASS, "InvoiceSale");
-        }
+        $query = "SELECT `id`, `invoiceNumber`, `addDate`,k.`vatID`,`name`, `amountNet`, `amountTax`, `amountGross`, `amountNetCurrencyValue`, `amountNetCurrency` FROM `invoiceSale` as `f` INNER JOIN `contractor` as `k` on k.vatID=f.vatID ORDER BY $order DESC".($limit != 0 ? " LIMIT $limit" : "");
+        $sth = $pdo->prepare($query);
+        $sth->execute();
 
         if ($sth == false) {
             throw new Exception("pdo error");
         }
+
+        $result = $sth->fetchAll(PDO::FETCH_CLASS, "InvoiceSale");
         return $result;
     }
 
     /**
+     * @param array $conditions
+     * @param string $order
      * @return InvoiceSale[]
+     * @throws Exception
      */
     public static function findBy($conditions ,$order="addDate") {
         global $config;
@@ -50,19 +60,25 @@ class InvoiceSaleRepository
             $condition .= "id=:id";
         }
         if (array_key_exists('invoiceNumber', $conditions) && $condition != "") {
-            $condition .= " AND invoiceNumber=:invoiceNumber";
+            $condition .= " AND invoiceNumber LIKE :invoiceNumber";
+            $conditions['invoiceNumber'] = "%".$conditions['invoiceNumber']."%";
         } else if (array_key_exists('invoiceNumber', $conditions)) {
-            $condition .= "invoiceNumber=:invoiceNumber";
+            $condition .= "invoiceNumber LIKE :invoiceNumber";
+            $conditions['invoiceNumber'] = "%".$conditions['invoiceNumber']."%";
         }
         if (array_key_exists('vatID', $conditions) && $condition != "") {
-            $condition .= " AND vatID=:vatID";
+            $condition .= " AND vatID LIKE :vatID";
+            $conditions['vatID'] = "%".$conditions['vatID']."%";
         } else if (array_key_exists('vatID', $conditions)) {
-            $condition .= "vatID=:vatID";
+            $condition .= "vatID LIKE :vatID";
+            $conditions['vatID'] = "%".$conditions['vatID']."%";
         }
         if (array_key_exists('name', $conditions) && $condition != "") {
-            $condition .= " AND name=:name";
+            $condition .= " AND name LIKE :name";
+            $conditions['name'] = "%".$conditions['name']."%";
         } else if (array_key_exists('name', $conditions)) {
-            $condition .= "name=:name";
+            $condition .= "name LIKE :name";
+            $conditions['name'] = "%".$conditions['name']."%";
         }
         // DATA FILTER
         if (array_key_exists('dateAddStart', $conditions) && $condition != "") {
@@ -77,12 +93,11 @@ class InvoiceSaleRepository
         }
 
         $conditions = self::changeKeys($conditions,":");
-        $conditions[":orderBy"] = $order;
 
         $pdo = new PDO($config['dsn'], $config['login'], $config['password']);
-        $query = "SELECT `id`, `invoiceNumber`, `addDate`, `k`.`vatID`,`name`, `amountNet`, `amountTax`, `amountGross`, `amountNetCurrencyValue`, `amountNetCurrency` FROM `invoiceSale` as `f` INNER JOIN `kontrahent` as `k` on k.vatID=f.vatID WHERE "
+        $query = "SELECT `id`, `invoiceNumber`, `addDate`, `k`.`vatID`,`name`, `amountNet`, `amountTax`, `amountGross`, `amountNetCurrencyValue`, `amountNetCurrency` FROM `invoiceSale` as `f` INNER JOIN `contractor` as `k` on k.vatID=f.vatID WHERE "
             .$condition
-            ." ORDER BY :orderBy";
+            ." ORDER BY $order DESC";
         $sth = $pdo->prepare($query);
         $sth->execute($conditions);
 

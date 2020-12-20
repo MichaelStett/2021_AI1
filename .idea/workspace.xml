@@ -59,6 +59,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -68,9 +69,17 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="test.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/test.php">
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" browser="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" server_name="Unnamed">
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHP Script.test.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -83,6 +92,7 @@
       <workItem from="1608048714655" duration="1535000" />
       <workItem from="1608050256803" duration="294000" />
       <workItem from="1608051541852" duration="3769000" />
+      <workItem from="1608484453747" duration="16857000" />
     </task>
     <servers />
   </component>
@@ -119,13 +129,78 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="1" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608049088004" />
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1608485346831">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608485346831" />
+    <state width="1877" height="280" key="GridCell.Tab.0.bottom" timestamp="1608501666205">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608501666205" />
+    <state width="1877" height="280" key="GridCell.Tab.0.center" timestamp="1608501666205">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="280" key="GridCell.Tab.0.center/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608501666205" />
+    <state width="1877" height="280" key="GridCell.Tab.0.left" timestamp="1608501666205">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="280" key="GridCell.Tab.0.left/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608501666205" />
+    <state width="1877" height="280" key="GridCell.Tab.0.right" timestamp="1608501666205">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="280" key="GridCell.Tab.0.right/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608501666205" />
+    <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1608501385888">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608501385888" />
+    <state width="1877" height="352" key="GridCell.Tab.1.center" timestamp="1608501385888">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.center/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608501385888" />
+    <state width="1877" height="352" key="GridCell.Tab.1.left" timestamp="1608501385888">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.left/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608501385888" />
+    <state width="1877" height="352" key="GridCell.Tab.1.right" timestamp="1608501385888">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.right/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608501385888" />
     <state x="381" y="448" key="NewPhpFileDialog" timestamp="1608151160624">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="381" y="448" key="NewPhpFileDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608151160624" />
-    <state x="48" y="170" key="SettingsEditor" timestamp="1608050250443">
+    <state x="48" y="170" key="SettingsEditor" timestamp="1608484908125">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="48" y="170" key="SettingsEditor/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608050250443" />
+    <state x="48" y="170" key="SettingsEditor/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608484908125" />
+    <state x="781" y="296" key="refactoring.ChangeSignatureDialog" timestamp="1608487263351">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="781" y="296" key="refactoring.ChangeSignatureDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608487263351" />
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1608501558192">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608501558192" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/models/InvoiceSale.php</url>
+          <line>222</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/models/repositories/InvoiceSaleRepository.php</url>
+          <line>35</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/models/repositories/InvoiceSaleRepository.php</url>
+          <line>103</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

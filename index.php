@@ -9,15 +9,15 @@ switch ($action) {
     case 'invoice-list':
         //InvoiceController::index();
         break;
-    case 'showData-show':
+    case 'invoiceSale-show':
         //InvoiceController::show();
         echo InvoiceSaleController::index();
         break;
-    case 'showData-filter':
+    case 'invoiceSale-filter':
         //InvoiceController::show();
         echo InvoiceSaleController::filterData();
         break;
-    case 'showData-add':
+    case 'invoiceSale-add':
         break;
     case 'invoicePurhase-show':
 

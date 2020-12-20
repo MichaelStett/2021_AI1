@@ -9,25 +9,7 @@ class InvoiceSaleController
 
         $records = $invoiceSaleRepository->getAll();
 
-        ob_start();
-        $i = 0;
-        foreach ($records as $val) {
-            echo '<th scope="row">'.$val->getInvoiceNumber().'</th>';
-            echo '<td class="invoiceSaleIndexTableContractorName">'.$val->getName().'</td>';
-            echo '<td class="invoiceSaleIndexTableAddDate">'.$val->getAddDate().'</td>';
-            echo '<td class="showDataIndexTableWider">'.$val->getVatID().'</td>';
-            echo '<td class="showDataIndexTableWider">'.$val->getAmountNet().'</td>';
-            echo '<td class="showDataIndexTableWider">'.$val->getAmountGross().'</td>';
-            echo '<td class="showDataIndexTableWider">'.$val->getAmountTax().'</td>';
-            echo '<td class="showDataIndexTableWider">'.$val->getAmountNetCurrencyValue().' ('.$val->getAmountNetCurrency().')</td>';
-            echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInInvoiceSaleIndexModal('
-                .json_encode($val)
-                .');\'>...</a></td>';
-            echo '<td class="showDataIndexTableWider"><a class="btn" href="index.php?action=getFile&fileType=showData&fileNumber='.$val->getId().'"><img class="pdfIcon" src="./images/pdf_image.png"></a></td>';
-        }
-        $result = ob_get_clean();
-
-        echo dataIndexView::render("invoiceSaleIndex",$result);
+        echo invoiceSaleIndexView::render("invoiceSaleIndex",$records);
         return;
     }
 
@@ -58,7 +40,7 @@ class InvoiceSaleController
         $records = $invoiceSaleRepository->findBy($params);
 
         header('Content-type: application/json');
-        return  json_encode($records[0]) ;
+        return  json_encode($records) ;
     }
 
 

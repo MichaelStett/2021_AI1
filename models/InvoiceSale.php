@@ -185,10 +185,10 @@ class InvoiceSale implements \JsonSerializable
     }
 
     /**
-     * @param currencyEnum $amountNetCurrencyValue
+     * @param double $amountNetCurrencyValue
      * @return InvoiceSale
      */
-    public function setAmountNetCurrencyValue( currencyEnum $amountNetCurrencyValue)
+    public function setAmountNetCurrencyValue($amountNetCurrencyValue)
     {
         $this->amountNetCurrencyValue = $amountNetCurrencyValue;
         return $this;
@@ -209,9 +209,8 @@ class InvoiceSale implements \JsonSerializable
                 $this->amountGross.",".
                 $this->amountTax.",".
                 $this->amountNetCurrencyValue.",".
-                $this->amountNetCurrency.",";
+                currencyEnum::currencyTable[$this->amountNetCurrency].",";
     }
-
 
     /**
      * @return string
@@ -219,6 +218,7 @@ class InvoiceSale implements \JsonSerializable
     public function jsonSerialize()
     {
         $vars = get_object_vars($this);
+        $vars['amountNetCurrency'] = currencyEnum::currencyTable[$vars['amountNetCurrency']];
 
         return $vars;
     }
