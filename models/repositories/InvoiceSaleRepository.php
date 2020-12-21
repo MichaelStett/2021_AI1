@@ -27,7 +27,7 @@ class InvoiceSaleRepository
      * @return InvoiceSale[]
      * @throws Exception
      */
-    public function getAll( $limit = 25, $order="addDate") {
+    public function getAll( $limit = 0, $order="addDate") {
         global $config;
 
         $pdo = new PDO($config['dsn'], $config['login'], $config['password']);
@@ -41,6 +41,23 @@ class InvoiceSaleRepository
 
         $result = $sth->fetchAll(PDO::FETCH_CLASS, "InvoiceSale");
         return $result;
+    }
+
+    /**
+     * @return int
+     * @throws Exception
+     */
+    public function getNumberOfRecords() {
+        global $config;
+
+        $pdo = new PDO($config['dsn'], $config['login'], $config['password']);
+        $sth = $pdo->query("SELECT COUNT(*) as `count` from `invoicesale` ");
+
+        if ($sth == false) {
+            throw new Exception("pdo error");
+        }
+
+        return $sth->fetch(PDO::FETCH_ASSOC)['count'];
     }
 
     /**

@@ -4,7 +4,12 @@ require_once __DIR__ . '/../../autoload.php';
 class invoiceSaleIndexView
 {
 
-    public static function render($id,$recordsMainTable)
+    /**
+     * @param string $id
+     * @param array $recordsMainTable
+     * @return false|string
+     */
+    public static function render($id, $recordsMainTable, $numberOfRecordsInDB)
     {
         ob_start();
         ?>
@@ -79,7 +84,7 @@ class invoiceSaleIndexView
                             <div class="form-row">
                                 <div class="form-group col-lg-6 col-md-12">
                                     <label for="SearchFormContractorName">Kontrahent</label>
-                                    <input id="SearchFormContractorName" maxlength="30" type="text" class="form-control" pattern="^[\d\w]*$" placeholder="FirmaXYZ" oninput="filterDataInInvoiceSaleIndexTable();">
+                                    <input id="SearchFormContractorName" maxlength="30" type="text" class="form-control" pattern="^[\d\w]*$" placeholder="FirmaXYZ" onfocusout="filterDataInInvoiceSaleIndexTable();">
                                 </div>
 
                                 <div class="form-group col-lg-3  col-md-6">
@@ -93,11 +98,11 @@ class invoiceSaleIndexView
 
                                 <div class="form-group col-lg-6  col-md-6">
                                     <label for="SearchFormInvoiceNumber">Numer FV</label>
-                                    <input id="SearchFormInvoiceNumber" maxlength="15" type="text" class="form-control" pattern="^\d*$" placeholder="123456" oninput="filterDataInInvoiceSaleIndexTable();">
+                                    <input id="SearchFormInvoiceNumber" maxlength="15" type="text" class="form-control" pattern="^\d*$" placeholder="123456" onfocusout="filterDataInInvoiceSaleIndexTable();">
                                 </div>
                                 <div class="form-group col-lg-6  col-md-6">
                                     <label for="SearchFormVatID">Vat ID</label>
-                                    <input id="SearchFormVatID" maxlength="15" type="text" class="form-control" pattern="^\d*$" placeholder="123456" oninput="filterDataInInvoiceSaleIndexTable();">
+                                    <input id="SearchFormVatID" maxlength="15" type="text" class="form-control" pattern="^\d*$" placeholder="123456" onfocusout="filterDataInInvoiceSaleIndexTable();">
                                 </div>
                             </div>
 <!--                                <button type="submit" class="btn btn-primary">Search</button>-->
@@ -134,6 +139,7 @@ class invoiceSaleIndexView
                             </thead>
                             <tbody>
                                 <?php
+                                    $count = 0;
                                     foreach ($recordsMainTable as $val) {
                                         echo '<tr>';
                                         echo '<th scope="row">'.$val->getInvoiceNumber().'</th>';
@@ -150,8 +156,10 @@ class invoiceSaleIndexView
                                         echo '<td class="showDataIndexTableWider"><a class="btn" href="index.php?action=getFile&fileType=invoiceSale&fileNumber='
                                             .$val->getId()
                                             .'"><img class="pdfIcon" src="./images/pdf_image.png"></a></td>';
+                                        echo '<td class="showDataIndexTableRowId">'.$count.'</td>';
                                         echo '</tr>';
-                                }
+                                        $count++;
+                                    }
                                 ?>
                             </tr>
 
@@ -159,7 +167,26 @@ class invoiceSaleIndexView
                         </table>
 
                     </div>
+                    <nav id="<?= $id ?>Nav" class="my-navs" aria-label="...">
+                        <ul class="pagination justify-content-end">
+                            <li id="<?= $id ?>NavPrev" class="page-item disabled">
+                                <button  class="page-link" onclick="changePageInInvoiceSaleIndexTable('prev');" aria-disabled="true">Previous</button>
+                            </li>
+                            <li id="<?= $id ?>NavFirst" class="page-item disabled">
+                                <button  class="page-link" onclick="changePageInInvoiceSaleIndexTable('1');" aria-disabled="true" >1</button>
+                            </li>
+
+                            <li id="<?= $id ?>NavLast" class="page-item">
+                                <button  class="page-link" onclick="changePageInInvoiceSaleIndexTable('0');"><?= $numberOfRecordsInDB ?></button>
+                            </li>
+                            <li id="<?= $id ?>NavNext" class="page-item">
+                                <button  class="page-link" onclick="changePageInInvoiceSaleIndexTable('next');">Next</button>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
+
+
 
                 <div class="col"></div>
             </div>

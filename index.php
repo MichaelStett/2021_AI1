@@ -13,6 +13,10 @@ switch ($action) {
         //InvoiceController::show();
         echo InvoiceSaleController::index();
         break;
+    case 'invoiceSale-more':
+        //InvoiceController::show();
+        echo InvoiceSaleController::moreData();
+        break;
     case 'invoiceSale-filter':
         //InvoiceController::show();
         echo InvoiceSaleController::filterData();

@@ -50,7 +50,6 @@
 #invoiceSaleIndexTable th.showDataIndexTableTight,td.showDataIndexTableTight {
     display: table-cell;
 }
-
 @media (min-width: 992px) {
     #invoiceSaleIndexTable th.showDataIndexTableWider,td.showDataIndexTableWider {
         display: table-cell;
@@ -59,6 +58,11 @@
         display: none;
     }
 }
+/* ukrycie kolumny id dla wierszy */
+.showDataIndexTableRowId {
+    display: none;
+}
+
 /* ========================================================= */
 
 /* === ostylowanie ikony pdf */
@@ -77,3 +81,18 @@ td.showDataIndexTableWider a.btn {
 }
 /* ======================================================== */
 
+/* === style do navsa (przelacznik nr strony dla tabeli) */
+.my-navs {
+    margin: 20px;
+}
+#invoiceSaleIndexNavPageSelector {
+    margin: 0px;
+    padding: 5px;
+}
+#invoiceSaleIndexNavPageSelector input {
+    margin: 0px;
+    padding: 5px;
+    width: 50px;
+    height: 26px;
+}
+/* ==================================================== */

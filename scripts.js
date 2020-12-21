@@ -39,13 +39,21 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
     const actualPosition ={
         firstShowed: 0,
         firstHiddenAfter: tBody.children.length
-    },lastPosition = {
-        firstShowed: 0,
-        firstHiddenAfter: 0
     };
-    var actualFilteredCount = 0;
+    // ,lastPosition = {
+    //     firstShowed: 0,
+    //     firstHiddenAfter: 0
+    // };
+    var actualFilteredCount = 0, actualPage = 1;
     const searchForm = document.forms['invoiceSaleIndexSearchForm'];
     const errorDiv = document.getElementById("errorDisplayField");
+    const navBtn = {
+        last: document.getElementById("invoiceSaleIndexNavLast"),
+        next: document.getElementById("invoiceSaleIndexNavNext"),
+        first: document.getElementById("invoiceSaleIndexNavFirst"),
+        prev: document.getElementById("invoiceSaleIndexNavPrev"),
+        //input: document.getElementById("invoiceSaleIndexNavPageSelector").firstElementChild
+    };
 
     const generateRow = function (args) {
         return '<tr>'+
@@ -86,10 +94,13 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
             for (let i = 0; i < actualFilteredCount; i++) {
                 tBody.removeChild(tableRows[0]);
             }
-            for (let i = lastPosition.firstShowed; i < lastPosition.firstHiddenAfter; i++) {
+            tableRows = tBody.children;
+            for (let i = actualPosition.firstShowed; i < actualPosition.firstHiddenAfter; i++) {
                 tableRows[i].style.display = "table-row";
             }
             actualFilteredCount = 0;
+            // actualPosition.firstShowed = lastPosition.firstShowed;
+            // actualPosition.firstHiddenAfter = lastPosition.firstHiddenAfter;
 
         } else {
             fetch("index.php?action=invoiceSale-filter"+query, {
@@ -102,25 +113,11 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
                 let tableRows = tBody.children;
 
                 if( data === undefined || data.length === 0) {
-                    errorDiv.style.display = "block";
-                    setTimeout(() => {
-                        errorDiv.style.display = "none";
-                    },3000);
-
-                    for (let i = 0; i < actualFilteredCount; i++) {
-                        tBody.removeChild(tableRows[0]);
-                    }
-                    tableRows = tBody.children;
-                    for (let i = lastPosition.firstShowed; i < lastPosition.firstHiddenAfter; i++) {
-                        tableRows[i].style.display = "table-row";
-                    }
-                    if (lastPosition.firstShowed !== 0 || lastPosition.firstHiddenAfter !== 0) {
-                        actualPosition.firstShowed = lastPosition.firstShowed;
-                        actualPosition.firstHiddenAfter = lastPosition.firstHiddenAfter;
-                    }
-
-                    actualFilteredCount = 0;
-
+                    throw "empty data";
+                    // if (lastPosition.firstShowed !== 0 || lastPosition.firstHiddenAfter !== 0) {
+                    //     actualPosition.firstShowed = lastPosition.firstShowed;
+                    //     actualPosition.firstHiddenAfter = lastPosition.firstHiddenAfter;
+                    // }
                 }else {
                     for (let i = 0; i < actualFilteredCount; i++) {
                         tBody.removeChild(tableRows[0]);
@@ -129,14 +126,14 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
                     for (let i = actualPosition.firstShowed; i < actualPosition.firstHiddenAfter; i++) {
                         tableRows[i].style.display = "none";
                     }
-                    if (actualPosition.firstShowed !== 0 || actualPosition.firstHiddenAfter !== 0) {
-                        lastPosition.firstShowed = actualPosition.firstShowed;
-                        lastPosition.firstHiddenAfter = actualPosition.firstHiddenAfter;
-                        actualPosition.firstShowed = 0;
-                        actualPosition.firstHiddenAfter = 0;
-                    }
+                    // if (actualPosition.firstShowed !== 0 || actualPosition.firstHiddenAfter !== 0) {
+                    //     lastPosition.firstShowed = actualPosition.firstShowed;
+                    //     lastPosition.firstHiddenAfter = actualPosition.firstHiddenAfter;
+                    //     actualPosition.firstShowed = 0;
+                    //     actualPosition.firstHiddenAfter = 0;
+                    // }
                     actualFilteredCount = data.length;
-                    for (let i = 0; i < actualFilteredCount; i++) {
+                    for (let i = actualFilteredCount-1; i >= 0; i--) {
                         tBody.insertAdjacentHTML('afterbegin',generateRow(data[i]));
                     }
 
@@ -144,12 +141,76 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
             })
             .catch(err => {
                 console.log(err);
+                errorDiv.style.display = "block";
+                setTimeout(() => {
+                    errorDiv.style.display = "none";
+                },3000);
+
+                for (let i = 0; i < actualFilteredCount; i++) {
+                    tBody.removeChild(tableRows[0]);
+                }
+                tableRows = tBody.children;
+                for (let i = lastPosition.firstShowed; i < lastPosition.firstHiddenAfter; i++) {
+                    tableRows[i].style.display = "table-row";
+                }
+                actualFilteredCount = 0;
             });
         }
 
     },
-        function () {
+        function (arg) {
+            if ( arg === undefined || actualFilteredCount != 0) return;
+            //if (actualPosition.firstShowed === 0 && actualPosition.firstHiddenAfter === 0 ) return;
 
+
+            if ( arg === "prev") {
+                if ( actualPage === 1) return;
+                actualPage -= 1;
+            } else if ( arg === "next") {
+                if ( actualPage === 0) return;
+                actualPage += 1;
+            } else if ( typeof arg === "number") {
+                actualPage = arg;
+            } else {
+                return;
+            }
+
+            fetch("index.php?action=invoiceSale-more&page="+actualPage, {
+                method: 'GET',
+                mode: 'cors',
+                referrerPolicy: 'no-referrer'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data) throw "empty data";
+
+                    navBtn.last.firstElementChild.innerText = data['numOfAllPage'];
+                    if (actualPage === data['numOfAllPage']) {
+                        navBtn.last.classList.add("disabled");
+                        navBtn.next.classList.add("disabled");
+                    } else if ( actualPage === 1) {
+                        navBtn.prev.classList.add("disabled");
+                        navBtn.first.classList.add("disabled");
+                    } else {
+                        navBtn.first.classList.remove("disabled");
+                        navBtn.prev.classList.remove("disabled");
+                        navBtn.last.classList.remove("disabled");
+                        navBtn.next.classList.remove("disabled");
+                    }
+                    tableRows = tBody.children;
+                    const len = tableRows.length;
+                    for (let i = 0; i < len; i++) {
+                        tBody.removeChild(tableRows[0]);
+                    }
+                    tableRows = tBody.children;
+                    for (let i = data['data'].length-1; i >= 0; i--) {
+                        tBody.insertAdjacentHTML('afterbegin',generateRow(data['data'][i]));
+                    }
+
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         }
     ];
 }();

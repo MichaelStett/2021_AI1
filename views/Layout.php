@@ -75,8 +75,8 @@ class Layout
                             Wyświetl ...
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/controller.php?action=otherDocuments-show">Sprzęt</a>
-                            <a class="dropdown-item" href="/controller.php?action=license-show">Licencje</a>
+                            <a class="dropdown-item" href="/index.php?action=otherDocuments-show">Sprzęt</a>
+                            <a class="dropdown-item" href="/index.php?action=license-show">Licencje</a>
                         </div>
                     </li>
 
@@ -92,12 +92,12 @@ class Layout
                             Wyświetl ...
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/controller.php?action=invoiceSale-show">FV sprzedaży</a>
-                            <a class="dropdown-item" href="/controller.php?action=invoicePurhase-show">FV zakupu</a>
+                            <a class="dropdown-item" href="/index.php?action=invoiceSale-show">FV sprzedaży</a>
+                            <a class="dropdown-item" href="/index.php?action=invoicePurhase-show">FV zakupu</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/controller.php?action=otherDocuments-show">Sprzęt</a>
-                            <a class="dropdown-item" href="/controller.php?action=license-show">Licencje</a>
-                            <a class="dropdown-item" href="/controller.php?action=otherDocuments-show">Pozostałe dokumenty</a>
+                            <a class="dropdown-item" href="/index.php?action=otherDocuments-show">Sprzęt</a>
+                            <a class="dropdown-item" href="/index.php?action=license-show">Licencje</a>
+                            <a class="dropdown-item" href="/index.php?action=otherDocuments-show">Pozostałe dokumenty</a>
                         </div>
                     </li>
                 </ul>
@@ -112,12 +112,12 @@ class Layout
                                     Wyświetl ...
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/controller.php?action=invoiceSale-show">FV sprzedaży</a>
-                                    <a class="dropdown-item" href="/controller.php?action=invoicePurhase-show">FV zakupu</a>
+                                    <a class="dropdown-item" href="./index.php?action=invoiceSale-show">FV sprzedaży</a>
+                                    <a class="dropdown-item" href="./index.php?action=invoicePurhase-show">FV zakupu</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/controller.php?action=otherDocuments-show">Sprzęt</a>
-                                    <a class="dropdown-item" href="/controller.php?action=license-show">Licencje</a>
-                                    <a class="dropdown-item" href="/controller.php?action=otherDocuments-show">Pozostałe dokumenty</a>
+                                    <a class="dropdown-item" href="./index.php?action=otherDocuments-show">Sprzęt</a>
+                                    <a class="dropdown-item" href="./index.php?action=license-show">Licencje</a>
+                                    <a class="dropdown-item" href="./index.php?action=otherDocuments-show">Pozostałe dokumenty</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -125,19 +125,19 @@ class Layout
                                     Dodaj ...
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/controller.php?action=invoiceSale-add">FV sprzedaży</a>
-                                    <a class="dropdown-item" href="/controller.php?action=invoicePurhase-add">FV zakupu</a>
+                                    <a class="dropdown-item" href="./index.php?action=invoiceSale-add">FV sprzedaży</a>
+                                    <a class="dropdown-item" href="./index.php?action=invoicePurhase-add">FV zakupu</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/controller.php?action=equipment-add">Sprzęt</a>
-                                    <a class="dropdown-item" href="/controller.php?action=license-add">Licencje</a>
-                                    <a class="dropdown-item" href="/controller.php?action=otherDocuments-add">Pozostałe dokumenty</a>
+                                    <a class="dropdown-item" href="./index.php?action=equipment-add">Sprzęt</a>
+                                    <a class="dropdown-item" href="./index.php?action=license-add">Licencje</a>
+                                    <a class="dropdown-item" href="./index.php?action=otherDocuments-add">Pozostałe dokumenty</a>
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/controller.php?action=generateRaport-show">Generuj raport</a>
+                                <a class="nav-link" href="/index.php?action=generateRaport-show">Generuj raport</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/controller.php?action=admin">Administracja</a>
+                                <a class="nav-link" href="/index.php?action=admin">Administracja</a>
                             </li>
                         </ul>
 <!--                        <form class="form-inline my-2 my-lg-0">-->
