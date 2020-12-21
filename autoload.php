@@ -11,6 +11,7 @@ require_once __DIR__ . '/views/login/LoginIndexView.php';
 
 # Controllers 
 require_once __DIR__ . '/controllers/LoginController.php';
+require_once __DIR__ . '/controllers/InvoiceController.php';
 
 
 # Misc
