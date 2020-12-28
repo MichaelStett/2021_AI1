@@ -85,11 +85,11 @@ td.showDataIndexTableWider a.btn {
 .my-navs {
     margin: 20px;
 }
-#invoiceSaleIndexNavPageSelector {
+#NavPageSelector {
     margin: 0px;
     padding: 5px;
 }
-#invoiceSaleIndexNavPageSelector input {
+#NavPageSelector input {
     margin: 0px;
     padding: 5px;
     width: 50px;

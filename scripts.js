@@ -16,26 +16,59 @@ function validateLoginForm() {
 
 }
 
-const changeDataInInvoiceSaleIndexModal = function (){
-    const modalTable = document.querySelectorAll('#invoiceSaleIndexModalTable td');
+// === skrypty dla indexow wysweitlajacych dane dla wszytskich widokow
 
-    return function (args){
-        modalTable[0].innerText = args['invoiceNumber'];
-        modalTable[1].innerText = args['name'];
-        modalTable[2].innerText = args['vatID'];
-        modalTable[3].innerText = args['addDate'];
-        modalTable[4].innerText = args['amountNet'];
-        modalTable[5].innerText = args['amountGross'];
-        modalTable[6].innerText = args['amountTax'];
-        modalTable[7].previousElementSibling.innerText = "Kwotta netto ("+args['amountNetCurrency']+")";
-        modalTable[7].innerText = args['amountNetCurrencyValue'];
-        modalTable[8].firstElementChild.href = "index.php?action=getFile&fileType=invoiceSale&fileNumber="+args['id'];
+
+const indexPageName = function () {
+    const viewsNames = ["invoiceSaleIndex"];
+    let md = undefined;
+    let i = 0;
+    for (; i < viewsNames.length && md === undefined; i++) {
 
     }
+    return  viewsNames[i-1];
+}();
+const searchFormName = "SearchForm_";
+
+
+const changeDataInModal = function (){
+    const modalTable = document.querySelectorAll('#'+indexPageName+'ModalTable td');
+
+    switch (indexPageName) {
+        case "invoiceSaleIndex":
+            return function (args){
+                modalTable[0].innerText = args['invoiceNumber'];
+                modalTable[1].innerText = args['name'];
+                modalTable[2].innerText = args['vatID'];
+                modalTable[3].innerText = args['addDate'];
+                modalTable[4].innerText = args['amountNet'];
+                modalTable[5].innerText = args['amountGross'];
+                modalTable[6].innerText = args['amountTax'];
+                modalTable[7].previousElementSibling.innerText = "Kwotta netto ("+args['amountNetCurrency']+")";
+                modalTable[7].innerText = args['amountNetCurrencyValue'];
+                modalTable[8].firstElementChild.href = "index.php?action=getFile&fileType=invoiceSale&fileNumber="+args['id'];
+
+            }
+            break;
+        case "":
+
+
+            break;
+        case "":
+
+            break;
+        case "":
+
+            break;
+        default:
+            return function () {};
+            break;
+    }
+
 }();
 
 const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = function () {
-    const tBody = document.querySelector('#invoiceSaleIndexTable tbody');
+    const tBody = document.querySelector('#'+indexPageName+'Table tbody');
     const actualPosition ={
         firstShowed: 0,
         firstHiddenAfter: tBody.children.length
@@ -45,15 +78,27 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
     //     firstHiddenAfter: 0
     // };
     var actualFilteredCount = 0, actualPage = 1;
-    const searchForm = document.forms['invoiceSaleIndexSearchForm'];
+
+    const searchForm = document.forms[indexPageName+searchFormName];
     const errorDiv = document.getElementById("errorDisplayField");
     const navBtn = {
-        last: document.getElementById("invoiceSaleIndexNavLast"),
-        next: document.getElementById("invoiceSaleIndexNavNext"),
-        first: document.getElementById("invoiceSaleIndexNavFirst"),
-        prev: document.getElementById("invoiceSaleIndexNavPrev"),
+        last: document.getElementById("NavLast"),
+        next: document.getElementById("NavNext"),
+        first: document.getElementById("NavFirst"),
+        prev: document.getElementById("NavPrev"),
         //input: document.getElementById("invoiceSaleIndexNavPageSelector").firstElementChild
     };
+    
+    function validateSearchTextFields(fieldNames) {
+        for (const fieldName of fieldNames) {
+            if ( !searchForm[searchFormName + fieldName].checkValidity() ||
+                (searchForm[searchFormName + fieldName].value.length != 0
+                && searchForm[searchFormName + fieldName].value.length <= 2)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     const generateRow = function (args) {
         return '<tr>'+
@@ -75,20 +120,16 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
     }
 
     return [function () {
-        if ( !searchForm["SearchFormContractorName"].checkValidity() || (searchForm["SearchFormContractorName"].value.length > 0
-            && searchForm["SearchFormContractorName"].value.length <= 2) ||
-            !searchForm["SearchFormStartDate"].checkValidity() || !searchForm["SearchFormEndDate"].checkValidity() ||
-            !searchForm["SearchFormInvoiceNumber"].checkValidity() || (searchForm["SearchFormInvoiceNumber"].value.length > 0
-                && searchForm["SearchFormInvoiceNumber"].value.length <= 2) ||
-            !searchForm["SearchFormVatID"].checkValidity() || (searchForm["SearchFormVatID"].value.length > 0
-                && searchForm["SearchFormVatID"].value.length <= 2)
-        ) return;
+        const reqFieldNames = ["name","invoiceNumber","vatID","dateAddStart","dateAddEnd"];
+        if ( !validateSearchTextFields(reqFieldNames) ) return;
 
-        let query = (searchForm["SearchFormContractorName"].value !== "" ? "&name="+ searchForm["SearchFormContractorName"].value : "")+
-            (searchForm["SearchFormStartDate"].value !== "" ? "&dateAddStart="+ searchForm["SearchFormStartDate"].value : "")+
-            (searchForm["SearchFormEndDate"].value !== "" ? "&dateAddEnd="+ searchForm["SearchFormEndDate"].value : "")+
-            (searchForm["SearchFormInvoiceNumber"].value !== "" ? "&invoiceNumber="+ searchForm["SearchFormInvoiceNumber"].value : "")+
-            (searchForm["SearchFormVatID"].value !== "" ? "&vatID="+ searchForm["SearchFormVatID"].value : "");
+        let query = "";
+        for (const reqFieldName of reqFieldNames) {
+            if (searchForm[searchFormName + reqFieldName].value !== "") {
+                query += "&"+reqFieldName+"="+ searchForm[searchFormName + reqFieldName].value;
+            }
+        }
+
         if (query === "") {
             let tableRows = tBody.children;
             for (let i = 0; i < actualFilteredCount; i++) {
@@ -99,8 +140,7 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
                 tableRows[i].style.display = "table-row";
             }
             actualFilteredCount = 0;
-            // actualPosition.firstShowed = lastPosition.firstShowed;
-            // actualPosition.firstHiddenAfter = lastPosition.firstHiddenAfter;
+
 
         } else {
             fetch("index.php?action=invoiceSale-filter"+query, {
@@ -114,10 +154,7 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
 
                 if( data === undefined || data.length === 0) {
                     throw "empty data";
-                    // if (lastPosition.firstShowed !== 0 || lastPosition.firstHiddenAfter !== 0) {
-                    //     actualPosition.firstShowed = lastPosition.firstShowed;
-                    //     actualPosition.firstHiddenAfter = lastPosition.firstHiddenAfter;
-                    // }
+
                 }else {
                     for (let i = 0; i < actualFilteredCount; i++) {
                         tBody.removeChild(tableRows[0]);
@@ -126,12 +163,6 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
                     for (let i = actualPosition.firstShowed; i < actualPosition.firstHiddenAfter; i++) {
                         tableRows[i].style.display = "none";
                     }
-                    // if (actualPosition.firstShowed !== 0 || actualPosition.firstHiddenAfter !== 0) {
-                    //     lastPosition.firstShowed = actualPosition.firstShowed;
-                    //     lastPosition.firstHiddenAfter = actualPosition.firstHiddenAfter;
-                    //     actualPosition.firstShowed = 0;
-                    //     actualPosition.firstHiddenAfter = 0;
-                    // }
                     actualFilteredCount = data.length;
                     for (let i = actualFilteredCount-1; i >= 0; i--) {
                         tBody.insertAdjacentHTML('afterbegin',generateRow(data[i]));
@@ -150,7 +181,7 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
                     tBody.removeChild(tableRows[0]);
                 }
                 tableRows = tBody.children;
-                for (let i = lastPosition.firstShowed; i < lastPosition.firstHiddenAfter; i++) {
+                for (let i = actualPosition.firstShowed; i < actualPosition.firstHiddenAfter; i++) {
                     tableRows[i].style.display = "table-row";
                 }
                 actualFilteredCount = 0;
@@ -160,8 +191,6 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
     },
         function (arg) {
             if ( arg === undefined || actualFilteredCount != 0) return;
-            //if (actualPosition.firstShowed === 0 && actualPosition.firstHiddenAfter === 0 ) return;
-
 
             if ( arg === "prev") {
                 if ( actualPage === 1) return;
@@ -214,6 +243,8 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
         }
     ];
 }();
+
+// =============================================================
 
 function ready(fn) {
     if (document.readyState != 'loading'){

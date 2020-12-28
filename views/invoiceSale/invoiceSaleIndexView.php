@@ -80,29 +80,29 @@ class invoiceSaleIndexView
 
                 <div class="col-md col-md-auto">
                     <div id="<?= $id ?>SearchBox" class="my-search-box">
-                        <form id="<?= $id ?>SearchForm">
+                        <form id="<?= $id ?>SearchForm_">
                             <div class="form-row">
                                 <div class="form-group col-lg-6 col-md-12">
-                                    <label for="SearchFormContractorName">Kontrahent</label>
-                                    <input id="SearchFormContractorName" maxlength="30" type="text" class="form-control" pattern="^[\d\w]*$" placeholder="FirmaXYZ" onfocusout="filterDataInInvoiceSaleIndexTable();">
+                                    <label for="SearchForm_name">Kontrahent</label>
+                                    <input id="SearchForm_name" maxlength="30" type="text" class="form-control" pattern="^[\d\w]*$" placeholder="FirmaXYZ" onfocusout="filterDataInInvoiceSaleIndexTable();">
                                 </div>
 
                                 <div class="form-group col-lg-3  col-md-6">
-                                    <label for="SearchFormStartDate">Od</label>
-                                    <input id="SearchFormStartDate" type="date" class="form-control" oninput="filterDataInInvoiceSaleIndexTable();">
+                                    <label for="SearchForm_dateAddStart">Od</label>
+                                    <input id="SearchForm_dateAddStart" type="date" class="form-control" oninput="filterDataInInvoiceSaleIndexTable();">
                                 </div>
                                 <div class="form-group col-lg-3  col-md-6">
-                                    <label for="SearchFormEndDate">Do</label>
-                                    <input id="SearchFormEndDate" type="date" class="form-control" oninput="filterDataInInvoiceSaleIndexTable();">
+                                    <label for="SearchForm_dateAddEnd">Do</label>
+                                    <input id="SearchForm_dateAddEnd" type="date" class="form-control" oninput="filterDataInInvoiceSaleIndexTable();">
                                 </div>
 
                                 <div class="form-group col-lg-6  col-md-6">
-                                    <label for="SearchFormInvoiceNumber">Numer FV</label>
-                                    <input id="SearchFormInvoiceNumber" maxlength="15" type="text" class="form-control" pattern="^\d*$" placeholder="123456" onfocusout="filterDataInInvoiceSaleIndexTable();">
+                                    <label for="SearchForm_invoiceNumber">Numer FV</label>
+                                    <input id="SearchForm_invoiceNumber" maxlength="15" type="text" class="form-control" pattern="^\d*$" placeholder="123456" onfocusout="filterDataInInvoiceSaleIndexTable();">
                                 </div>
                                 <div class="form-group col-lg-6  col-md-6">
-                                    <label for="SearchFormVatID">Vat ID</label>
-                                    <input id="SearchFormVatID" maxlength="15" type="text" class="form-control" pattern="^\d*$" placeholder="123456" onfocusout="filterDataInInvoiceSaleIndexTable();">
+                                    <label for="SearchForm_vatID">Vat ID</label>
+                                    <input id="SearchForm_vatID" maxlength="15" type="text" class="form-control" pattern="^\d*$" placeholder="123456" onfocusout="filterDataInInvoiceSaleIndexTable();">
                                 </div>
                             </div>
 <!--                                <button type="submit" class="btn btn-primary">Search</button>-->
@@ -150,7 +150,7 @@ class invoiceSaleIndexView
                                         echo '<td class="showDataIndexTableWider">'.$val->getAmountGross().'</td>';
                                         echo '<td class="showDataIndexTableWider">'.$val->getAmountTax().'</td>';
                                         echo '<td class="showDataIndexTableWider">'.$val->getAmountNetCurrencyValue().' ('.$val->getAmountNetCurrency().')</td>';
-                                        echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInInvoiceSaleIndexModal('
+                                        echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInModal('
                                             .json_encode($val)
                                             .');\'>...</a></td>';
                                         echo '<td class="showDataIndexTableWider"><a class="btn" href="index.php?action=getFile&fileType=invoiceSale&fileNumber='
@@ -167,19 +167,23 @@ class invoiceSaleIndexView
                         </table>
 
                     </div>
-                    <nav id="<?= $id ?>Nav" class="my-navs" aria-label="...">
+                    <nav id="Nav" class="my-navs" aria-label="...">
                         <ul class="pagination justify-content-end">
-                            <li id="<?= $id ?>NavPrev" class="page-item disabled">
+                            <li id="NavPrev" class="page-item disabled">
                                 <button  class="page-link" onclick="changePageInInvoiceSaleIndexTable('prev');" aria-disabled="true">Previous</button>
                             </li>
-                            <li id="<?= $id ?>NavFirst" class="page-item disabled">
+                            <li id="NavFirst" class="page-item disabled">
                                 <button  class="page-link" onclick="changePageInInvoiceSaleIndexTable('1');" aria-disabled="true" >1</button>
                             </li>
-
-                            <li id="<?= $id ?>NavLast" class="page-item">
+                            <li class="page-item" aria-current="page">
+                                <a id="NavPageSelector" class="page-link" href="#">
+                                    <input type="number" maxlength="4" min="1" class="form-control" oninput="changePageInInvoiceSaleIndexTable(this.value);">
+                                </a>
+                            </li>
+                            <li id="NavLast" class="page-item">
                                 <button  class="page-link" onclick="changePageInInvoiceSaleIndexTable('0');"><?= $numberOfRecordsInDB ?></button>
                             </li>
-                            <li id="<?= $id ?>NavNext" class="page-item">
+                            <li id="NavNext" class="page-item">
                                 <button  class="page-link" onclick="changePageInInvoiceSaleIndexTable('next');">Next</button>
                             </li>
                         </ul>
