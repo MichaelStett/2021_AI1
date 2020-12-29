@@ -100,24 +100,32 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
         return true;
     }
 
-    const generateRow = function (args) {
-        return '<tr>'+
-            '<th scope="row">'+args['invoiceNumber']+'</th>'+
-            '<td class="invoiceSaleIndexTableContractorName">'+args['name']+'</td>'+
-            '<td class="invoiceSaleIndexTableAddDate">'+args['addDate']+'</td>'+
-            '<td class="showDataIndexTableWider">'+args['vatID']+'</td>'+
-            '<td class="showDataIndexTableWider">'+args['amountNet']+'</td>'+
-            '<td class="showDataIndexTableWider">'+args['amountGross']+'</td>'+
-            '<td class="showDataIndexTableWider">'+args['amountTax']+'</td>'+
-            '<td class="showDataIndexTableWider">'+args['amountNetCurrencyValue']+' ('+args['amountNetCurrency']+')</td>'+
-            '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInInvoiceSaleIndexModal('+
-            JSON.stringify(args)+
-            ');\'>...</a></td>'+
-            '<td class="showDataIndexTableWider"><a class="btn" href="index+php?action=getFile&fileType=invoiceSale&fileNumber='+
-            args['id']+
-            '"><img class="pdfIcon" src="./images/pdf_image.png"></a></td>'+
-            '</tr>';
-    }
+    const generateRow = function() {
+        switch (indexPageName) {
+            case "invoiceSaleIndex":
+                 return function (args) {
+                    return '<tr>'+
+                        '<th scope="row">'+args['invoiceNumber']+'</th>'+
+                        '<td class="invoiceSaleIndexTableContractorName">'+args['name']+'</td>'+
+                        '<td class="invoiceSaleIndexTableAddDate">'+args['addDate']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['vatID']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['amountNet']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['amountGross']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['amountTax']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['amountNetCurrencyValue']+' ('+args['amountNetCurrency']+')</td>'+
+                        '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInInvoiceSaleIndexModal('+
+                        JSON.stringify(args)+
+                        ');\'>...</a></td>'+
+                        '<td class="showDataIndexTableWider"><a class="btn" href="index+php?action=getFile&fileType=invoiceSale&fileNumber='+
+                        args['id']+
+                        '"><img class="pdfIcon" src="./images/pdf_image.png"></a></td>'+
+                        '</tr>';
+                }
+                break;
+            default:
+                return function (args) { throw "not recognized type of index"; };
+        }
+    }();
 
     return [function () {
         const reqFieldNames = ["name","invoiceNumber","vatID","dateAddStart","dateAddEnd"];

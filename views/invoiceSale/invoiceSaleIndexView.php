@@ -4,13 +4,15 @@ require_once __DIR__ . '/../../autoload.php';
 class invoiceSaleIndexView
 {
 
+
     /**
-     * @param string $id
      * @param array $recordsMainTable
+     * @param int $numberOfRecordsInDB
      * @return false|string
      */
-    public static function render($id, $recordsMainTable, $numberOfRecordsInDB)
+    public static function render($recordsMainTable, $numberOfRecordsInDB)
     {
+        $id = "invoiceSaleIndex";
         ob_start();
         ?>
         <?= Layout::header() ?>

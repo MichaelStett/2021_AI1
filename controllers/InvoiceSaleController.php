@@ -14,7 +14,7 @@ class InvoiceSaleController
         $records = $invoiceSaleRepository->getAll(self::$limit);
         $numOfRecords = $invoiceSaleRepository->getNumberOfRecords();
 
-        echo invoiceSaleIndexView::render("invoiceSaleIndex",$records, ceil($numOfRecords/self::$limit));
+        echo invoiceSaleIndexView::render($records, ceil($numOfRecords/self::$limit));
         return;
     }
 

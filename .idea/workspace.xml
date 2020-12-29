@@ -58,12 +58,16 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/invoicePurchased" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\GSzwa\source\WEB\2021_AI1_Faktury\views\invoicePurchased" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\GSzwa\source\WEB\2021_AI1_Faktury" />
     </key>
@@ -96,6 +100,7 @@
       <workItem from="1608540350977" duration="15576000" />
       <workItem from="1608651126058" duration="4551000" />
       <workItem from="1609160841544" duration="9136000" />
+      <workItem from="1609241119571" duration="1509000" />
     </task>
     <servers />
   </component>
