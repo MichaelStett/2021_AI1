@@ -58,7 +58,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/invoicePurchased" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/license" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -66,6 +66,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\GSzwa\source\WEB\2021_AI1_Faktury\views\license" />
+      <recent name="C:\Users\GSzwa\source\WEB\2021_AI1_Faktury\views\equipment" />
+      <recent name="C:\Users\GSzwa\source\WEB\2021_AI1_Faktury\views\otherDocs" />
       <recent name="C:\Users\GSzwa\source\WEB\2021_AI1_Faktury\views\invoicePurchased" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -100,7 +103,7 @@
       <workItem from="1608540350977" duration="15576000" />
       <workItem from="1608651126058" duration="4551000" />
       <workItem from="1609160841544" duration="9136000" />
-      <workItem from="1609241119571" duration="1509000" />
+      <workItem from="1609241119571" duration="4491000" />
     </task>
     <servers />
   </component>
@@ -137,10 +140,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="1" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608049088004" />
-    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1608485346831">
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1609245409299">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608485346831" />
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1609245409299" />
     <state width="1877" height="280" key="GridCell.Tab.0.bottom" timestamp="1608658444938">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

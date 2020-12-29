@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../autoload.php';
 
-class invoicePurchasedIndexView
+class invoiceLicenseIndexView
 {
 
     /**
@@ -30,40 +30,40 @@ class invoicePurchasedIndexView
                             <table id="<?= $id ?>ModalTable" class="table table-striped">
                                 <tbody>
                                 <tr>
-                                    <th scope="row">Nr Fv</th>
+                                    <th scope="row">Nr Inwentarzowy</th>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Nazwa kotrahenta</th>
+                                    <th scope="row">Nazwa</th>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">VAT ID</th>
+                                    <th scope="row">Klucz seryjny</th>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Data dodania</th>
+                                    <th scope="row">Data zakupu</th>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Kwota netto</th>
+                                    <th scope="row">Nr Faktury</th>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Kwota brutto</th>
+                                    <th scope="row">Wsparcie tech. do</th>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Kwota podatku VAT</th>
+                                    <th scope="row">Ważna do</th>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Kwota netto (waluta)</th>
+                                    <th scope="row">Przypisany do</th>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Plik</th>
-                                    <td><a class="btn" href="#"><img class="pdfIcon" src="./images/pdf_image.png"></a></td>
+                                    <th scope="row">Notatki</th>
+                                    <td></td>
                                 </tr>
 
                                 </tbody>
@@ -84,26 +84,8 @@ class invoicePurchasedIndexView
                         <form id="<?= $id ?>SearchForm_">
                             <div class="form-row">
                                 <div class="form-group col-lg-6 col-md-12">
-                                    <label for="SearchForm_name">Kontrahent</label>
+                                    <label for="SearchForm_name">Nazwa</label>
                                     <input id="SearchForm_name" maxlength="30" type="text" class="form-control" pattern="^[\d\w]*$" placeholder="FirmaXYZ" onfocusout="filterDataInInvoiceSaleIndexTable();">
-                                </div>
-
-                                <div class="form-group col-lg-3  col-md-6">
-                                    <label for="SearchForm_dateAddStart">Od</label>
-                                    <input id="SearchForm_dateAddStart" type="date" class="form-control" oninput="filterDataInInvoiceSaleIndexTable();">
-                                </div>
-                                <div class="form-group col-lg-3  col-md-6">
-                                    <label for="SearchForm_dateAddEnd">Do</label>
-                                    <input id="SearchForm_dateAddEnd" type="date" class="form-control" oninput="filterDataInInvoiceSaleIndexTable();">
-                                </div>
-
-                                <div class="form-group col-lg-6  col-md-6">
-                                    <label for="SearchForm_invoiceNumber">Numer FV</label>
-                                    <input id="SearchForm_invoiceNumber" maxlength="15" type="text" class="form-control" pattern="^\d*$" placeholder="123456" onfocusout="filterDataInInvoiceSaleIndexTable();">
-                                </div>
-                                <div class="form-group col-lg-6  col-md-6">
-                                    <label for="SearchForm_vatID">Vat ID</label>
-                                    <input id="SearchForm_vatID" maxlength="15" type="text" class="form-control" pattern="^\d*$" placeholder="123456" onfocusout="filterDataInInvoiceSaleIndexTable();">
                                 </div>
                             </div>
 <!--                                <button type="submit" class="btn btn-primary">Search</button>-->
@@ -127,14 +109,15 @@ class invoicePurchasedIndexView
                         <table id="<?= $id ?>Table" class="table table-striped">
                             <thead>
                             <tr>
-                                <th scope="col">Nr Fv</th>
-                                <th scope="col">Nazwa kotrahenta</th>
-                                <th scope="col">Data dodania</th>
-                                <th scope="col" class="showDataIndexTableWider">VAT ID</th>
-                                <th scope="col" class="showDataIndexTableWider">Kwota netto</th>
-                                <th scope="col" class="showDataIndexTableWider">Kwota brutto</th>
-                                <th scope="col" class="showDataIndexTableWider">Kwota podatku VAT</th>
-                                <th scope="col" class="showDataIndexTableWider">Kwota netto (waluta)</th>
+                                <th scope="col">Nr Inwentarzowy</th>
+                                <th scope="col">Nazwa</th>
+                                <th scope="col">Klucz Seryjny</th>
+                                <th scope="col" class="showDataIndexTableWider">Data zakupu</th>
+                                <th scope="col" class="showDataIndexTableWider">Nr Faktury</th>
+                                <th scope="col" class="showDataIndexTableWider">Wsparcie tech. Do</th>
+                                <th scope="col" class="showDataIndexTableWider">Ważna do</th>
+                                <th scope="col" class="showDataIndexTableWider">Przypisany do</th>
+                                <th scope="col" class="showDataIndexTableWider">Notatki</th>
                                 <th scope="col" class="showDataIndexTableTight">Szczegóły</th>
                             </tr>
                             </thead>
