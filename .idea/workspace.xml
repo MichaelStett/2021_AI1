@@ -58,7 +58,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/license" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -104,6 +104,7 @@
       <workItem from="1608651126058" duration="4551000" />
       <workItem from="1609160841544" duration="9136000" />
       <workItem from="1609241119571" duration="4491000" />
+      <workItem from="1609314327191" duration="5246000" />
     </task>
     <servers />
   </component>
@@ -188,6 +189,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="781" y="296" key="refactoring.ChangeSignatureDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608487263351" />
+    <state x="456" y="198" key="run.anything.popup" timestamp="1609324929399">
+      <screen x="0" y="0" width="1600" height="870" />
+    </state>
+    <state x="456" y="198" key="run.anything.popup/0.0.1600.870@0.0.1600.870" timestamp="1609324929399" />
     <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1608501558192">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

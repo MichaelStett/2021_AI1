@@ -121,6 +121,9 @@ class invoiceOtherDocsIndexView
                                         echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInModal('
                                             .json_encode($val)
                                             .');\'>...</a></td>';
+                                        echo '<td class="showDataIndexTableWider"><a class="btn" href="index.php?action=getFile&fileType=otherDocs&fileNumber='
+                                            .$val->getId()
+                                            .'"><img class="pdfIcon" src="./images/pdf_image.png"></a></td>';
                                         echo '<td class="showDataIndexTableRowId">'.$count.'</td>';
                                         echo '</tr>';
                                         $count++;

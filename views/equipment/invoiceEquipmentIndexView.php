@@ -84,8 +84,8 @@ class invoiceEquipmentIndexView
                         <form id="<?= $id ?>SearchForm_">
                             <div class="form-row">
                                 <div class="form-group col-lg-6 col-md-12">
-                                    <label for="SearchForm_name">Nr Inwentarza</label>
-                                    <input id="SearchForm_name" maxlength="30" type="text" class="form-control" pattern="^[\d\w]*$" placeholder="FirmaXYZ" onfocusout="filterDataInInvoiceSaleIndexTable();">
+                                    <label for="SearchForm_inventoryNumber">Nr Inwentarza</label>
+                                    <input id="SearchForm_inventoryNumber" maxlength="30" type="text" class="form-control" pattern="^[\d\w]*$" placeholder="FirmaXYZ" onfocusout="filterDataInInvoiceSaleIndexTable();">
                                 </div>
                                 <div class="form-group col-lg-6  col-md-6">
                                     <label for="SearchForm_serialNumber">Nr seryjny</label>
