@@ -4,6 +4,8 @@
 require_once __DIR__ . '/models/currencyEnum.php';
 require_once __DIR__ . '/models/InvoiceSale.php';
 require_once __DIR__ . '/models/User.php';
+
+require_once __DIR__ . '/models/repositories/IRepository.php';
 require_once __DIR__ . '/models/repositories/UserRepository.php';
 require_once __DIR__ . '/models/repositories/InvoiceSaleRepository.php';
 

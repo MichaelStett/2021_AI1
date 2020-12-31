@@ -40,7 +40,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `firstName`, `lastName`, `password`) VALUES
-(1, 'admin', 'adminFirstName', 'adminLastName', 'admin');
+(1, 'admin', 'adminFirstName', 'adminLastName', '21232f297a57a5a743894a0e4a801fc3');
 
 --
 -- Indeksy dla zrzutów tabel
