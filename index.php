@@ -26,8 +26,8 @@ switch ($action) {
     case 'invoicePurhase-show':
 
         break;
-    case 'invoicePurhase-add':
-
+    case 'invoicePurchase-add':
+        echo InvoicePurchaseController::index();
         break;
     case 'otherDocuments-show':
 
