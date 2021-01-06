@@ -21,7 +21,4 @@ require_once __DIR__ . '/controllers/InvoiceSaleController.php';
 
 # Misc
 require_once __DIR__ . '/config.php';
-
-
-
-?>
+require_once __DIR__ . '/exceptions/NotImplementedException.php';

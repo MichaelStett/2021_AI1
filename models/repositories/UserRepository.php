@@ -38,13 +38,13 @@ class UserRepository implements IRepository
     public function getAll()
     {
         // TODO: Implement getAll() method.
-        throw new \http\Exception\BadMethodCallException();
+        throw new NotImplementedException();
     }
 
     public function getById($id)
     {
         // TODO: Implement getById() method.
-        throw new \http\Exception\BadMethodCallException();
+        throw new NotImplementedException();
     }
 
     /**
@@ -78,18 +78,18 @@ class UserRepository implements IRepository
     public function create($params)
     {
         // TODO: Implement create() method.
-        throw new \http\Exception\BadMethodCallException();
+        throw new NotImplementedException();
     }
 
     public function update($params)
     {
         // TODO: Implement update() method.
-        throw new \http\Exception\BadMethodCallException();
+        throw new NotImplementedException();
     }
 
     public function delete($id)
     {
         // TODO: Implement delete() method.
-        throw new \http\Exception\BadMethodCallException();
+        throw new NotImplementedException();
     }
 }
