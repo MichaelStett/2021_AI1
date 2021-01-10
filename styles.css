@@ -33,6 +33,11 @@
     padding: 15px;
 }
 
+.title {
+    text-align: center;
+    margin: 5px;
+}
+
 /* ogarncizenie szerokosci search boxa */
 .my-search-box {
     background: #f7f7f7;

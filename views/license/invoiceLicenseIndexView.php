@@ -5,11 +5,12 @@ class invoiceLicenseIndexView
 {
 
     /**
-     * @param array $recordsMainTable
-     * @param int $numberOfRecordsInDB
+     * @param array $recordsMainTable Dane do głównej tabeli, wiersze
+     * @param int $numberOfRecordsInDB Liczba wszystkich rekordów
+     * @param array $reportData Dane do raportów danej sekcji
      * @return false|string
      */
-    public static function render( $recordsMainTable, $numberOfRecordsInDB)
+    public static function render( $recordsMainTable, $numberOfRecordsInDB, $reportData = [])
     {
         $id = "invoicePurchasedIndex";
         ob_start();
@@ -93,6 +94,46 @@ class invoiceLicenseIndexView
                     </div>
                 </div>
 
+                <div class="col"></div>
+            </div>
+
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-md col-md-auto">
+                    <h1 class="title">Przeglądanie Licencji</h1>
+                </div>
+                <div class="col"></div>
+                <div class="w-100"></div>
+                <div class="col"></div>
+                <div class="col-md col-md-auto">
+
+                    <h3 class="title">Podsumowanie</h3>
+                    <table class="table table-striped table-bordered">
+                        <tbody>
+                        <tr>
+                            <th scope="row">Łączna ilość licencji</th>
+                            <td>Mark</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Ilośc licencji nie ważnych</th>
+                            <td>Mark</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Ilośc licencji bez wsparcia</th>
+                            <td>Mark</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Ilośc licencji nie przypisanych</th>
+                            <td>Mark</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Data najstarszej licencji</th>
+                            <td>Mark</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
                 <div class="col"></div>
             </div>
 
