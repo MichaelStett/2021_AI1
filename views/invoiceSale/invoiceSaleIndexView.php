@@ -167,6 +167,55 @@ class invoiceSaleIndexView
 
                             </tbody>
                         </table>
+                <style>
+ .pods,.showDataIndexTableWider2 {
+  border: 1px solid black;
+}
+</style>
+                 
+                <h2>Podsumowanie</h2>
+                <table class='pods'>
+                <thead>
+                            <tr>
+                                
+                                <th scope="col" class="showDataIndexTableWider2">Łączna wartość brutto:</th>
+                                
+                                <th scope="col" class="showDataIndexTableWider2">Łączna wartość netto:</th>
+                            
+                                <th scope="col" class="showDataIndexTableWider2">ilośc faktur</th>
+                                <th scope="col" class="showDataIndexTableWider2">Data najstarszej faktury</th>
+                                
+                            </tr>
+                  
+                            </thead>
+                            <tbody>
+                                <?php
+                                    $count = 0;
+        $count2 = 1;
+                                    foreach ($recordsMainTable as $val) {
+                                        echo '<tr>';
+                                        echo '<td >'.$val->getAmountGross().'</td>';
+                                        echo '<td class="invoiceSaleIndexTableContractorName">'.$val->getAmountNet().'</td>';
+                                        echo '<td class="invoiceSaleIndexTableAddDate">'.$count2.'</td>';
+                                        echo '<td class="showDataIndexTableWider">'.$val->getAddDate().'</td>';
+                                        
+                                        echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInModal('
+                                            .json_encode($val)
+                                            .');\'>...</a></td>';
+                                        
+                                        echo '<td class="showDataIndexTableRowId">'.$count.'</td>';
+                                        echo '</tr>';
+                                        $count++;
+                                    }
+                                ?>
+                            </tr>
+
+                            </tbody>
+                
+                
+                
+                
+                </table>
 
                     </div>
                     <nav id="Nav" class="my-navs" aria-label="...">
