@@ -31,7 +31,8 @@ class InvoiceSaleRepository
         global $config;
 
         $pdo = new PDO($config['dsn'], $config['login'], $config['password']);
-        $query = "SELECT `id`, `invoiceNumber`, `addDate`,k.`vatID`,`name`, `amountNet`, `amountTax`, `amountGross`, `amountNetCurrencyValue`, `amountNetCurrency` FROM `invoiceSale` as `f` INNER JOIN `contractor` as `k` on k.vatID=f.vatID ORDER BY $order DESC".($limit != 0 ? " LIMIT $limit" : "");
+        $query = "SELECT `id`, `invoiceNumber`, `addDate`,k.`vatID`,`name`, `amountNet`, `amountTax`, `amountGross`, `amountNetCurrencyValue`, `amountNetCurrency`  FROM `invoiceSale`  as `f` INNER JOIN `contractor` as `k` on k.vatID=f.vatID ORDER BY $order DESC".($limit != 0 ? " LIMIT $limit" : "");
+        //$query1 = "SELECT COUNT(distinct invoiceNumber ) as `countinvoice` FROM `invoiceSale`";
         $sth = $pdo->prepare($query);
         $sth->execute();
 
@@ -42,6 +43,26 @@ class InvoiceSaleRepository
         $result = $sth->fetchAll(PDO::FETCH_CLASS, "InvoiceSale");
         return $result;
     }
+    public function getAllpods( $limit = 0, $order="addDate") {
+        global $config;
+
+        $pdo = new PDO($config['dsn'], $config['login'], $config['password']);
+        $query = "SELECT `id`, `invoiceNumber`, `addDate`,k.`vatID`,`name`, `amountNet`, `amountTax`, `amountGross`, `amountNetCurrencyValue`, `amountNetCurrency`,countinvoice  FROM `invoicesale`  as `f` INNER JOIN `contractor` as `k` on k.vatID=f.vatID ORDER BY $order DESC".($limit != 0 ? " LIMIT $limit" : "");
+        //$query1 = "SELECT COUNT(distinct invoiceNumber ) as `countinvoice` FROM `invoiceSale`";
+        $sth = $pdo->prepare($query);
+        $sth->execute();
+
+        if ($sth == false) {
+            throw new Exception("pdo error");
+        }
+
+        $result = $sth->fetchAll(PDO::FETCH_CLASS, "InvoiceSale");
+        return $result;
+    }
+    
+    
+    
+    
 
     /**
      * @return int
@@ -59,7 +80,19 @@ class InvoiceSaleRepository
 
         return $sth->fetch(PDO::FETCH_ASSOC)['count'];
     }
+    
+ public function getcount() {
+        global $config;
 
+        $pdo = new PDO($config['dsn'], $config['login'], $config['password']);
+        $sth = $pdo->query("SELECT COUNT(distinct invoiceNumber ) as `countinvoice` FROM `invoiceSale` ");
+
+        if ($sth == false) {
+            throw new Exception("pdo error");
+        }
+
+        return $sth->fetch(PDO::FETCH_ASSOC)['countinvoice'];
+    }
     /**
      * @param array $conditions
      * @param string $order
@@ -117,13 +150,27 @@ class InvoiceSaleRepository
             ." ORDER BY $order DESC";
         $sth = $pdo->prepare($query);
         $sth->execute($conditions);
-
+        $sth2 = $pdo->prepare($query2);
+        $sth2->execute($conditions);
+        
+        
+    $query12='    SELECT `id`, `invoiceNumber`, `addDate`, `k`.`vatID`,`name`,( amountNet - amountTax + amountGross +amountNetCurrencyValue  ) AS total
+			FROM invoicesale';
+        
+$query2 = 'SELECT SUM() AS suma FROM invoicesale WHERE total >=0';
+$result2 = mysql_query($query2); // autor tematu znalazl tu literowke, wiec poprawiam
+echo mysql_result($result, 0);
         if ($sth == false) {
             throw new Exception("pdo error");
         }
-
+echo mysql_result($result2, 0);
+        if ($sth2 == false) {
+            throw new Exception("pdo error");
+        }
         $result = $sth->fetchAll(PDO::FETCH_CLASS, "InvoiceSale");
         return $result;
+        $result2 = $sth2->fetchAll(PDO::FETCH_CLASS, "InvoiceSale");
+        return $result2;
     }
 
 
