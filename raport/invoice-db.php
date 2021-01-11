@@ -23,7 +23,7 @@ $pdf->SetFont('Arial','B',14);
 
 //Cell(width , height , text , border , end line , [align] )
 
-$pdf->Cell(130	,5,'Gemul Cars Co',0,0);
+$pdf->Cell(130	,5,'Arturino Co',0,0);
 $pdf->Cell(59	,5,'INVOICE',0,1);//end of line
 
 //set font to arial, regular, 12pt
