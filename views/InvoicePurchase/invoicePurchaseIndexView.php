@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../autoload.php';
 
-class invoicePurchasedIndexView
+class invoicePurchaseIndexView
 {
 
     /**
@@ -12,7 +12,7 @@ class invoicePurchasedIndexView
      */
     public static function render( $recordsMainTable, $numberOfRecordsInDB, $reportData = [])
     {
-        $id = "invoicePurchasedIndex";
+        $id = "invoicePurchaseIndex";
         ob_start();
         ?>
         <?= Layout::header() ?>
@@ -182,8 +182,8 @@ class invoicePurchasedIndexView
                                         echo '<tr>';
                                         echo '<th scope="row">'.$val->getInvoiceNumber().'</th>';
                                         echo '<td class="invoiceSaleIndexTableContractorName">'.$val->getName().'</td>';
-                                        echo '<td class="invoiceSaleIndexTableAddDate">'.$val->getAddDate().'</td>';
-                                        echo '<td class="showDataIndexTableWider">'.$val->getVatID().'</td>';
+                                        echo '<td class="invoiceSaleIndexTableAddDate">'.$val->getDate().'</td>';
+                                        echo '<td class="showDataIndexTableWider">'.$val->gettaxID().'</td>';
                                         echo '<td class="showDataIndexTableWider">'.$val->getAmountNet().'</td>';
                                         echo '<td class="showDataIndexTableWider">'.$val->getAmountGross().'</td>';
                                         echo '<td class="showDataIndexTableWider">'.$val->getAmountTax().'</td>';

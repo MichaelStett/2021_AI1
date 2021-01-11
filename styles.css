@@ -49,10 +49,10 @@
 }
 
 /* === pokazywanie i ukrwyanie kolumn w tabeli glownej w zaleznosci od szerokosci*/
-#invoiceSaleIndexTable th.showDataIndexTableWider,td.showDataIndexTableWider {
+th.showDataIndexTableWider,td.showDataIndexTableWider {
     display: none;
 }
-#invoiceSaleIndexTable th.showDataIndexTableTight,td.showDataIndexTableTight {
+th.showDataIndexTableTight,td.showDataIndexTableTight {
     display: table-cell;
 }
 @media (min-width: 992px) {

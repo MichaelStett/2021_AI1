@@ -20,13 +20,14 @@ function validateLoginForm() {
 
 
 const indexPageName = function () {
-    const viewsNames = ["invoiceSaleIndex","invoicePurchasedIndex","otherDocsIndex","licenseIndex","equipmentIndex"];
-    let md = undefined;
+    const viewsNames = ["invoiceSaleIndex","invoicePurchaseIndex","otherDocsIndex","licenseIndex","equipmentIndex"];
     let i = 0;
-    for (; i < viewsNames.length && md === undefined; i++) {
-
+    for (; i < viewsNames.length; i++) {
+        if (document.getElementById(viewsNames[i]+"Table") != undefined) {
+            break;
+        }
     }
-    return  viewsNames[i-1];
+    return  viewsNames[i];
 }();
 const searchFormName = "SearchForm_";
 
@@ -159,7 +160,7 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
                         '</tr>';
                 }
                 break;
-            case "invoicePurchasedIndex":
+            case "invoicePurchaseIndex":
                 return function (args) {
                     return '<tr>'+
                         '<th scope="row">'+args['invoiceNumber']+'</th>'+
@@ -341,7 +342,7 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
                 return;
             }
 
-            fetch("index.php?action=invoiceSale-more&page="+actualPage, {
+            fetch("index.php?action="+indexPageName.slice(0,-5)+"-more&page="+actualPage, {
                 method: 'GET',
                 mode: 'cors',
                 referrerPolicy: 'no-referrer'
