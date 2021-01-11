@@ -93,7 +93,7 @@ class Layout
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/index.php?action=invoiceSale-show">FV sprzedaży</a>
-                            <a class="dropdown-item" href="/index.php?action=invoicePurhase-show">FV zakupu</a>
+                            <a class="dropdown-item" href="/index.php?action=invoicePurchase-show">FV zakupu</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/index.php?action=otherDocuments-show">Sprzęt</a>
                             <a class="dropdown-item" href="/index.php?action=license-show">Licencje</a>
@@ -113,7 +113,7 @@ class Layout
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="./index.php?action=invoiceSale-show">FV sprzedaży</a>
-                                    <a class="dropdown-item" href="./index.php?action=invoicePurhase-show">FV zakupu</a>
+                                    <a class="dropdown-item" href="./index.php?action=invoicePurchase-show">FV zakupu</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="./index.php?action=otherDocuments-show">Sprzęt</a>
                                     <a class="dropdown-item" href="./index.php?action=license-show">Licencje</a>
@@ -126,7 +126,7 @@ class Layout
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="./index.php?action=invoiceSale-add">FV sprzedaży</a>
-                                    <a class="dropdown-item" href="./index.php?action=invoicePurhase-add">FV zakupu</a>
+                                    <a class="dropdown-item" href="./index.php?action=invoicePurchase-add">FV zakupu</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="./index.php?action=equipment-add">Sprzęt</a>
                                     <a class="dropdown-item" href="./index.php?action=license-add">Licencje</a>
