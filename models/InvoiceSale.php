@@ -13,6 +13,7 @@ class InvoiceSale implements \JsonSerializable
     private $amountNetCurrencyValue;
     private $amountNetCurrency;
     private $id;
+    private $countinvoice;
 
     /**
      * @return int
@@ -50,6 +51,31 @@ class InvoiceSale implements \JsonSerializable
         return $this;
     }
 
+    
+   
+    
+    
+    public function getInvoiceNumbercount()
+    {
+
+       
+        return $this->countinvoice;
+    }
+
+    /**
+     * @param mixed $invoiceNumber
+     * @return InvoiceSale
+     */
+    public function setInvoiceNumbercount($countinvoice)
+    {
+        $this->countinvoice = $countinvoice;
+        return $this;
+    }
+    
+    
+    
+    
+    
     /**
      * @return string
      */
