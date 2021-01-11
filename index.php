@@ -24,8 +24,9 @@ switch ($action) {
         echo InvoiceSaleController::filterData();
         break;
     case 'invoiceSale-add':
+        echo InvoiceSaleController::add();
         break;
-    case 'invoicePurhase-show':
+    case 'invoicePurchase-show':
 
         break;
     case 'invoicePurchase-add':
