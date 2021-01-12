@@ -15,6 +15,7 @@ require_once __DIR__ . '/models/repositories/InvoicePurchaseRepository.php';
 
 # Views
 require_once __DIR__ . '/views/Layout.php';
+require_once __DIR__ . '/views/NotFoundView.php';
 require_once __DIR__ . '/views/login/LoginIndexView.php';
 require_once __DIR__ . '/views/invoiceSale/invoiceSaleIndexView.php';
 require_once __DIR__ . '/views/invoicePurchase/invoicePurchaseIndexView.php';

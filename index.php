@@ -27,46 +27,27 @@ switch ($action) {
         echo InvoiceSaleController::add();
         break;
     case 'invoicePurchase-show':
-
         echo InvoicePurchaseController::index();
         break;
     case 'invoicePurchase-more':
-        //InvoiceController::show();
         echo InvoicePurchaseController::moreData();
         break;
     case 'invoicePurchase-filter':
-        //InvoiceController::show();
         echo InvoicePurchaseController::filterData();
         break;
     case 'invoicePurchase-add':
         echo InvoicePurchaseController::add();
         break;
     case 'otherDocuments-show':
-
-        break;
     case 'otherDocuments-add':
-
-        break;
     case 'license-show':
-
-        break;
     case 'license-add':
-
-        break;
-    case 'generateRaport-show':
-
-        break;
-    case 'generateRaport-set':
-
-        break;
+    case 'generateReport-show':
+    case 'generateReport-set':
     case 'admin':
-
-        break;
     case 'equipment-show':
-
-        break;
     case 'equipment-add':
-
+        echo NotFoundView::render();
         break;
     case 'login':
         $loginController->index();
@@ -81,4 +62,3 @@ switch ($action) {
         header('Location: index.php?action=login');
         break;
 }
-?>

@@ -4,10 +4,14 @@ require_once __DIR__ . '/../autoload.php';
 
 class InvoicePurchaseController
 {
-    private static $limit = 3;
+    private static $limit = 5;
 
-    public static function index()
-    {
+    public static function index() {
+        if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
+            echo "You are not logged in." . PHP_EOL;
+            echo LoginIndexView::render();
+            return;
+        }
 
         $invoicePurchaseRepository = new InvoicePurchaseRepository();
 
@@ -22,6 +26,12 @@ class InvoicePurchaseController
      * @throws Exception
      */
     public static function moreData() {
+        if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
+            echo "You are not logged in." . PHP_EOL;
+            echo LoginIndexView::render();
+            return;
+        }
+
         if(!isset($_GET["page"])) {
             return "";
         }
@@ -66,6 +76,12 @@ class InvoicePurchaseController
      * @throws Exception
      */
     public static function filterData() {
+        if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
+            echo "You are not logged in." . PHP_EOL;
+            echo LoginIndexView::render();
+            return;
+        }
+
         $getparamNames = array("id","invoiceNumber","vatID","name","dateAddStart","dateAddEnd");
 
         $params = self::filterGetParameters($getparamNames);
@@ -78,9 +94,12 @@ class InvoicePurchaseController
         return  json_encode($records) ;
     }
 
-    public static function add()
-    {
-
+    public static function add() {
+        if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
+            echo "You are not logged in." . PHP_EOL;
+            echo LoginIndexView::render();
+            return;
+        }
         echo InvoicePurchaseFormView::render();
 
         $x = 0;

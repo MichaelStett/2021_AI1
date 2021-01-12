@@ -24,9 +24,10 @@ class Layout
                 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
-                <?= self::navbar("admin")  ?>
+                <!-- TODO: Dodać role użytkowiników -->
+                <?= self::navbar(['userType' => "admin"])  ?>
 
-                    <div class="container-fluid">
+                <div class="container-fluid">
 
         <?php
         $html = ob_get_clean();
@@ -37,12 +38,11 @@ class Layout
     {
         ob_start();
         ?>
-                        </div>
-                    <div class="container-fluid">
+                </div>
+                    <div class="footer fixed-bottom">
                         <footer class="bg-light text-center text-lg-start">
                             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
                                 © 2020 Copyright: Arturino Zespol
-            <!--                    <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>-->
                             </div>
                         </footer>
                     </div>
@@ -54,8 +54,10 @@ class Layout
         return $html;
     }
 
-    private static function navbar($userType = "none")
+    private static function navbar($params = [])
     {
+        $userType = $params['userType'];
+
         ob_start();
         ?>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -69,7 +71,7 @@ class Layout
         switch ($userType) {
             case "employee":
                 ?>
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Wyświetl ...
@@ -79,26 +81,31 @@ class Layout
                             <a class="dropdown-item" href="/index.php?action=license-show">Licencje</a>
                         </div>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.php?action=logout">Logout</a>
+                    </li>
                 </ul>
 
                 <?php
                 break;
             case "auditor":
                 ?>
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Wyświetl ...
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/index.php?action=invoiceSale-show">FV sprzedaży</a>
-                            <a class="dropdown-item" href="/index.php?action=invoicePurchase-show">FV zakupu</a>
+                            <a class="dropdown-item" href="./index.php?action=invoiceSale-show">FV sprzedaży</a>
+                            <a class="dropdown-item" href="./index.php?action=invoicePurchase-show">FV zakupu</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/index.php?action=otherDocuments-show">Sprzęt</a>
-                            <a class="dropdown-item" href="/index.php?action=license-show">Licencje</a>
-                            <a class="dropdown-item" href="/index.php?action=otherDocuments-show">Pozostałe dokumenty</a>
+                            <a class="dropdown-item" href="./index.php?action=otherDocuments-show">Sprzęt</a>
+                            <a class="dropdown-item" href="./index.php?action=license-show">Licencje</a>
+                            <a class="dropdown-item" href="./index.php?action=otherDocuments-show">Pozostałe dokumenty</a>
                         </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.php?action=logout">Logout</a>
                     </li>
                 </ul>
 
@@ -106,7 +113,7 @@ class Layout
                 break;
             case "admin":
                 ?>
-                        <ul class="navbar-nav mr-auto">
+                        <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Wyświetl ...
@@ -134,10 +141,13 @@ class Layout
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/index.php?action=generateRaport-show">Generuj raport</a>
+                                <a class="nav-link" href="./index.php?action=generateReport-show">Generuj raport</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/index.php?action=admin">Administracja</a>
+                                <a class="nav-link" href="./index.php?action=admin">Administracja</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./index.php?action=logout">Logout</a>
                             </li>
                         </ul>
 <!--                        <form class="form-inline my-2 my-lg-0">-->
