@@ -3,37 +3,51 @@ require_once __DIR__ . '/../autoload.php';
 
 class LoginController
 {
-    public static function index()
+    private $_repo;
+
+    public function __construct(IRepository $repository)
     {
-        echo LoginIndexView::render();
-        return;
+        $this->_repo = $repository;
     }
 
-    public static function set()
+    public function index()
     {
-        print_r($_REQUEST);
-        
-        $userRepository = new UserRepository();
+        echo LoginIndexView::render();
+    }
 
-        $user = $userRepository->findUserToLogin($_REQUEST['username'], $_REQUEST['password']);
+    public function set()
+    {
+        if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
+            $exist = $this->_repo->exist($_REQUEST);
 
-        print_r($user->__toString());
+            if ($exist) {
+                $user = $this->_repo->getByUsername($_REQUEST['username']);
 
-        $_SESSION['uid'] = $user->getId();
+                $_SESSION['uid'] = hash("md5", $user);
 
-        die("Tu jest ustawianie sesji");
+                echo "Successfully logged in for: " . $user . PHP_EOL;
 
-        // TODO: Przejście do zalogowanej strony
+                // TODO: Redirect to other page
+                // echo invoiceSaleIndexView::render();
+            }
+            else {
+                echo "Wrong credentials" . PHP_EOL;
+                // echo LoginIndexView::render();
+            }
+        }
+        else {
+            echo "You are already logged in." . PHP_EOL;
+            // echo LoginIndexView::render();
+        }
+
     }
 
     public static function logout()
     {
-        $suc1 = session_unset();
-        $suc2 = session_destroy();
+        session_unset();
+        session_destroy();
 
-        if ($suc1 && $suc2) {
-            die("Wylogowano!");
-        }
+        echo "Successfully logged out." . PHP_EOL;
+        // echo LoginIndexView::render();
     }
 }
-?>

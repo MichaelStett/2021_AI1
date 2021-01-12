@@ -13,10 +13,10 @@ class LoginIndexView
 
                     <div class="col-md-auto">
                         <div id="login-form">
-                            <form name="loginForm" action="/controller.php?action=login-set" method="post" onsubmit="return validateLoginForm()" >
+                            <form name="loginForm" action="./index.php?action=login-set" method="post" onsubmit="return validateLoginForm()" >
                                 <h2 class="text-center">Log in</h2>
                                 <div class="form-group">
-                                    <input name="user-name" type="text" class="form-control" placeholder="Username" required>
+                                    <input name="username" type="text" class="form-control" placeholder="Username" required>
                                     <div id="invalid-feedback-login" class="invalid-feedback" style="display: none">
                                         Please provide a valid username starting from world characterr.
                                     </div>

@@ -8,6 +8,7 @@ class InvoicePurchaseController
 
     public static function index()
     {
+
         $invoicePurchaseRepository = new InvoicePurchaseRepository();
 
         $records = $invoicePurchaseRepository->getAll(self::$limit);
@@ -79,7 +80,9 @@ class InvoicePurchaseController
 
     public static function add()
     {
-        echo InvoiceSaleFormView::render();
+
+        echo InvoicePurchaseFormView::render();
+
         $x = 0;
         if(isset($_POST['invoiceNumber']) and isset($_POST['vatID']) and isset($_POST['amountNet'])
             and isset($_POST['amountGross']) and isset($_POST['amountTax']) and isset($_POST['currency']) and
@@ -102,7 +105,9 @@ class InvoicePurchaseController
             }
             if($x == 0) {
                 $currencyName = array_search($_POST['currency'],currencyEnum::currencyTable);
-                invoiceSaleToDB::insertToDB($_POST['invoiceNumber'], $_POST['vatID'], $_POST['amountNet'], $_POST['amountGross'],
+
+                InvoicePurchaseToDB::insertToDB($_POST['invoiceNumber'], $_POST['vatID'], $_POST['amountNet'], $_POST['amountGross'],
+
                     $_POST['amountTax'], $currencyName, $_POST['amountNettCurrency'], $_POST['addDate']);
                 global $x;
                 $x = 5;
@@ -111,8 +116,10 @@ class InvoicePurchaseController
                 echo '<script>alert("Podano złe dane")</script>';
             }
         }
-        if(isset($_POST['submit']) and $x == 5){
-            invoiceSaleToDB::fileUpload($_POST['invoiceNumber']);
+
+        if(isset($_POST['submit']) and $x==5){
+            InvoicePurchaseToDB::fileUpload($_POST['invoiceNumber']);
+
         }
     }
 }
