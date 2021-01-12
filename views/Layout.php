@@ -142,9 +142,7 @@ class Layout
                             <li class="nav-item">
                                 <a class="nav-link" href="/index.php?action=admin">Administracja</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="models/contact.html?action=admin">Contact us</a>
-                            </li>
+                            
                         </ul>
 <!--                        <form class="form-inline my-2 my-lg-0">-->
 <!--                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
