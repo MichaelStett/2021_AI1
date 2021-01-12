@@ -1,7 +1,6 @@
 <?php
 
 $config = [];
-$config['dsn'] = 'mysql:dbname=arturino; host=127.0.0.1';
+$config['dsn'] = 'mysql:dbname=arturino; host=localhost';
 $config['login'] = 'root';
 $config['password'] = '';
-

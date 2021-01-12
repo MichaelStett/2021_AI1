@@ -33,6 +33,11 @@
     padding: 15px;
 }
 
+.title {
+    text-align: center;
+    margin: 5px;
+}
+
 /* ogarncizenie szerokosci search boxa */
 .my-search-box {
     background: #f7f7f7;
@@ -44,10 +49,10 @@
 }
 
 /* === pokazywanie i ukrwyanie kolumn w tabeli glownej w zaleznosci od szerokosci*/
-#invoiceSaleIndexTable th.showDataIndexTableWider,td.showDataIndexTableWider {
+th.showDataIndexTableWider,td.showDataIndexTableWider {
     display: none;
 }
-#invoiceSaleIndexTable th.showDataIndexTableTight,td.showDataIndexTableTight {
+th.showDataIndexTableTight,td.showDataIndexTableTight {
     display: table-cell;
 }
 @media (min-width: 992px) {

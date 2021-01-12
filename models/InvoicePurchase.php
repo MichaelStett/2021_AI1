@@ -1,8 +1,9 @@
 <?php
 
-class InvoicePurchase
+class InvoicePurchase implements \JsonSerializable
 {
     private $id;
+    private $name;
     private $invoiceNumber;
     private $taxId;
     private $date;
@@ -11,22 +12,6 @@ class InvoicePurchase
     private $amountTax;
     private $amountNetCurrency;
     private $amountNetCurrencyValue;
-
-    /**
-     * @param mixed $invoiceNumber
-     */
-    public function setInvoiceNumber($invoiceNumber)
-    {
-        $this->invoiceNumber = $invoiceNumber;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getInvoiceNumber()
-    {
-        return $this->invoiceNumber;
-    }
 
     /**
      * @return mixed
@@ -38,58 +23,48 @@ class InvoicePurchase
 
     /**
      * @param mixed $id
+     * @return InvoicePurchase
      */
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getAmountGross()
+    public function getName()
     {
-        return $this->amountGross;
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     * @return InvoicePurchase
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getAmountNet()
+    public function getInvoiceNumber()
     {
-        return $this->amountNet;
+        return $this->invoiceNumber;
     }
 
     /**
-     * @return mixed
+     * @param mixed $invoiceNumber
+     * @return InvoicePurchase
      */
-    public function getAmountNetCurrency()
+    public function setInvoiceNumber($invoiceNumber)
     {
-        return $this->amountNetCurrency;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAmountNetCurrencyValue()
-    {
-        return $this->amountNetCurrencyValue;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAmountTax()
-    {
-        return $this->amountTax;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDate()
-    {
-        return $this->date;
+        $this->invoiceNumber = $invoiceNumber;
+        return $this;
     }
 
     /**
@@ -101,63 +76,125 @@ class InvoicePurchase
     }
 
     /**
-     * @param mixed $amountGross
-     */
-    public function setAmountGross($amountGross)
-    {
-        $this->amountGross = $amountGross;
-    }
-
-    /**
-     * @param mixed $amountNet
-     */
-    public function setAmountNet($amountNet)
-    {
-        $this->amountNet = $amountNet;
-    }
-
-    /**
-     * @param mixed $amountNetCurrency
-     */
-    public function setAmountNetCurrency($amountNetCurrency)
-    {
-        $this->amountNetCurrency = $amountNetCurrency;
-    }
-
-    /**
-     * @param mixed $amountNetCurrencyValue
-     */
-    public function setAmountNetCurrencyValue($amountNetCurrencyValue)
-    {
-        $this->amountNetCurrencyValue = $amountNetCurrencyValue;
-    }
-
-    /**
-     * @param mixed $amountTax
-     */
-    public function setAmountTax($amountTax)
-    {
-        $this->amountTax = $amountTax;
-    }
-
-    /**
-     * @param mixed $date
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-    }
-
-    /**
      * @param mixed $taxId
+     * @return InvoicePurchase
      */
     public function setTaxId($taxId)
     {
         $this->taxId = $taxId;
+        return $this;
     }
+
     /**
      * @return mixed
      */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param mixed $date
+     * @return InvoicePurchase
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmountNet()
+    {
+        return $this->amountNet;
+    }
+
+    /**
+     * @param mixed $amountNet
+     * @return InvoicePurchase
+     */
+    public function setAmountNet($amountNet)
+    {
+        $this->amountNet = $amountNet;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmountGross()
+    {
+        return $this->amountGross;
+    }
+
+    /**
+     * @param mixed $amountGross
+     * @return InvoicePurchase
+     */
+    public function setAmountGross($amountGross)
+    {
+        $this->amountGross = $amountGross;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmountTax()
+    {
+        return $this->amountTax;
+    }
+
+    /**
+     * @param mixed $amountTax
+     * @return InvoicePurchase
+     */
+    public function setAmountTax($amountTax)
+    {
+        $this->amountTax = $amountTax;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmountNetCurrency()
+    {
+        return $this->amountNetCurrency;
+    }
+
+    /**
+     * @param mixed $amountNetCurrency
+     * @return InvoicePurchase
+     */
+    public function setAmountNetCurrency($amountNetCurrency)
+    {
+        $this->amountNetCurrency = $amountNetCurrency;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmountNetCurrencyValue()
+    {
+        return $this->amountNetCurrencyValue;
+    }
+
+    /**
+     * @param mixed $amountNetCurrencyValue
+     * @return InvoicePurchase
+     */
+    public function setAmountNetCurrencyValue($amountNetCurrencyValue)
+    {
+        $this->amountNetCurrencyValue = $amountNetCurrencyValue;
+        return $this;
+    }
+
+
+
     public function getStringfy()
     {
         return json_encode( array(
@@ -173,4 +210,32 @@ class InvoicePurchase
         );
     }
 
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return
+            $this->id.",".
+            $this->invoiceNumber.",".
+            $this->name.",".
+            $this->addDate.",".
+            $this->vatID.",".
+            $this->amountNet.",".
+            $this->amountGross.",".
+            $this->amountTax.",".
+            $this->amountNetCurrencyValue.",".
+            currencyEnum::currencyTable[$this->amountNetCurrency].",";
+    }
+
+    /**
+     * @return string
+     */
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
+        $vars['amountNetCurrency'] = currencyEnum::currencyTable[$vars['amountNetCurrency']];
+
+        return $vars;
+    }
 }

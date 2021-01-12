@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../autoload.php';
 
-class invoiceSaleIndexView
+class invoicePurchaseIndexView
 {
 
     /**
@@ -10,9 +10,9 @@ class invoiceSaleIndexView
      * @param array $reportData Dane do raportów danej sekcji
      * @return false|string
      */
-    public static function render($recordsMainTable, $numberOfRecordsInDB, $reportData = [])
+    public static function render( $recordsMainTable, $numberOfRecordsInDB, $reportData = [])
     {
-        $id = "invoiceSaleIndex";
+        $id = "invoicePurchaseIndex";
         ob_start();
         ?>
         <?= Layout::header() ?>
@@ -118,7 +118,7 @@ class invoiceSaleIndexView
             <div class="row">
                 <div class="col"></div>
                 <div class="col-md col-md-auto">
-                    <h1 class="title">Przeglądanie Faktur Sprzedaży</h1>
+                    <h1 class="title">Przeglądanie Faktur Zakupu</h1>
                 </div>
                 <div class="col"></div>
                 <div class="w-100"></div>
@@ -128,22 +128,22 @@ class invoiceSaleIndexView
                     <h3 class="title">Podsumowanie</h3>
                     <table class="table table-striped table-bordered">
                         <tbody>
-                            <tr>
-                                <th scope="row">Łączna wartosć brutto</th>
-                                <td>Mark</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Łączna wartosć netto</th>
-                                <td>Mark</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Ilość faktur</th>
-                                <td>Mark</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Data najstarszej faktury</th>
-                                <td>Mark</td>
-                            </tr>
+                        <tr>
+                            <th scope="row">Łączna wartosć brutto</th>
+                            <td>Mark</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Łączna wartosć netto</th>
+                            <td>Mark</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Ilość faktur</th>
+                            <td>Mark</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Data najstarszej faktury</th>
+                            <td>Mark</td>
+                        </tr>
                         </tbody>
                     </table>
 
@@ -182,13 +182,13 @@ class invoiceSaleIndexView
                                         echo '<tr>';
                                         echo '<th scope="row">'.$val->getInvoiceNumber().'</th>';
                                         echo '<td class="invoiceSaleIndexTableContractorName">'.$val->getName().'</td>';
-                                        echo '<td class="invoiceSaleIndexTableAddDate">'.$val->getAddDate().'</td>';
-                                        echo '<td class="showDataIndexTableWider">'.$val->getVatID().'</td>';
+                                        echo '<td class="invoiceSaleIndexTableAddDate">'.$val->getDate().'</td>';
+                                        echo '<td class="showDataIndexTableWider">'.$val->gettaxID().'</td>';
                                         echo '<td class="showDataIndexTableWider">'.$val->getAmountNet().'</td>';
                                         echo '<td class="showDataIndexTableWider">'.$val->getAmountGross().'</td>';
                                         echo '<td class="showDataIndexTableWider">'.$val->getAmountTax().'</td>';
                                         echo '<td class="showDataIndexTableWider">'.$val->getAmountNetCurrencyValue().' ('.$val->getAmountNetCurrency().')</td>';
-                                        echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInModal('
+                                        echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoicePurchasedIndexModal" onclick=\'changeDataInModal('
                                             .json_encode($val)
                                             .');\'>...</a></td>';
                                         echo '<td class="showDataIndexTableWider"><a class="btn" href="index.php?action=getFile&fileType=invoiceSale&fileNumber='
@@ -203,55 +203,6 @@ class invoiceSaleIndexView
 
                             </tbody>
                         </table>
-                <style>
- .pods,.showDataIndexTableWider2 {
-  border: 1px solid black;
-}
-</style>
-                 
-                <h2>Podsumowanie</h2>
-                <table class='pods'>
-                <thead>
-                            <tr>
-                                
-                                <th scope="col" class="showDataIndexTableWider2">Łączna wartość brutto:</th>
-                                
-                                <th scope="col" class="showDataIndexTableWider2">Łączna wartość netto:</th>
-                            
-                                <th scope="col" class="showDataIndexTableWider2">ilośc faktur</th>
-                                <th scope="col" class="showDataIndexTableWider2">Data najstarszej faktury</th>
-                                
-                            </tr>
-                  
-                            </thead>
-                            <tbody>
-                                <?php
-                                    $count = 0;
-        $count2 = 1;
-                                    foreach ($recordsMainTable as $val) {
-                                        echo '<tr>';
-                                        echo '<td >'.$val->getAmountGross().'</td>';
-                                        echo '<td class="invoiceSaleIndexTableContractorName">'.$val->getAmountNet().'</td>';
-                                        echo '<td class="invoiceSaleIndexTableAddDate">'.$count2.'</td>';
-                                        echo '<td class="showDataIndexTableWider">'.$val->getAddDate().'</td>';
-                                        
-                                        echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInModal('
-                                            .json_encode($val)
-                                            .');\'>...</a></td>';
-                                        
-                                        echo '<td class="showDataIndexTableRowId">'.$count.'</td>';
-                                        echo '</tr>';
-                                        $count++;
-                                    }
-                                ?>
-                            </tr>
-
-                            </tbody>
-                
-                
-                
-                
-                </table>
 
                     </div>
                     <nav id="Nav" class="my-navs" aria-label="...">

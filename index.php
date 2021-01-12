@@ -5,6 +5,8 @@ session_start();
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
+$loginController = new LoginController(new UserRepository());
+
 switch ($action) {
     case 'invoice-list':
         //InvoiceController::index();
@@ -22,12 +24,22 @@ switch ($action) {
         echo InvoiceSaleController::filterData();
         break;
     case 'invoiceSale-add':
+        echo InvoiceSaleController::add();
         break;
-    case 'invoicePurhase-show':
+    case 'invoicePurchase-show':
 
+        echo InvoicePurchaseController::index();
+        break;
+    case 'invoicePurchase-more':
+        //InvoiceController::show();
+        echo InvoicePurchaseController::moreData();
+        break;
+    case 'invoicePurchase-filter':
+        //InvoiceController::show();
+        echo InvoicePurchaseController::filterData();
         break;
     case 'invoicePurchase-add':
-        echo InvoicePurchaseController::index();
+        echo InvoicePurchaseController::add();
         break;
     case 'otherDocuments-show':
 
@@ -56,15 +68,14 @@ switch ($action) {
     case 'equipment-add':
 
         break;
-
     case 'login':
-        LoginController::index();
+        $loginController->index();
         break;
     case 'login-set':
-        LoginController::set();
+        $loginController->set();
         break;
     case 'logout':
-        LoginController::logout();
+        $loginController->logout();
         break;
     default:
         header('Location: index.php?action=login');

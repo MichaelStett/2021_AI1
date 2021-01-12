@@ -1,13 +1,13 @@
 <?php
 global $config;
-class InvoicePurchaseToDB
+class InvoiceSaleToDB
 {
-    public static function insertToDB($invoiceNumber, $vatID, $amountNet, $amountGross, $amountTax, $amountNetCurrencyValue, $amountNetCurrency,$addDate)
+    public static function insertToDB($invoiceNumber, $vatID, $amountNet, $amountGross, $amountTax, $amountNetCurrencyValue, $amountNettCurrency,$addDate)
     {
         global $config;
         $pdo = new PDO($config['dsn'], $config['login'], $config['password']);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdoQuery = "INSERT INTO invoicepurchase (invoiceNumber,addDate, vatID, amountNet, amountGross, amountTax, amountNetCurrencyValue, amountNetCurrency)
+        $pdoQuery = "INSERT INTO invoicesale (invoiceNumber,addDate, vatID, amountNet, amountGross, amountTax, amountNetCurrencyValue, amountNetCurrency)
         VALUES(:invoiceNumber, :addDate, :vatID, :amountNet, :amountGross, :amountTax, :amountNetCurrencyValue, :amountNetCurrency)";
         $pdoQuery_run = $pdo->prepare($pdoQuery);
         $pdoQuery_exec = $pdoQuery_run->execute([
@@ -18,19 +18,19 @@ class InvoicePurchaseToDB
             ":amountGross" => $amountGross,
             ":amountTax" => $amountTax,
             ":amountNetCurrencyValue" => $amountNetCurrencyValue,
-            ":amountNetCurrency" => $amountNetCurrency]);
+            ":amountNetCurrency" => $amountNettCurrency]);
     }
     public static function fileUpload($invoiceNumber){
         global $config;
         $pdo = new PDO($config['dsn'], $config['login'], $config['password']);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdoQuery = "SELECT id FROM invoicepurchase WHERE invoiceNumber=:invoiceNumber";
+        $pdoQuery = "SELECT id FROM invoicesale WHERE invoiceNumber=:invoiceNumber";
         $pdoQuery_run = $pdo->prepare($pdoQuery);
         $pdoQuery_run->bindParam(':invoiceNumber', $invoiceNumber, PDO::PARAM_INT);
         $pdoQuery_run->execute();
         $id = $pdoQuery_run->fetchObject();
         $id = strval($id->id) . '-';
-        $target_dir = "InvoicePurchaseUploads/";
+        $target_dir = "InvoiceSaleUploads/";
         $target_file = $target_dir . $id . basename($_FILES["fileToUpload"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));

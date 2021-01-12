@@ -1,11 +1,23 @@
 <?php
 
-class User {
+class User
+{
     private $id;
     private $username;
     private $firstName;
     private $lastName;
     private $password;
+
+    /**
+     * @param $params
+     */
+    public function fromArray($params) {
+        $this
+            ->setId($params['id'])
+            ->setUsername($params['username'])
+            ->setFirstName($params['firstName'])
+            ->setLastName($params['lastName']);
+    }
 
     /**
      * @return mixed
@@ -93,7 +105,7 @@ class User {
      */
     public function setPassword($password)
     {
-        $this->password = $password;
+        $this->password = hash('md5', $password);
         return $this;
     }
 
@@ -107,4 +119,3 @@ class User {
         return $this->getId() . ' ' . $this->getUsername() . ' ' .$this->getFirstName() . ' ' . $this->getLastName() ;
     }
 }
-?>

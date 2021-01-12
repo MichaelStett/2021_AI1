@@ -1,14 +1,14 @@
 <?php
 require_once __DIR__ . '/../../autoload.php';
-class InvoicePurchaseFormView
+class InvoiceSaleFormView
 {
     public static function render()
     {
         ob_start();
         ?>
         <?= Layout::header() ?>
-        <h2>Faktury Zakupu</h2>
-        <form action="./index.php?action=invoicePurchase-add" method="post" enctype="multipart/form-data">
+        <h2>Faktury Sprzedaży</h2>
+        <form action="./index.php?action=invoiceSale-add" method="post" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="invoiceNumber">Numer Faktury</label>
@@ -41,8 +41,8 @@ class InvoicePurchaseFormView
             </div>
             <label for="currency">Waluta</label>
             <select name="currency">
-                <option value="EUR"><?php echo currencyEnum::currencyTable[0]?></option>
-                <option value="PLN"><?php echo currencyEnum::currencyTable[1]?></option>
+                <option value="PLN"><?php echo currencyEnum::currencyTable[0]?></option>
+                <option value="EUR"><?php echo currencyEnum::currencyTable[1]?></option>
                 <option value="CHF"><?php echo currencyEnum::currencyTable[2]?></option>
                 <option value="GBP"><?php echo currencyEnum::currencyTable[3]?></option>
                 <option value="USD"><?php echo currencyEnum::currencyTable[4]?></option>
@@ -60,7 +60,6 @@ class InvoicePurchaseFormView
             <input type="submit" value="Submit" class="btn btn-primary" name="submit">
         </form>
         <?php
-
         $html = ob_get_clean();
         return $html;
     }
