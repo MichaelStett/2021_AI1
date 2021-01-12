@@ -20,13 +20,14 @@ function validateLoginForm() {
 
 
 const indexPageName = function () {
-    const viewsNames = ["invoiceSaleIndex"];
-    let md = undefined;
+    const viewsNames = ["invoiceSaleIndex","invoicePurchaseIndex","otherDocsIndex","licenseIndex","equipmentIndex"];
     let i = 0;
-    for (; i < viewsNames.length && md === undefined; i++) {
-
+    for (; i < viewsNames.length; i++) {
+        if (document.getElementById(viewsNames[i]+"Table") != undefined) {
+            break;
+        }
     }
-    return  viewsNames[i-1];
+    return  viewsNames[i];
 }();
 const searchFormName = "SearchForm_";
 
@@ -47,18 +48,55 @@ const changeDataInModal = function (){
                 modalTable[7].previousElementSibling.innerText = "Kwotta netto ("+args['amountNetCurrency']+")";
                 modalTable[7].innerText = args['amountNetCurrencyValue'];
                 modalTable[8].firstElementChild.href = "index.php?action=getFile&fileType=invoiceSale&fileNumber="+args['id'];
-
             }
             break;
-        case "":
-
-
+        case "invoicePurchasedIndex":
+            return function (args){
+                modalTable[0].innerText = args['invoiceNumber'];
+                modalTable[1].innerText = args['name'];
+                modalTable[2].innerText = args['vatID'];
+                modalTable[3].innerText = args['addDate'];
+                modalTable[4].innerText = args['amountNet'];
+                modalTable[5].innerText = args['amountGross'];
+                modalTable[6].innerText = args['amountTax'];
+                modalTable[7].previousElementSibling.innerText = "Kwotta netto ("+args['amountNetCurrency']+")";
+                modalTable[7].innerText = args['amountNetCurrencyValue'];
+                modalTable[8].firstElementChild.href = "index.php?action=getFile&fileType=invoiceSale&fileNumber="+args['id'];
+            }
             break;
-        case "":
-
+        case "equipmentIndex":
+            return function (args){
+                modalTable[0].innerText = args['inventoryNumber'];
+                modalTable[1].innerText = args['name'];
+                modalTable[2].innerText = args['serialNumber'];
+                modalTable[3].innerText = args['purchasedDate'];
+                modalTable[4].innerText = args['invoiceNumber'];
+                modalTable[5].innerText = args['warrantyUpTo'];
+                modalTable[6].innerText = args['amountNet'];
+                modalTable[7].innerText = args['assignedTo'];
+                modalTable[8].innerText = args['notes'];
+            }
             break;
-        case "":
-
+        case "licenseIndex":
+            return function (args){
+                modalTable[0].innerText = args['inventoryNumber'];
+                modalTable[1].innerText = args['name'];
+                modalTable[2].innerText = args['serialNumber'];
+                modalTable[3].innerText = args['purchasedDate'];
+                modalTable[4].innerText = args['invoiceNumber'];
+                modalTable[5].innerText = args['supportUpTo'];
+                modalTable[6].innerText = args['validateUpTo'];
+                modalTable[7].innerText = args['assignedTo'];
+                modalTable[8].innerText = args['notes'];
+            }
+            break;
+        case "otherDocsIndex":
+            return function (args){
+                modalTable[0].innerText = args['name'];
+                modalTable[1].innerText = args['docDate'];
+                modalTable[2].innerText = args['numOfPages'];
+                modalTable[6].innerText = args['notes'];
+            }
             break;
         default:
             return function () {};
@@ -122,13 +160,105 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
                         '</tr>';
                 }
                 break;
+            case "invoicePurchaseIndex":
+                return function (args) {
+                    return '<tr>'+
+                        '<th scope="row">'+args['invoiceNumber']+'</th>'+
+                        '<td class="invoiceSaleIndexTableContractorName">'+args['name']+'</td>'+
+                        '<td class="invoiceSaleIndexTableAddDate">'+args['addDate']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['vatID']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['amountNet']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['amountGross']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['amountTax']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['amountNetCurrencyValue']+' ('+args['amountNetCurrency']+')</td>'+
+                        '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInInvoiceSaleIndexModal('+
+                        JSON.stringify(args)+
+                        ');\'>...</a></td>'+
+                        '<td class="showDataIndexTableWider"><a class="btn" href="index+php?action=getFile&fileType=invoicePurhased&fileNumber='+
+                        args['id']+
+                        '"><img class="pdfIcon" src="./images/pdf_image.png"></a></td>'+
+                        '</tr>';
+                }
+                break;
+            case "licenseIndex":
+                return function (args) {
+                    return '<tr>'+
+                        '<th scope="row">'+args['inventoryNumber']+'</th>'+
+                        '<td class="invoiceSaleIndexTableContractorName">'+args['name']+'</td>'+
+                        '<td class="invoiceSaleIndexTableAddDate">'+args['serialNumber']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['purchasedDate']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['invoiceNumber']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['supportUpTo']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['validateUpTo']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['assignedTo']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['notes']+'</td>'+
+                        '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInInvoiceSaleIndexModal('+
+                        JSON.stringify(args)+
+                        ');\'>...</a></td>'+
+                        '</tr>';
+                }
+                break;
+            case "equipmentIndex":
+                return function (args) {
+                    return '<tr>'+
+                        '<th scope="row">'+args['inventoryNumber']+'</th>'+
+                        '<td class="invoiceSaleIndexTableContractorName">'+args['name']+'</td>'+
+                        '<td class="invoiceSaleIndexTableAddDate">'+args['serialNumber']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['purchasedDate']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['invoiceNumber']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['warrantyUpTo']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['amountNet']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['assignedTo']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['notes']+'</td>'+
+                        '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInInvoiceSaleIndexModal('+
+                        JSON.stringify(args)+
+                        ');\'>...</a></td>'+
+                        '</tr>';
+                }
+                break;
+            case "otherDocsIndex":
+                return function (args) {
+                    return '<tr>'+
+                        '<th scope="row">'+args['name']+'</th>'+
+                        '<td class="invoiceSaleIndexTableContractorName">'+args['docDate']+'</td>'+
+                        '<td class="invoiceSaleIndexTableAddDate">'+args['numOfPages']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['notes']+'</td>'+
+                        '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInInvoiceSaleIndexModal('+
+                        JSON.stringify(args)+
+                        ');\'>...</a></td>'+
+                        '<td class="showDataIndexTableWider"><a class="btn" href="index+php?action=getFile&fileType=otherDoc&fileNumber='+
+                        args['id']+
+                        '"><img class="pdfIcon" src="./images/pdf_image.png"></a></td>'+
+                        '</tr>';
+                }
+                break;
             default:
                 return function (args) { throw "not recognized type of index"; };
         }
     }();
 
+    const reqFieldNames = function () {
+        switch (indexPageName) {
+            case "invoiceSaleIndex":
+                return ["name","invoiceNumber","vatID","dateAddStart","dateAddEnd"];
+                break;
+            case "otherDocsIndex":
+                return ["name","dateAddStart","dateAddEnd"];
+                break;
+            case "equipmentIndex":
+                return ["inventoryNumber","serialNumber"];
+                break;
+            case "invoicePurchasedIndex":
+                return ["name","invoiceNumber","vatID","dateAddStart","dateAddEnd"];
+                break;
+            case "licenseIndex":
+                return ["name"];
+                break;
+        }
+    }();
+
+
     return [function () {
-        const reqFieldNames = ["name","invoiceNumber","vatID","dateAddStart","dateAddEnd"];
         if ( !validateSearchTextFields(reqFieldNames) ) return;
 
         let query = "";
@@ -212,7 +342,7 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
                 return;
             }
 
-            fetch("index.php?action=invoiceSale-more&page="+actualPage, {
+            fetch("index.php?action="+indexPageName.slice(0,-5)+"-more&page="+actualPage, {
                 method: 'GET',
                 mode: 'cors',
                 referrerPolicy: 'no-referrer'

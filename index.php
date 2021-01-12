@@ -28,9 +28,18 @@ switch ($action) {
         break;
     case 'invoicePurchase-show':
 
+        echo InvoicePurchaseController::index();
+        break;
+    case 'invoicePurchase-more':
+        //InvoiceController::show();
+        echo InvoicePurchaseController::moreData();
+        break;
+    case 'invoicePurchase-filter':
+        //InvoiceController::show();
+        echo InvoicePurchaseController::filterData();
         break;
     case 'invoicePurchase-add':
-        echo InvoicePurchaseController::index();
+        echo InvoicePurchaseController::add();
         break;
     case 'otherDocuments-show':
 
