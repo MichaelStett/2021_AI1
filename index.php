@@ -9,18 +9,14 @@ $loginController = new LoginController(new UserRepository());
 
 switch ($action) {
     case 'invoice-list':
-        //InvoiceController::index();
         break;
     case 'invoiceSale-show':
-        //InvoiceController::show();
         echo InvoiceSaleController::index();
         break;
     case 'invoiceSale-more':
-        //InvoiceController::show();
         echo InvoiceSaleController::moreData();
         break;
     case 'invoiceSale-filter':
-        //InvoiceController::show();
         echo InvoiceSaleController::filterData();
         break;
     case 'invoiceSale-add':
