@@ -60,6 +60,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -76,7 +82,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="test.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/test.php">
+    <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/test.php">
       <method v="2" />
     </configuration>
     <configuration default="true" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" browser="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" server_name="Unnamed">
@@ -84,7 +90,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHP Script.test.php" />
+        <item itemvalue="PHP Script.index.php" />
       </list>
     </recent_temporary>
   </component>
@@ -105,6 +111,7 @@
       <workItem from="1609160841544" duration="9136000" />
       <workItem from="1609241119571" duration="4491000" />
       <workItem from="1609314327191" duration="5246000" />
+      <workItem from="1610446675832" duration="2463000" />
     </task>
     <servers />
   </component>
@@ -127,76 +134,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="254" y="168" key="#PHP" timestamp="1608049104310">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="254" y="168" key="#PHP/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608049104310" />
-    <state x="127" y="180" key="#Servers" timestamp="1608049082812">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="127" y="180" key="#Servers/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608049082812" />
-    <state x="1" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608049088004">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="1" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608049088004" />
-    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1609245409299">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1609245409299" />
-    <state width="1877" height="280" key="GridCell.Tab.0.bottom" timestamp="1608658444938">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608658444938" />
-    <state width="1877" height="280" key="GridCell.Tab.0.center" timestamp="1608658444937">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="280" key="GridCell.Tab.0.center/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608658444937" />
-    <state width="1877" height="280" key="GridCell.Tab.0.left" timestamp="1608658444937">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="280" key="GridCell.Tab.0.left/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608658444937" />
-    <state width="1877" height="280" key="GridCell.Tab.0.right" timestamp="1608658444937">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="280" key="GridCell.Tab.0.right/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608658444937" />
-    <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1608565087593">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608565087593" />
-    <state width="1877" height="352" key="GridCell.Tab.1.center" timestamp="1608565087592">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.center/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608565087592" />
-    <state width="1877" height="352" key="GridCell.Tab.1.left" timestamp="1608565087592">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.left/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608565087592" />
-    <state width="1877" height="352" key="GridCell.Tab.1.right" timestamp="1608565087593">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.right/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608565087593" />
-    <state x="381" y="448" key="NewPhpFileDialog" timestamp="1608151160624">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="381" y="448" key="NewPhpFileDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608151160624" />
-    <state x="48" y="170" key="SettingsEditor" timestamp="1608484908125">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="48" y="170" key="SettingsEditor/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608484908125" />
-    <state x="781" y="296" key="refactoring.ChangeSignatureDialog" timestamp="1608487263351">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="781" y="296" key="refactoring.ChangeSignatureDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608487263351" />
-    <state x="456" y="198" key="run.anything.popup" timestamp="1609324929399">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state x="456" y="198" key="run.anything.popup/0.0.1600.870@0.0.1600.870" timestamp="1609324929399" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1608501558192">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1608501558192" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

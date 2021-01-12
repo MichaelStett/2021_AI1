@@ -12,7 +12,12 @@ class LoginController
 
     public function index()
     {
-        echo LoginIndexView::render();
+        if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
+            echo LoginIndexView::render();
+            return;
+        }
+
+        InvoiceSaleController::index();
     }
 
     public function set()
@@ -25,19 +30,18 @@ class LoginController
 
                 $_SESSION['uid'] = hash("md5", $user);
 
-                echo "Successfully logged in for: " . $user . PHP_EOL;
+                // echo "Successfully logged in for: " . $user . PHP_EOL;
 
-                // TODO: Redirect to other page
-                // echo invoiceSaleIndexView::render();
+                InvoiceSaleController::index();
             }
             else {
                 echo "Wrong credentials" . PHP_EOL;
-                // echo LoginIndexView::render();
+                LoginController::index();
             }
         }
         else {
             echo "You are already logged in." . PHP_EOL;
-            // echo LoginIndexView::render();
+            InvoiceSaleController::index();
         }
 
     }
@@ -48,6 +52,6 @@ class LoginController
         session_destroy();
 
         echo "Successfully logged out." . PHP_EOL;
-        // echo LoginIndexView::render();
+        echo LoginIndexView::render();
     }
 }
