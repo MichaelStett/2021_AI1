@@ -21,7 +21,7 @@ require_once __DIR__ . '/views/invoiceSale/invoiceSaleIndexView.php';
 require_once __DIR__ . '/views/invoicePurchase/invoicePurchaseIndexView.php';
 require_once __DIR__ . '/views/equipment/invoiceEquipmentIndexView.php';
 require_once __DIR__ . '/views/license/invoiceLicenseIndexView.php';
-require_once __DIR__ . '/views/otherDocs/invoiceOtherDocsIndexView.php';
+require_once __DIR__ . '/views/otherDocs/invoiceOtherDocumentsIndexView.php';
 require_once __DIR__ . '/views/invoicePurchase/InvoicePurchaseFormView.php';
 require_once __DIR__ . '/views/invoiceSale/InvoiceSaleFormView.php';
 
