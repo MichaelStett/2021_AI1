@@ -10,12 +10,12 @@ class OtherDocumentsController
      */
     public static function index() {
 
-        $lcienseRepository = new LicenseRepository();
+        $otherDocumentsRepository = new OtherDocumentsRepository();
 
-        $records = $lcienseRepository->getAll(self::$limit);
-        $numOfRecords = $lcienseRepository->getNumberOfRecords();
+        $records = $otherDocumentsRepository->getAll(self::$limit);
+        $numOfRecords = $otherDocumentsRepository->getNumberOfRecords();
 
-        echo LicenseIndexView::render($records, ceil($numOfRecords/self::$limit));
+        echo OtherDocumentsIndexView::render($records, ceil($numOfRecords/self::$limit));
     }
 
     /**
@@ -39,13 +39,13 @@ class OtherDocumentsController
      */
     public static function filterData() {
 
-        $getparamNames = array("name");
+        $getparamNames = array("name","dateAddStart","dateAddEnd");
 
         $params = self::filterGetParameters($getparamNames);
 
-        $licenseRepository = new LicenseRepository();
+        $otherDocumentsRepository = new OtherDocumentsRepository();
 
-        $records = $licenseRepository->findBy($params);
+        $records = $otherDocumentsRepository->findBy($params);
 
         header('Content-type: application/json');
         return  json_encode($records) ;
@@ -65,10 +65,10 @@ class OtherDocumentsController
         $page = ceil($page);
         //return $page;
 
-        $licenseRepository = new LicenseRepository();
+        $otherDocumentsRepository = new OtherDocumentsRepository();
 
-        $numOfPages = ceil($licenseRepository->getNumberOfRecords()/self::$limit);
-        $records = $page == 0 ? $licenseRepository->getAll(0) : $licenseRepository->getAll(self::$limit*$page);
+        $numOfPages = ceil($otherDocumentsRepository->getNumberOfRecords()/self::$limit);
+        $records = $page == 0 ? $otherDocumentsRepository->getAll(0) : $otherDocumentsRepository->getAll(self::$limit*$page);
         if ( $page == 0) {
             $records = array_slice($records,  self::$limit*($numOfPages));
         } else {

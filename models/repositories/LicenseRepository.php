@@ -100,6 +100,4 @@ class LicenseRepository
         $result = $sth->fetchAll(PDO::FETCH_CLASS, "License");
         return $result;
     }
-
-
 }

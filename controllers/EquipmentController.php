@@ -10,12 +10,12 @@ class EquipmentController
      */
     public static function index() {
 
-        $lcienseRepository = new LicenseRepository();
+        $equipmentRepository = new EquipmentRepository();
 
-        $records = $lcienseRepository->getAll(self::$limit);
-        $numOfRecords = $lcienseRepository->getNumberOfRecords();
+        $records = $equipmentRepository->getAll(self::$limit);
+        $numOfRecords = $equipmentRepository->getNumberOfRecords();
 
-        echo LicenseIndexView::render($records, ceil($numOfRecords/self::$limit));
+        echo EquipmentIndexView::render($records, ceil($numOfRecords/self::$limit));
     }
 
     /**
@@ -39,13 +39,13 @@ class EquipmentController
      */
     public static function filterData() {
 
-        $getparamNames = array("name");
+        $getparamNames = array("inventoryNumber","serialNumber");
 
         $params = self::filterGetParameters($getparamNames);
 
-        $licenseRepository = new LicenseRepository();
+        $equipmentRepository = new EquipmentRepository();
 
-        $records = $licenseRepository->findBy($params);
+        $records = $equipmentRepository->findBy($params);
 
         header('Content-type: application/json');
         return  json_encode($records) ;
@@ -65,10 +65,10 @@ class EquipmentController
         $page = ceil($page);
         //return $page;
 
-        $licenseRepository = new LicenseRepository();
+        $equipmentRepository = new EquipmentRepository();
 
-        $numOfPages = ceil($licenseRepository->getNumberOfRecords()/self::$limit);
-        $records = $page == 0 ? $licenseRepository->getAll(0) : $licenseRepository->getAll(self::$limit*$page);
+        $numOfPages = ceil($equipmentRepository->getNumberOfRecords()/self::$limit);
+        $records = $page == 0 ? $equipmentRepository->getAll(0) : $equipmentRepository->getAll(self::$limit*$page);
         if ( $page == 0) {
             $records = array_slice($records,  self::$limit*($numOfPages));
         } else {

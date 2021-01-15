@@ -99,7 +99,7 @@ class Layout
                             <a class="dropdown-item" href="./index.php?action=invoiceSale-show">FV sprzedaży</a>
                             <a class="dropdown-item" href="./index.php?action=invoicePurchase-show">FV zakupu</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="./index.php?action=otherDocuments-show">Sprzęt</a>
+                            <a class="dropdown-item" href="./index.php?action=equipment-show">Sprzęt</a>
                             <a class="dropdown-item" href="./index.php?action=license-show">Licencje</a>
                             <a class="dropdown-item" href="./index.php?action=otherDocuments-show">Pozostałe dokumenty</a>
                         </div>
@@ -122,7 +122,7 @@ class Layout
                                     <a class="dropdown-item" href="./index.php?action=invoiceSale-show">FV sprzedaży</a>
                                     <a class="dropdown-item" href="./index.php?action=invoicePurchase-show">FV zakupu</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="./index.php?action=otherDocuments-show">Sprzęt</a>
+                                    <a class="dropdown-item" href="./index.php?action=equipment-show">Sprzęt</a>
                                     <a class="dropdown-item" href="./index.php?action=license-show">Licencje</a>
                                     <a class="dropdown-item" href="./index.php?action=otherDocuments-show">Pozostałe dokumenty</a>
                                 </div>

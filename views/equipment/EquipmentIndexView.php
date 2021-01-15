@@ -5,7 +5,7 @@ class equipmentIndexView
 {
 
     /**
-     * @param array $recordsMainTable Dane do głównej tabeli, wiersze
+     * @param Equipment[] $recordsMainTable Dane do głównej tabeli, wiersze
      * @param int $numberOfRecordsInDB Liczba wszystkich rekordów
      * @param array $reportData Dane do raportów danej sekcji
      * @return false|string
@@ -64,7 +64,7 @@ class equipmentIndexView
                                 </tr>
                                 <tr>
                                     <th scope="row">Notatki</th>
-                                    <td></td>
+                                    <td class="notate-modalfield"></td>
                                 </tr>
 
                                 </tbody>
@@ -86,11 +86,11 @@ class equipmentIndexView
                             <div class="form-row">
                                 <div class="form-group col-lg-6 col-md-12">
                                     <label for="SearchForm_inventoryNumber">Nr Inwentarza</label>
-                                    <input id="SearchForm_inventoryNumber" maxlength="30" type="text" class="form-control" pattern="^[\d\w]*$" placeholder="FirmaXYZ" onfocusout="filterDataInInvoiceSaleIndexTable();">
+                                    <input id="SearchForm_inventoryNumber" maxlength="30" type="text" class="form-control" pattern="^[\d]*$" placeholder="123" onfocusout="filterDataInInvoiceSaleIndexTable();">
                                 </div>
                                 <div class="form-group col-lg-6  col-md-6">
                                     <label for="SearchForm_serialNumber">Nr seryjny</label>
-                                    <input id="SearchForm_serialNumber" maxlength="15" type="text" class="form-control" pattern="^\d*$" placeholder="123456" onfocusout="filterDataInInvoiceSaleIndexTable();">
+                                    <input id="SearchForm_serialNumber" maxlength="15" type="text" class="form-control" pattern="^[\d\w]*$" placeholder="ABC123" onfocusout="filterDataInInvoiceSaleIndexTable();">
                                 </div>
                             </div>
 <!--                                <button type="submit" class="btn btn-primary">Search</button>-->
@@ -167,15 +167,18 @@ class equipmentIndexView
                                     $count = 0;
                                     foreach ($recordsMainTable as $val) {
                                         echo '<tr>';
-                                        echo '<th scope="row">'.$val->getInvoiceNumber().'</th>';
-                                        echo '<td class="invoiceSaleIndexTableContractorName">'.$val->getName().'</td>';
-                                        echo '<td class="invoiceSaleIndexTableAddDate">'.$val->getAddDate().'</td>';
-                                        echo '<td class="showDataIndexTableWider">'.$val->getVatID().'</td>';
+                                        echo '<th scope="row">'.$val->getInventoryNumber().'</th>';
+                                        echo '<td class="">'.$val->getName().'</td>';
+                                        echo '<td class="">'.$val->getSerialNumber().'</td>';
+                                        echo '<td class="showDataIndexTableWider">'.$val->getPurchaseDate().'</td>';
+                                        echo '<td class="showDataIndexTableWider">'.$val->getInvoiceId().'</td>';
+                                        echo '<td class="showDataIndexTableWider">'.$val->getWarrantyTo().'</td>';
                                         echo '<td class="showDataIndexTableWider">'.$val->getAmountNet().'</td>';
-                                        echo '<td class="showDataIndexTableWider">'.$val->getAmountGross().'</td>';
-                                        echo '<td class="showDataIndexTableWider">'.$val->getAmountTax().'</td>';
-                                        echo '<td class="showDataIndexTableWider">'.$val->getAmountNetCurrencyValue().' ('.$val->getAmountNetCurrency().')</td>';
-                                        echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="'.$id.'Modal" onclick=\'changeDataInModal('
+                                        echo '<td class="showDataIndexTableWider">'.$val->getAssignedFor().'</td>';
+                                        echo '<td class="showDataIndexTableWider"><a href="#" class="notate-tablefield" data-toggle="modal" data-target="#'.$id.'Modal" onclick=\'changeDataInModal('
+                                            .json_encode($val)
+                                            .');\'>'.$val->getNotes().'</a></td>';
+                                        echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#'.$id.'Modal" onclick=\'changeDataInModal('
                                             .json_encode($val)
                                             .');\'>...</a></td>';
                                         echo '<td class="showDataIndexTableRowId">'.$count.'</td>';

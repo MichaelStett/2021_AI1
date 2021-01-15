@@ -5,7 +5,7 @@ class otherDocumentsIndexView
 {
 
     /**
-     * @param array $recordsMainTable Dane do głównej tabeli, wiersze
+     * @param OtherDocuments[] $recordsMainTable Dane do głównej tabeli, wiersze
      * @param int $numberOfRecordsInDB Liczba wszystkich rekordów
      * @param array $reportData Dane do raportów danej sekcji
      * @return false|string
@@ -44,7 +44,7 @@ class otherDocumentsIndexView
                                 </tr>
                                 <tr>
                                     <th scope="row">Notatki</th>
-                                    <td></td>
+                                    <td class="notate-modalfield"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Plik</th>
@@ -147,11 +147,13 @@ class otherDocumentsIndexView
                                     $count = 0;
                                     foreach ($recordsMainTable as $val) {
                                         echo '<tr>';
-                                        echo '<th scope="row">'.$val->getInvoiceNumber().'</th>';
-                                        echo '<td class="invoiceSaleIndexTableContractorName">'.$val->getName().'</td>';
-                                        echo '<td class="invoiceSaleIndexTableAddDate">'.$val->getAddDate().'</td>';
-                                        echo '<td class="showDataIndexTableWider">'.$val->getVatID().'</td>';
-                                        echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInModal('
+                                        echo '<th scope="row">'.$val->getName().'</th>';
+                                        echo '<td class="">'.$val->getDate().'</td>';
+                                        echo '<td class="">'.$val->getNumOfPage().'</td>';
+                                        echo '<td class="showDataIndexTableWider"><a href="#" class="notate-tablefield" data-toggle="modal" data-target="#'.$id.'Modal" onclick=\'changeDataInModal('
+                                            .json_encode($val)
+                                            .');\'>'.$val->getNotes().'</a></td>';
+                                        echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#'.$id.'Modal" onclick=\'changeDataInModal('
                                             .json_encode($val)
                                             .');\'>...</a></td>';
                                         echo '<td class="showDataIndexTableWider"><a class="btn" href="index.php?action=getFile&fileType=otherDocs&fileNumber='

@@ -25,7 +25,7 @@ class EquipmentRepository
      * @return License[]
      * @throws Exception
      */
-    public function getAll( $limit = 0, $order="addDate") {
+    public function getAll( $limit = 0, $order="purchaseDate") {
         global $config;
 
 //         INNER JOIN `users` as `u` on l.assignedFor=u.id
@@ -60,5 +60,51 @@ class EquipmentRepository
         }
 
         return $sth->fetch(PDO::FETCH_ASSOC)['count'];
+    }
+
+    /**
+     * @param array $conditions
+     * @param string $order
+     * @return License[]
+     * @throws Exception
+     */
+    public static function findBy($conditions ,$order="purchaseDate") {
+        global $config;
+
+        $condition = "";
+
+        if (array_key_exists('inventoryNumber', $conditions) && $condition != "") {
+            $condition .= " AND inventoryNumber LIKE :inventoryNumber";
+            $conditions['inventoryNumber'] = "%".$conditions['inventoryNumber']."%";
+        } else if (array_key_exists('inventoryNumber', $conditions)) {
+            $condition .= "inventoryNumber LIKE :inventoryNumber";
+            $conditions['inventoryNumber'] = "%".$conditions['inventoryNumber']."%";
+        }
+        if (array_key_exists('serialNumber', $conditions) && $condition != "") {
+            $condition .= " AND serialNumber LIKE :serialNumber";
+            $conditions['serialNumber'] = "%".$conditions['serialNumber']."%";
+        } else if (array_key_exists('serialNumber', $conditions)) {
+            $condition .= "serialNumber LIKE :serialNumber";
+            $conditions['serialNumber'] = "%".$conditions['serialNumber']."%";
+        }
+
+        $conditions = self::changeKeys($conditions,":");
+
+        $pdo = new PDO($config['dsn'], $config['login'], $config['password']);
+
+        $query = "SELECT *
+                FROM `equipment` as `l`
+                WHERE ".$condition
+            ." ORDER BY $order DESC";
+        //var_dump($query);
+        $sth = $pdo->prepare($query);
+        $sth->execute($conditions);
+
+        if ($sth == false) {
+            throw new Exception("pdo error");
+        }
+
+        $result = $sth->fetchAll(PDO::FETCH_CLASS, "Equipment");
+        return $result;
     }
 }
