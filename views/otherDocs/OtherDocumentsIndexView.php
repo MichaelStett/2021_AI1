@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../autoload.php';
 
-class invoiceEquipmentIndexView
+class otherDocumentsIndexView
 {
 
     /**
@@ -12,7 +12,7 @@ class invoiceEquipmentIndexView
      */
     public static function render( $recordsMainTable, $numberOfRecordsInDB, $reportData = [])
     {
-        $id = "invoicePurchasedIndex";
+        $id = "otherDocumentsIndex";
         ob_start();
         ?>
         <?= Layout::header() ?>
@@ -31,40 +31,24 @@ class invoiceEquipmentIndexView
                             <table id="<?= $id ?>ModalTable" class="table table-striped">
                                 <tbody>
                                 <tr>
-                                    <th scope="row">Nr Inwentarzowy</th>
+                                    <th scope="row">Nazwa własna</th>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Nazwa</th>
+                                    <th scope="row">Data dokumentu</th>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Numer Seryjny</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Data zakupu</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Nr Faktury</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Gwarancja Do</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Wartość Netto</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Przypisany do</th>
+                                    <th scope="row">Liczba stron</th>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Notatki</th>
                                     <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Plik</th>
+                                    <td><a class="btn" href="#"><img class="pdfIcon" src="./images/pdf_image.png"></a></td>
                                 </tr>
 
                                 </tbody>
@@ -85,12 +69,17 @@ class invoiceEquipmentIndexView
                         <form id="<?= $id ?>SearchForm_">
                             <div class="form-row">
                                 <div class="form-group col-lg-6 col-md-12">
-                                    <label for="SearchForm_inventoryNumber">Nr Inwentarza</label>
-                                    <input id="SearchForm_inventoryNumber" maxlength="30" type="text" class="form-control" pattern="^[\d\w]*$" placeholder="FirmaXYZ" onfocusout="filterDataInInvoiceSaleIndexTable();">
+                                    <label for="SearchForm_name">Nazwa własna</label>
+                                    <input id="SearchForm_name" maxlength="30" type="text" class="form-control" pattern="^[\d\w]*$" placeholder="FirmaXYZ" onfocusout="filterDataInInvoiceSaleIndexTable();">
                                 </div>
-                                <div class="form-group col-lg-6  col-md-6">
-                                    <label for="SearchForm_serialNumber">Nr seryjny</label>
-                                    <input id="SearchForm_serialNumber" maxlength="15" type="text" class="form-control" pattern="^\d*$" placeholder="123456" onfocusout="filterDataInInvoiceSaleIndexTable();">
+
+                                <div class="form-group col-lg-3  col-md-6">
+                                    <label for="SearchForm_dateAddStart">Od</label>
+                                    <input id="SearchForm_dateAddStart" type="date" class="form-control" oninput="filterDataInInvoiceSaleIndexTable();">
+                                </div>
+                                <div class="form-group col-lg-3  col-md-6">
+                                    <label for="SearchForm_dateAddEnd">Do</label>
+                                    <input id="SearchForm_dateAddEnd" type="date" class="form-control" oninput="filterDataInInvoiceSaleIndexTable();">
                                 </div>
                             </div>
 <!--                                <button type="submit" class="btn btn-primary">Search</button>-->
@@ -104,7 +93,7 @@ class invoiceEquipmentIndexView
             <div class="row">
                 <div class="col"></div>
                 <div class="col-md col-md-auto">
-                    <h1 class="title">Przeglądanie Sprzętu</h1>
+                    <h1 class="title">Przeglądanie Innych Dokumentów</h1>
                 </div>
                 <div class="col"></div>
                 <div class="w-100"></div>
@@ -115,19 +104,15 @@ class invoiceEquipmentIndexView
                     <table class="table table-striped table-bordered">
                         <tbody>
                         <tr>
-                            <th scope="row">Wartosć sprzętu</th>
+                            <th scope="row">Łączna lcizba stron</th>
                             <td>Mark</td>
                         </tr>
                         <tr>
-                            <th scope="row">Łączna ilość sprzętu</th>
+                            <th scope="row">Średnia l. stron na dokument</th>
                             <td>Mark</td>
                         </tr>
                         <tr>
-                            <th scope="row">Ilośc przypisanego sprzętu</th>
-                            <td>Mark</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Ilość sprzetu bez gwarancji</th>
+                            <th scope="row">Ilość dokumentów</th>
                             <td>Mark</td>
                         </tr>
                         </tbody>
@@ -150,14 +135,9 @@ class invoiceEquipmentIndexView
                         <table id="<?= $id ?>Table" class="table table-striped">
                             <thead>
                             <tr>
-                                <th scope="col">Nr Inwentarzowy</th>
-                                <th scope="col">Nazwa</th>
-                                <th scope="col">Numer Seryjny</th>
-                                <th scope="col" class="showDataIndexTableWider">Data zakupu</th>
-                                <th scope="col" class="showDataIndexTableWider">Nr Faktury</th>
-                                <th scope="col" class="showDataIndexTableWider">Gwarancja Do</th>
-                                <th scope="col" class="showDataIndexTableWider">Wartość Netto</th>
-                                <th scope="col" class="showDataIndexTableWider">Przypisany do</th>
+                                <th scope="col">Nazwa własna</th>
+                                <th scope="col">Data dokumentu</th>
+                                <th scope="col">Liczba stron</th>
                                 <th scope="col" class="showDataIndexTableWider">Notatki</th>
                                 <th scope="col" class="showDataIndexTableTight">Szczegóły</th>
                             </tr>
@@ -171,13 +151,12 @@ class invoiceEquipmentIndexView
                                         echo '<td class="invoiceSaleIndexTableContractorName">'.$val->getName().'</td>';
                                         echo '<td class="invoiceSaleIndexTableAddDate">'.$val->getAddDate().'</td>';
                                         echo '<td class="showDataIndexTableWider">'.$val->getVatID().'</td>';
-                                        echo '<td class="showDataIndexTableWider">'.$val->getAmountNet().'</td>';
-                                        echo '<td class="showDataIndexTableWider">'.$val->getAmountGross().'</td>';
-                                        echo '<td class="showDataIndexTableWider">'.$val->getAmountTax().'</td>';
-                                        echo '<td class="showDataIndexTableWider">'.$val->getAmountNetCurrencyValue().' ('.$val->getAmountNetCurrency().')</td>';
                                         echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInModal('
                                             .json_encode($val)
                                             .');\'>...</a></td>';
+                                        echo '<td class="showDataIndexTableWider"><a class="btn" href="index.php?action=getFile&fileType=otherDocs&fileNumber='
+                                            .$val->getId()
+                                            .'"><img class="pdfIcon" src="./images/pdf_image.png"></a></td>';
                                         echo '<td class="showDataIndexTableRowId">'.$count.'</td>';
                                         echo '</tr>';
                                         $count++;

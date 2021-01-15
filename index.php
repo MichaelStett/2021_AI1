@@ -35,13 +35,37 @@ switch ($action) {
         echo InvoicePurchaseController::add();
         break;
     case 'otherDocuments-show':
+        echo OtherDocumentsController::index();
+        break;
+    case 'otherDocuments-more':
+        echo OtherDocumentsController::moreData();
+        break;
+    case 'otherDocuments-filter':
+        echo OtherDocumentsController::filterData();
+        break;
     case 'otherDocuments-add':
     case 'license-show':
+        echo LicenseController::index();
+        break;
+    case 'license-more':
+        echo LicenseController::moreData();
+        break;
+    case 'license-filter':
+        echo LicenseController::filterData();
+        break;
     case 'license-add':
     case 'generateReport-show':
     case 'generateReport-set':
     case 'admin':
     case 'equipment-show':
+        echo EquipmentController::index();
+        break;
+    case 'equipment-more':
+        echo EquipmentController::moreData();
+        break;
+    case 'equipment-filter':
+        echo EquipmentController::filterData();
+        break;
     case 'equipment-add':
         echo NotFoundView::render();
         break;

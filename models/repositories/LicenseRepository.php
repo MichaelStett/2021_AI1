@@ -25,7 +25,7 @@ class LicenseRepository
      * @return License[]
      * @throws Exception
      */
-    public function getAll( $limit = 0, $order="addDate") {
+    public function getAll( $limit = 0, $order="purchaseDate") {
         global $config;
 
 //         INNER JOIN `users` as `u` on l.assignedFor=u.id
@@ -60,6 +60,45 @@ class LicenseRepository
         }
 
         return $sth->fetch(PDO::FETCH_ASSOC)['count'];
+    }
+
+    /**
+     * @param array $conditions
+     * @param string $order
+     * @return License[]
+     * @throws Exception
+     */
+    public static function findBy($conditions ,$order="purchaseDate") {
+        global $config;
+
+        $condition = "";
+
+        if (array_key_exists('name', $conditions) && $condition != "") {
+            $condition .= " AND name LIKE :name";
+            $conditions['name'] = "%".$conditions['name']."%";
+        } else if (array_key_exists('name', $conditions)) {
+            $condition .= "name LIKE :name";
+            $conditions['name'] = "%".$conditions['name']."%";
+        }
+
+        $conditions = self::changeKeys($conditions,":");
+
+        $pdo = new PDO($config['dsn'], $config['login'], $config['password']);
+
+        $query = "SELECT `inventoryNumber`, `name`, `serialNumber`,`purchaseDate`,`supportTo`, `validTo`, `notes`, `assignedFor`, `invoiceId`
+                FROM `license` as `l`
+                WHERE ".$condition
+                ." ORDER BY $order DESC";
+        //var_dump($query);
+        $sth = $pdo->prepare($query);
+        $sth->execute($conditions);
+
+        if ($sth == false) {
+            throw new Exception("pdo error");
+        }
+
+        $result = $sth->fetchAll(PDO::FETCH_CLASS, "License");
+        return $result;
     }
 
 

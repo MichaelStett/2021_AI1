@@ -1,18 +1,18 @@
 <?php
 require_once __DIR__ . '/../../autoload.php';
 
-class invoiceOtherDocumentsIndexView
+class licenseIndexView
 {
 
     /**
-     * @param array $recordsMainTable Dane do głównej tabeli, wiersze
+     * @param License[] $recordsMainTable Dane do głównej tabeli, wiersze
      * @param int $numberOfRecordsInDB Liczba wszystkich rekordów
      * @param array $reportData Dane do raportów danej sekcji
      * @return false|string
      */
     public static function render( $recordsMainTable, $numberOfRecordsInDB, $reportData = [])
     {
-        $id = "invoicePurchasedIndex";
+        $id = "licenseIndex";
         ob_start();
         ?>
         <?= Layout::header() ?>
@@ -31,24 +31,40 @@ class invoiceOtherDocumentsIndexView
                             <table id="<?= $id ?>ModalTable" class="table table-striped">
                                 <tbody>
                                 <tr>
-                                    <th scope="row">Nazwa własna</th>
+                                    <th scope="row">Nr Inwentarzowy</th>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Data dokumentu</th>
+                                    <th scope="row">Nazwa</th>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Liczba stron</th>
+                                    <th scope="row">Klucz seryjny</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Data zakupu</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Nr Faktury</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Wsparcie tech. do</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Ważna do</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Przypisany do</th>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Notatki</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Plik</th>
-                                    <td><a class="btn" href="#"><img class="pdfIcon" src="./images/pdf_image.png"></a></td>
+                                    <td class="notate-modalfield"></td>
                                 </tr>
 
                                 </tbody>
@@ -69,17 +85,8 @@ class invoiceOtherDocumentsIndexView
                         <form id="<?= $id ?>SearchForm_">
                             <div class="form-row">
                                 <div class="form-group col-lg-6 col-md-12">
-                                    <label for="SearchForm_name">Nazwa własna</label>
-                                    <input id="SearchForm_name" maxlength="30" type="text" class="form-control" pattern="^[\d\w]*$" placeholder="FirmaXYZ" onfocusout="filterDataInInvoiceSaleIndexTable();">
-                                </div>
-
-                                <div class="form-group col-lg-3  col-md-6">
-                                    <label for="SearchForm_dateAddStart">Od</label>
-                                    <input id="SearchForm_dateAddStart" type="date" class="form-control" oninput="filterDataInInvoiceSaleIndexTable();">
-                                </div>
-                                <div class="form-group col-lg-3  col-md-6">
-                                    <label for="SearchForm_dateAddEnd">Do</label>
-                                    <input id="SearchForm_dateAddEnd" type="date" class="form-control" oninput="filterDataInInvoiceSaleIndexTable();">
+                                    <label for="SearchForm_name">Nazwa</label>
+                                    <input id="SearchForm_name" maxlength="30" type="text" class="form-control" pattern="^[\d\w]*$" placeholder="name" onfocusout="filterDataInInvoiceSaleIndexTable();">
                                 </div>
                             </div>
 <!--                                <button type="submit" class="btn btn-primary">Search</button>-->
@@ -93,7 +100,7 @@ class invoiceOtherDocumentsIndexView
             <div class="row">
                 <div class="col"></div>
                 <div class="col-md col-md-auto">
-                    <h1 class="title">Przeglądanie Innych Dokumentów</h1>
+                    <h1 class="title">Przeglądanie Licencji</h1>
                 </div>
                 <div class="col"></div>
                 <div class="w-100"></div>
@@ -104,15 +111,23 @@ class invoiceOtherDocumentsIndexView
                     <table class="table table-striped table-bordered">
                         <tbody>
                         <tr>
-                            <th scope="row">Łączna lcizba stron</th>
+                            <th scope="row">Łączna ilość licencji</th>
                             <td>Mark</td>
                         </tr>
                         <tr>
-                            <th scope="row">Średnia l. stron na dokument</th>
+                            <th scope="row">Ilośc licencji nie ważnych</th>
                             <td>Mark</td>
                         </tr>
                         <tr>
-                            <th scope="row">Ilość dokumentów</th>
+                            <th scope="row">Ilośc licencji bez wsparcia</th>
+                            <td>Mark</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Ilośc licencji nie przypisanych</th>
+                            <td>Mark</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Data najstarszej licencji</th>
                             <td>Mark</td>
                         </tr>
                         </tbody>
@@ -135,9 +150,14 @@ class invoiceOtherDocumentsIndexView
                         <table id="<?= $id ?>Table" class="table table-striped">
                             <thead>
                             <tr>
-                                <th scope="col">Nazwa własna</th>
-                                <th scope="col">Data dokumentu</th>
-                                <th scope="col">Liczba stron</th>
+                                <th scope="col">Nr Inwentarzowy</th>
+                                <th scope="col">Nazwa</th>
+                                <th scope="col">Klucz Seryjny</th>
+                                <th scope="col" class="showDataIndexTableWider">Data zakupu</th>
+                                <th scope="col" class="showDataIndexTableWider">Nr Faktury</th>
+                                <th scope="col" class="showDataIndexTableWider">Wsparcie tech. Do</th>
+                                <th scope="col" class="showDataIndexTableWider">Ważna do</th>
+                                <th scope="col" class="showDataIndexTableWider">Przypisany do</th>
                                 <th scope="col" class="showDataIndexTableWider">Notatki</th>
                                 <th scope="col" class="showDataIndexTableTight">Szczegóły</th>
                             </tr>
@@ -147,16 +167,20 @@ class invoiceOtherDocumentsIndexView
                                     $count = 0;
                                     foreach ($recordsMainTable as $val) {
                                         echo '<tr>';
-                                        echo '<th scope="row">'.$val->getInvoiceNumber().'</th>';
+                                        echo '<th scope="row">'.$val->getInventoryNumber().'</th>';
                                         echo '<td class="invoiceSaleIndexTableContractorName">'.$val->getName().'</td>';
-                                        echo '<td class="invoiceSaleIndexTableAddDate">'.$val->getAddDate().'</td>';
-                                        echo '<td class="showDataIndexTableWider">'.$val->getVatID().'</td>';
-                                        echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInModal('
+                                        echo '<td class="invoiceSaleIndexTableAddDate">'.$val->getSerialNumber().'</td>';
+                                        echo '<td class="showDataIndexTableWider">'.$val->getPurchaseDate().'</td>';
+                                        echo '<td class="showDataIndexTableWider">'.$val->getInvoiceId().'</td>';
+                                        echo '<td class="showDataIndexTableWider">'.$val->getSupportTo().'</td>';
+                                        echo '<td class="showDataIndexTableWider">'.$val->getValidTo().'</td>';
+                                        echo '<td class="showDataIndexTableWider">'.$val->getAssignedFor().'</td>';
+                                        echo '<td class="showDataIndexTableWider"><a href="#" class="notate-tablefield" data-toggle="modal" data-target="#'.$id.'Modal" onclick=\'changeDataInModal('
+                                            .json_encode($val)
+                                            .');\'>'.$val->getNotes().'</a></td>';
+                                        echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#'.$id.'Modal" onclick=\'changeDataInModal('
                                             .json_encode($val)
                                             .');\'>...</a></td>';
-                                        echo '<td class="showDataIndexTableWider"><a class="btn" href="index.php?action=getFile&fileType=otherDocs&fileNumber='
-                                            .$val->getId()
-                                            .'"><img class="pdfIcon" src="./images/pdf_image.png"></a></td>';
                                         echo '<td class="showDataIndexTableRowId">'.$count.'</td>';
                                         echo '</tr>';
                                         $count++;

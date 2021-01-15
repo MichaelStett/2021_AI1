@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../autoload.php';
 
-class invoiceLicenseIndexView
+class equipmentIndexView
 {
 
     /**
@@ -12,7 +12,7 @@ class invoiceLicenseIndexView
      */
     public static function render( $recordsMainTable, $numberOfRecordsInDB, $reportData = [])
     {
-        $id = "invoicePurchasedIndex";
+        $id = "equipmentIndex";
         ob_start();
         ?>
         <?= Layout::header() ?>
@@ -39,7 +39,7 @@ class invoiceLicenseIndexView
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Klucz seryjny</th>
+                                    <th scope="row">Numer Seryjny</th>
                                     <td></td>
                                 </tr>
                                 <tr>
@@ -51,11 +51,11 @@ class invoiceLicenseIndexView
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Wsparcie tech. do</th>
+                                    <th scope="row">Gwarancja Do</th>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Ważna do</th>
+                                    <th scope="row">Wartość Netto</th>
                                     <td></td>
                                 </tr>
                                 <tr>
@@ -85,8 +85,12 @@ class invoiceLicenseIndexView
                         <form id="<?= $id ?>SearchForm_">
                             <div class="form-row">
                                 <div class="form-group col-lg-6 col-md-12">
-                                    <label for="SearchForm_name">Nazwa</label>
-                                    <input id="SearchForm_name" maxlength="30" type="text" class="form-control" pattern="^[\d\w]*$" placeholder="FirmaXYZ" onfocusout="filterDataInInvoiceSaleIndexTable();">
+                                    <label for="SearchForm_inventoryNumber">Nr Inwentarza</label>
+                                    <input id="SearchForm_inventoryNumber" maxlength="30" type="text" class="form-control" pattern="^[\d\w]*$" placeholder="FirmaXYZ" onfocusout="filterDataInInvoiceSaleIndexTable();">
+                                </div>
+                                <div class="form-group col-lg-6  col-md-6">
+                                    <label for="SearchForm_serialNumber">Nr seryjny</label>
+                                    <input id="SearchForm_serialNumber" maxlength="15" type="text" class="form-control" pattern="^\d*$" placeholder="123456" onfocusout="filterDataInInvoiceSaleIndexTable();">
                                 </div>
                             </div>
 <!--                                <button type="submit" class="btn btn-primary">Search</button>-->
@@ -100,7 +104,7 @@ class invoiceLicenseIndexView
             <div class="row">
                 <div class="col"></div>
                 <div class="col-md col-md-auto">
-                    <h1 class="title">Przeglądanie Licencji</h1>
+                    <h1 class="title">Przeglądanie Sprzętu</h1>
                 </div>
                 <div class="col"></div>
                 <div class="w-100"></div>
@@ -111,23 +115,19 @@ class invoiceLicenseIndexView
                     <table class="table table-striped table-bordered">
                         <tbody>
                         <tr>
-                            <th scope="row">Łączna ilość licencji</th>
+                            <th scope="row">Wartosć sprzętu</th>
                             <td>Mark</td>
                         </tr>
                         <tr>
-                            <th scope="row">Ilośc licencji nie ważnych</th>
+                            <th scope="row">Łączna ilość sprzętu</th>
                             <td>Mark</td>
                         </tr>
                         <tr>
-                            <th scope="row">Ilośc licencji bez wsparcia</th>
+                            <th scope="row">Ilośc przypisanego sprzętu</th>
                             <td>Mark</td>
                         </tr>
                         <tr>
-                            <th scope="row">Ilośc licencji nie przypisanych</th>
-                            <td>Mark</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Data najstarszej licencji</th>
+                            <th scope="row">Ilość sprzetu bez gwarancji</th>
                             <td>Mark</td>
                         </tr>
                         </tbody>
@@ -152,11 +152,11 @@ class invoiceLicenseIndexView
                             <tr>
                                 <th scope="col">Nr Inwentarzowy</th>
                                 <th scope="col">Nazwa</th>
-                                <th scope="col">Klucz Seryjny</th>
+                                <th scope="col">Numer Seryjny</th>
                                 <th scope="col" class="showDataIndexTableWider">Data zakupu</th>
                                 <th scope="col" class="showDataIndexTableWider">Nr Faktury</th>
-                                <th scope="col" class="showDataIndexTableWider">Wsparcie tech. Do</th>
-                                <th scope="col" class="showDataIndexTableWider">Ważna do</th>
+                                <th scope="col" class="showDataIndexTableWider">Gwarancja Do</th>
+                                <th scope="col" class="showDataIndexTableWider">Wartość Netto</th>
                                 <th scope="col" class="showDataIndexTableWider">Przypisany do</th>
                                 <th scope="col" class="showDataIndexTableWider">Notatki</th>
                                 <th scope="col" class="showDataIndexTableTight">Szczegóły</th>
@@ -175,12 +175,9 @@ class invoiceLicenseIndexView
                                         echo '<td class="showDataIndexTableWider">'.$val->getAmountGross().'</td>';
                                         echo '<td class="showDataIndexTableWider">'.$val->getAmountTax().'</td>';
                                         echo '<td class="showDataIndexTableWider">'.$val->getAmountNetCurrencyValue().' ('.$val->getAmountNetCurrency().')</td>';
-                                        echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInModal('
+                                        echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="'.$id.'Modal" onclick=\'changeDataInModal('
                                             .json_encode($val)
                                             .');\'>...</a></td>';
-                                        echo '<td class="showDataIndexTableWider"><a class="btn" href="index.php?action=getFile&fileType=invoiceSale&fileNumber='
-                                            .$val->getId()
-                                            .'"><img class="pdfIcon" src="./images/pdf_image.png"></a></td>';
                                         echo '<td class="showDataIndexTableRowId">'.$count.'</td>';
                                         echo '</tr>';
                                         $count++;

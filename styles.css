@@ -48,6 +48,23 @@
     max-width: 600px;
 }
 
+/* === style do komorek z notatkami */
+.notate-tablefield {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    width: 50px;
+}
+
+.notate-modalfield {
+    overflow: hidden;
+    text-overflow: clip;
+    width: 200px;
+    display: block;
+    word-wrap: break-word;
+}
+/* ==================================================== */
+
 /* === pokazywanie i ukrwyanie kolumn w tabeli glownej w zaleznosci od szerokosci*/
 th.showDataIndexTableWider,td.showDataIndexTableWider {
     display: none;
@@ -56,10 +73,10 @@ th.showDataIndexTableTight,td.showDataIndexTableTight {
     display: table-cell;
 }
 @media (min-width: 992px) {
-    #invoiceSaleIndexTable th.showDataIndexTableWider,td.showDataIndexTableWider {
+    th.showDataIndexTableWider,td.showDataIndexTableWider {
         display: table-cell;
     }
-    #invoiceSaleIndexTable th.showDataIndexTableTight,td.showDataIndexTableTight {
+    th.showDataIndexTableTight,td.showDataIndexTableTight {
         display: none;
     }
 }
@@ -101,3 +118,4 @@ td.showDataIndexTableWider a.btn {
     height: 26px;
 }
 /* ==================================================== */
+

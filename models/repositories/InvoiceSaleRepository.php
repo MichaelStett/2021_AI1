@@ -112,8 +112,10 @@ class InvoiceSaleRepository
         $conditions = self::changeKeys($conditions,":");
 
         $pdo = new PDO($config['dsn'], $config['login'], $config['password']);
-        $query = "SELECT `id`, `invoiceNumber`, `addDate`, `k`.`vatID`,`name`, `amountNet`, `amountTax`, `amountGross`, `amountNetCurrencyValue`, `amountNetCurrency` FROM `invoiceSale` as `f` INNER JOIN `contractor` as `k` on k.vatID=f.vatID WHERE "
-            .$condition
+        $query = "SELECT `id`, `invoiceNumber`, `addDate`, `k`.`vatID`,`name`, `amountNet`, `amountTax`, `amountGross`, `amountNetCurrencyValue`, `amountNetCurrency`
+            FROM `invoiceSale` as `f` 
+            INNER JOIN `contractor` as `k` on k.vatID=f.vatID
+            WHERE ".$condition
             ." ORDER BY $order DESC";
         $sth = $pdo->prepare($query);
         $sth->execute($conditions);

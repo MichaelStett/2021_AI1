@@ -20,7 +20,7 @@ function validateLoginForm() {
 
 
 const indexPageName = function () {
-    const viewsNames = ["invoiceSaleIndex","invoicePurchaseIndex","otherDocsIndex","licenseIndex","equipmentIndex"];
+    const viewsNames = ["invoiceSaleIndex","invoicePurchaseIndex","otherDocumentsIndex","licenseIndex","equipmentIndex"];
     let i = 0;
     for (; i < viewsNames.length; i++) {
         if (document.getElementById(viewsNames[i]+"Table") != undefined) {
@@ -82,11 +82,11 @@ const changeDataInModal = function (){
                 modalTable[0].innerText = args['inventoryNumber'];
                 modalTable[1].innerText = args['name'];
                 modalTable[2].innerText = args['serialNumber'];
-                modalTable[3].innerText = args['purchasedDate'];
-                modalTable[4].innerText = args['invoiceNumber'];
-                modalTable[5].innerText = args['supportUpTo'];
-                modalTable[6].innerText = args['validateUpTo'];
-                modalTable[7].innerText = args['assignedTo'];
+                modalTable[3].innerText = args['purchaseDate'];
+                modalTable[4].innerText = args['invoiceId'];
+                modalTable[5].innerText = args['supportTo'];
+                modalTable[6].innerText = args['validTo'];
+                modalTable[7].innerText = args['assignedFor'];
                 modalTable[8].innerText = args['notes'];
             }
             break;
@@ -186,13 +186,15 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
                         '<th scope="row">'+args['inventoryNumber']+'</th>'+
                         '<td class="invoiceSaleIndexTableContractorName">'+args['name']+'</td>'+
                         '<td class="invoiceSaleIndexTableAddDate">'+args['serialNumber']+'</td>'+
-                        '<td class="showDataIndexTableWider">'+args['purchasedDate']+'</td>'+
-                        '<td class="showDataIndexTableWider">'+args['invoiceNumber']+'</td>'+
-                        '<td class="showDataIndexTableWider">'+args['supportUpTo']+'</td>'+
-                        '<td class="showDataIndexTableWider">'+args['validateUpTo']+'</td>'+
-                        '<td class="showDataIndexTableWider">'+args['assignedTo']+'</td>'+
-                        '<td class="showDataIndexTableWider">'+args['notes']+'</td>'+
-                        '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInInvoiceSaleIndexModal('+
+                        '<td class="showDataIndexTableWider">'+args['purchaseDate']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['invoiceId']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['supportTo']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['validTo']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+args['assignedFor']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+"<a href=\"#\" class=\"notate-tablefield\" data-toggle=\"modal\" data-target=\"#"+indexPageName+"Modal\" onclick='changeDataInModal("+
+                        JSON.stringify(args)+
+                        ");'>"+args['notes']+"</a></td>"+
+                        '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInModal('+
                         JSON.stringify(args)+
                         ');\'>...</a></td>'+
                         '</tr>';
@@ -209,7 +211,9 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
                         '<td class="showDataIndexTableWider">'+args['warrantyUpTo']+'</td>'+
                         '<td class="showDataIndexTableWider">'+args['amountNet']+'</td>'+
                         '<td class="showDataIndexTableWider">'+args['assignedTo']+'</td>'+
-                        '<td class="showDataIndexTableWider">'+args['notes']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+"<a href=\"#\" class=\"notate-tablefield\" data-toggle=\"modal\" data-target=\"#"+indexPageName+"Modal\" onclick='changeDataInModal("+
+                        JSON.stringify(args)+
+                        ");'>"+args['notes']+"</a></td>"+
                         '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInInvoiceSaleIndexModal('+
                         JSON.stringify(args)+
                         ');\'>...</a></td>'+
@@ -222,7 +226,9 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
                         '<th scope="row">'+args['name']+'</th>'+
                         '<td class="invoiceSaleIndexTableContractorName">'+args['docDate']+'</td>'+
                         '<td class="invoiceSaleIndexTableAddDate">'+args['numOfPages']+'</td>'+
-                        '<td class="showDataIndexTableWider">'+args['notes']+'</td>'+
+                        '<td class="showDataIndexTableWider">'+"<a href=\"#\" class=\"notate-tablefield\" data-toggle=\"modal\" data-target=\"#"+indexPageName+"Modal\" onclick='changeDataInModal("+
+                        JSON.stringify(args)+
+                        ");'>"+args['notes']+"</a></td>"+
                         '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoiceSaleIndexModal" onclick=\'changeDataInInvoiceSaleIndexModal('+
                         JSON.stringify(args)+
                         ');\'>...</a></td>'+
@@ -281,7 +287,7 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
 
 
         } else {
-            fetch("index.php?action=invoiceSale-filter"+query, {
+            fetch("index.php?action="+indexPageName.slice(0,-5)+"-filter"+query, {
                 method: 'GET',
                 mode: 'cors',
                 referrerPolicy: 'no-referrer'
