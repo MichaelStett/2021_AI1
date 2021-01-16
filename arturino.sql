@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 13 Sty 2021, 22:31
+-- Czas generowania: 16 Sty 2021, 09:33
 -- Wersja serwera: 10.4.11-MariaDB
 -- Wersja PHP: 7.4.5
 
@@ -58,6 +58,20 @@ CREATE TABLE `equipment` (
   `assignedFor` int(11) NOT NULL,
   `invoiceId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `equipment`
+--
+
+INSERT INTO `equipment` (`inventoryNumber`, `name`, `serialNumber`, `purchaseDate`, `warrantyTo`, `amountNet`, `notes`, `assignedFor`, `invoiceId`) VALUES
+(1, 'fotel A', '123456', '2021-01-04', '2021-01-31', 789789, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 1, 1),
+(2, 'biurka gamingowe', '3333333333333333333333333', '2021-01-11', '2021-01-27', 785421, 'jhhjghjgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg', 1, 8),
+(3, 'mysz 1', '111111111111111', '2021-01-07', '2021-01-24', 34343434, 'fg', 1, 5),
+(4, 'klawiatura', '333333333333333333333', '2021-01-11', '2021-01-26', 56, 'a', 1, 6),
+(5, 'sluchawki', 'dfdsfsdfsf', '2021-01-12', '2021-01-12', 0, '', 1, 7),
+(6, 'mikrofon', 'yututyutut', '2021-01-05', '2021-01-29', 0, 'f', 1, 10),
+(11, 'sluchawki', 'dfdsfsdfsf', '2021-01-12', '2021-01-12', 78, '', 1, 11),
+(12, 'mikrofon', 'yututyutut', '2021-01-05', '2021-01-29', 89, 'f', 1, 12);
 
 -- --------------------------------------------------------
 
@@ -139,6 +153,17 @@ CREATE TABLE `license` (
   `invoiceId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Zrzut danych tabeli `license`
+--
+
+INSERT INTO `license` (`inventoryNumber`, `name`, `serialNumber`, `purchaseDate`, `supportTo`, `validTo`, `notes`, `assignedFor`, `invoiceId`) VALUES
+(1, 'licencja1', '123123123', '2021-01-12', '2021-01-28', '2021-01-29', 'notatka moja 1', 1, 8),
+(4, 'windows 10', '456789789', '2021-01-13', '2021-01-29', '2021-01-30', 'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', 1, 1),
+(5, 'office 2019', '852852456', '2021-01-12', '2021-01-28', '2021-01-30', 'ioiouogmhjm,dhgjdgnfghnhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh', 1, 11),
+(6, 'windows 7', '7777777777', '2021-01-11', '2021-01-27', '2021-01-30', 'iooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', 1, 12),
+(7, 'windwos 8.1', '123456789', '2021-01-06', '2021-01-24', '2021-01-31', 'tytytyty', 1, 9);
+
 -- --------------------------------------------------------
 
 --
@@ -149,9 +174,21 @@ CREATE TABLE `otherdocuments` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `date` date NOT NULL,
-  `numberOfPage` int(11) NOT NULL,
+  `numOfPage` int(11) NOT NULL,
   `notes` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `otherdocuments`
+--
+
+INSERT INTO `otherdocuments` (`id`, `name`, `date`, `numOfPage`, `notes`) VALUES
+(1, 'dok1', '2021-01-11', 456, 'ssssssssssssssssssssssssssssssssssssssssssssssssssss'),
+(2, 'dok2', '2021-01-11', 4554545, 'gfdgdgfdg'),
+(3, 'dok3', '2021-01-09', 3434, 'ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg'),
+(4, 'dok4', '2021-01-28', 343434, ''),
+(5, 'dokAAA', '2021-01-13', 4545, 'fgfgfg'),
+(6, 'dokBBB', '2021-01-16', 45, '');
 
 -- --------------------------------------------------------
 
@@ -190,8 +227,8 @@ ALTER TABLE `contractor`
 --
 ALTER TABLE `equipment`
   ADD PRIMARY KEY (`inventoryNumber`),
-  ADD UNIQUE KEY `assignedFor` (`assignedFor`),
-  ADD UNIQUE KEY `invoiceId` (`invoiceId`);
+  ADD UNIQUE KEY `invoiceId` (`invoiceId`),
+  ADD KEY `assignedFor` (`assignedFor`) USING BTREE;
 
 --
 -- Indeksy dla tabeli `invoicepurchase`
@@ -212,8 +249,8 @@ ALTER TABLE `invoicesale`
 --
 ALTER TABLE `license`
   ADD PRIMARY KEY (`inventoryNumber`),
-  ADD UNIQUE KEY `assignedFor` (`assignedFor`),
-  ADD UNIQUE KEY `invoiceId` (`invoiceId`);
+  ADD UNIQUE KEY `invoiceId` (`invoiceId`),
+  ADD KEY `assignedFor` (`assignedFor`) USING BTREE;
 
 --
 -- Indeksy dla tabeli `otherdocuments`
@@ -241,7 +278,7 @@ ALTER TABLE `contractor`
 -- AUTO_INCREMENT dla tabeli `equipment`
 --
 ALTER TABLE `equipment`
-  MODIFY `inventoryNumber` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `inventoryNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT dla tabeli `invoicepurchase`
@@ -259,13 +296,13 @@ ALTER TABLE `invoicesale`
 -- AUTO_INCREMENT dla tabeli `license`
 --
 ALTER TABLE `license`
-  MODIFY `inventoryNumber` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `inventoryNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT dla tabeli `otherdocuments`
 --
 ALTER TABLE `otherdocuments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
