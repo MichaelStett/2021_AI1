@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../autoload.php';
-
 class InvoicePurchaseController
 {
     private static $limit = 5;

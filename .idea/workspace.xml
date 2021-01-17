@@ -135,6 +135,16 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
   </component>
+  <component name="WindowStateProjectService">
+    <state x="86" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1610573350916">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="86" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1610573350916" />
+    <state x="685" y="248" key="NewPhpClassDialog" timestamp="1610573231279">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="685" y="248" key="NewPhpClassDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1610573231279" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>

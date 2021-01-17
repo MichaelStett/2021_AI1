@@ -1,10 +1,8 @@
 <?php
 
-global $config;
 
-class InvoiceSaleRepository
+class OtherDocumentsRepository
 {
-
     /**
      * @param array $arrayIn
      * @param string $keyPrefix
@@ -24,14 +22,18 @@ class InvoiceSaleRepository
     /**
      * @param int $limit
      * @param string $order
-     * @return InvoiceSale[]
+     * @return License[]
      * @throws Exception
      */
-    public function getAll( $limit = 0, $order="addDate") {
+    public function getAll( $limit = 0, $order="date") {
         global $config;
 
+//         INNER JOIN `users` as `u` on l.assignedFor=u.id
+//         INNER JOIN `invoicepurchase` as `i` on l.invoiceId=l.id
         $pdo = new PDO($config['dsn'], $config['login'], $config['password']);
-        $query = "SELECT `id`, `invoiceNumber`, `addDate`,k.`vatID`,`name`, `amountNet`, `amountTax`, `amountGross`, `amountNetCurrencyValue`, `amountNetCurrency` FROM `invoiceSale` as `f` INNER JOIN `contractor` as `k` on k.vatID=f.vatID ORDER BY $order DESC".($limit != 0 ? " LIMIT $limit" : "");
+        $query = "SELECT *
+                FROM `otherdocuments` as `o`
+                ORDER BY $order DESC".($limit != 0 ? " LIMIT $limit" : "");
         $sth = $pdo->prepare($query);
         $sth->execute();
 
@@ -39,7 +41,7 @@ class InvoiceSaleRepository
             throw new Exception("pdo error");
         }
 
-        $result = $sth->fetchAll(PDO::FETCH_CLASS, "InvoiceSale");
+        $result = $sth->fetchAll(PDO::FETCH_CLASS, "OtherDocuments");
         return $result;
     }
 
@@ -51,7 +53,7 @@ class InvoiceSaleRepository
         global $config;
 
         $pdo = new PDO($config['dsn'], $config['login'], $config['password']);
-        $sth = $pdo->query("SELECT COUNT(*) as `count` from `invoicesale` ");
+        $sth = $pdo->query("SELECT COUNT(*) as `count` from `otherdocuments` ");
 
         if ($sth == false) {
             throw new Exception("pdo error");
@@ -66,30 +68,11 @@ class InvoiceSaleRepository
      * @return InvoiceSale[]
      * @throws Exception
      */
-    public static function findBy($conditions ,$order="addDate") {
+    public static function findBy($conditions ,$order="date") {
         global $config;
 
         $condition = "";
 
-        if (array_key_exists('id', $conditions) && $condition != "") {
-            $condition .= " AND id=:id";
-        } else if (array_key_exists('id', $conditions)) {
-            $condition .= "id=:id";
-        }
-        if (array_key_exists('invoiceNumber', $conditions) && $condition != "") {
-            $condition .= " AND invoiceNumber LIKE :invoiceNumber";
-            $conditions['invoiceNumber'] = "%".$conditions['invoiceNumber']."%";
-        } else if (array_key_exists('invoiceNumber', $conditions)) {
-            $condition .= "invoiceNumber LIKE :invoiceNumber";
-            $conditions['invoiceNumber'] = "%".$conditions['invoiceNumber']."%";
-        }
-        if (array_key_exists('vatID', $conditions) && $condition != "") {
-            $condition .= " AND vatID LIKE :vatID";
-            $conditions['vatID'] = "%".$conditions['vatID']."%";
-        } else if (array_key_exists('vatID', $conditions)) {
-            $condition .= "vatID LIKE :vatID";
-            $conditions['vatID'] = "%".$conditions['vatID']."%";
-        }
         if (array_key_exists('name', $conditions) && $condition != "") {
             $condition .= " AND name LIKE :name";
             $conditions['name'] = "%".$conditions['name']."%";
@@ -99,22 +82,21 @@ class InvoiceSaleRepository
         }
         // DATA FILTER
         if (array_key_exists('dateAddStart', $conditions) && $condition != "") {
-            $condition .= " AND addDate>=:dateAddStart";
+            $condition .= " AND date>=:dateAddStart";
         } else if (array_key_exists('dateAddStart', $conditions) ) {
-            $condition .= "addDate>=:dateAddStart";
+            $condition .= "date>=:dateAddStart";
         }
         if (array_key_exists('dateAddEnd', $conditions) && $condition != "") {
-            $condition .= " AND addDate<=:dateAddEnd";
+            $condition .= " AND date<=:dateAddEnd";
         } else if (array_key_exists('dateAddEnd', $conditions)) {
-            $condition .= "addDate<=:dateAddEnd";
+            $condition .= "date<=:dateAddEnd";
         }
 
         $conditions = self::changeKeys($conditions,":");
 
         $pdo = new PDO($config['dsn'], $config['login'], $config['password']);
-        $query = "SELECT `id`, `invoiceNumber`, `addDate`, `k`.`vatID`,`name`, `amountNet`, `amountTax`, `amountGross`, `amountNetCurrencyValue`, `amountNetCurrency`
-            FROM `invoiceSale` as `f` 
-            INNER JOIN `contractor` as `k` on k.vatID=f.vatID
+        $query = "SELECT *
+            FROM `otherdocuments` as `f` 
             WHERE ".$condition
             ." ORDER BY $order DESC";
         $sth = $pdo->prepare($query);
@@ -124,9 +106,7 @@ class InvoiceSaleRepository
             throw new Exception("pdo error");
         }
 
-        $result = $sth->fetchAll(PDO::FETCH_CLASS, "InvoiceSale");
+        $result = $sth->fetchAll(PDO::FETCH_CLASS, "OtherDocuments");
         return $result;
     }
-
-
 }
