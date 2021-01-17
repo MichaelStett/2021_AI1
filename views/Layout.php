@@ -25,7 +25,7 @@ class Layout
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
                 <!-- TODO: Dodać role użytkowiników -->
-                <?= self::navbar(['userType' => "admin"])  ?>
+                <?= self::navbar()  ?>
 
                 <div class="container-fluid">
 
@@ -38,7 +38,8 @@ class Layout
     {
         ob_start();
         ?>
-                </div>
+                    </div>
+                    <div style="padding-bottom: 50px"></div>
                     <div class="footer fixed-bottom">
                         <footer class="bg-light text-center text-lg-start">
                             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
@@ -56,7 +57,7 @@ class Layout
 
     private static function navbar($params = [])
     {
-        $userType = $params['userType'];
+        $userType = isset($_SESSION['userType']) ? $_SESSION['userType'] : null;
 
         ob_start();
         ?>
@@ -68,99 +69,96 @@ class Layout
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <?php
-        switch ($userType) {
-            case "employee":
-                ?>
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Wyświetl ...
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/index.php?action=otherDocuments-show">Sprzęt</a>
-                            <a class="dropdown-item" href="/index.php?action=license-show">Licencje</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./index.php?action=logout">Logout</a>
-                    </li>
-                </ul>
+        if (isset($_SESSION['userType'])) {
+            switch ($userType) {
+                case 'Employee':
+                    ?>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Wyświetl ...
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="./index.php?action=otherDocuments-show">Sprzęt</a>
+                                <a class="dropdown-item" href="./index.php?action=license-show">Licencje</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.php?action=logout">Logout</a>
+                        </li>
+                    </ul>
 
-                <?php
-                break;
-            case "auditor":
-                ?>
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Wyświetl ...
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="./index.php?action=invoiceSale-show">FV sprzedaży</a>
-                            <a class="dropdown-item" href="./index.php?action=invoicePurchase-show">FV zakupu</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="./index.php?action=equipment-show">Sprzęt</a>
-                            <a class="dropdown-item" href="./index.php?action=license-show">Licencje</a>
-                            <a class="dropdown-item" href="./index.php?action=otherDocuments-show">Pozostałe dokumenty</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./index.php?action=logout">Logout</a>
-                    </li>
-                </ul>
+                    <?php
+                    break;
+                case 'Auditor':
+                    ?>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Wyświetl ...
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="./index.php?action=invoiceSale-show">FV sprzedaży</a>
+                                <a class="dropdown-item" href="./index.php?action=invoicePurchase-show">FV zakupu</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="./index.php?action=equipment-show">Sprzęt</a>
+                                <a class="dropdown-item" href="./index.php?action=license-show">Licencje</a>
+                                <a class="dropdown-item" href="./index.php?action=otherDocuments-show">Pozostałe dokumenty</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.php?action=logout">Logout</a>
+                        </li>
+                    </ul>
 
-                <?php
-                break;
-            case "admin":
-                ?>
-                        <ul class="navbar-nav">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Wyświetl ...
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="./index.php?action=invoiceSale-show">FV sprzedaży</a>
-                                    <a class="dropdown-item" href="./index.php?action=invoicePurchase-show">FV zakupu</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="./index.php?action=equipment-show">Sprzęt</a>
-                                    <a class="dropdown-item" href="./index.php?action=license-show">Licencje</a>
-                                    <a class="dropdown-item" href="./index.php?action=otherDocuments-show">Pozostałe dokumenty</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Dodaj ...
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="./index.php?action=invoiceSale-add">FV sprzedaży</a>
-                                    <a class="dropdown-item" href="./index.php?action=invoicePurchase-add">FV zakupu</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="./index.php?action=equipment-add">Sprzęt</a>
-                                    <a class="dropdown-item" href="./index.php?action=license-add">Licencje</a>
-                                    <a class="dropdown-item" href="./index.php?action=otherDocuments-add">Pozostałe dokumenty</a>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./index.php?action=generateReport-show">Generuj raport</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./index.php?action=admin">Administracja</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./index.php?action=logout">Logout</a>
-                            </li>
-                        </ul>
-<!--                        <form class="form-inline my-2 my-lg-0">-->
-<!--                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-<!--                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-<!--                        </form>-->
-                <?php
-                break;
-            default:
-                ?>
-
-                <?php
-                break;
+                    <?php
+                    break;
+                case 'Admin':
+                    ?>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Wyświetl ...
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="./index.php?action=invoiceSale-show">FV sprzedaży</a>
+                                <a class="dropdown-item" href="./index.php?action=invoicePurchase-show">FV zakupu</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="./index.php?action=equipment-show">Sprzęt</a>
+                                <a class="dropdown-item" href="./index.php?action=license-show">Licencje</a>
+                                <a class="dropdown-item" href="./index.php?action=otherDocuments-show">Pozostałe dokumenty</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dodaj ...
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="./index.php?action=invoiceSale-add">FV sprzedaży</a>
+                                <a class="dropdown-item" href="./index.php?action=invoicePurchase-add">FV zakupu</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="./index.php?action=equipment-add">Sprzęt</a>
+                                <a class="dropdown-item" href="./index.php?action=license-add">Licencje</a>
+                                <a class="dropdown-item" href="./index.php?action=otherDocuments-add">Pozostałe dokumenty</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.php?action=generateReport-show">Generuj raport</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.php?action=admin">Administracja</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.php?action=logout">Logout</a>
+                        </li>
+                    </ul>
+                    <?php
+                    break;
+                default:
+                    ?>
+                    <?php
+                    break;
+            }
         }
         ?>
                 </div>

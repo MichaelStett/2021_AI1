@@ -67,10 +67,7 @@ class UserRepository implements IRepository
         }
 
         $user = new User();
-        $user
-            ->setUsername($row['username'])
-            ->setFirstName($row['firstName'])
-            ->setLastName($row['lastName']);
+        $user->fromArray($row);
 
         return $user;
     }

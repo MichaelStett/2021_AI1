@@ -30,6 +30,8 @@ class LoginController
 
                 $_SESSION['uid'] = hash("md5", $user);
 
+                $_SESSION['userType'] = $user->getRole();
+
                 // echo "Successfully logged in for: " . $user . PHP_EOL;
 
                 InvoiceSaleController::index();
@@ -40,7 +42,7 @@ class LoginController
             }
         }
         else {
-            echo "You are already logged in." . PHP_EOL;
+//            echo "You are already logged in." . PHP_EOL;
             InvoiceSaleController::index();
         }
 
@@ -51,7 +53,7 @@ class LoginController
         session_unset();
         session_destroy();
 
-        echo "Successfully logged out." . PHP_EOL;
+//        echo "Successfully logged out." . PHP_EOL;
         echo LoginIndexView::render();
     }
 }

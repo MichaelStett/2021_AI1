@@ -24,12 +24,6 @@ class InvoicePurchaseController
      * @throws Exception
      */
     public static function moreData() {
-        if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
-            echo "You are not logged in." . PHP_EOL;
-            echo LoginIndexView::render();
-            return;
-        }
-
         if(!isset($_GET["page"])) {
             return "";
         }

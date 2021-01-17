@@ -39,6 +39,7 @@ require_once __DIR__ . '/controllers/InvoicePurchaseController.php';
 require_once __DIR__ . '/controllers/LicenseController.php';
 require_once __DIR__ . '/controllers/EquipmentController.php';
 require_once __DIR__ . '/controllers/OtherDocumentsController.php';
+require_once __DIR__ . '/controllers/FileController.php';
 
 # Misc
 require_once __DIR__ . '/config.php';
