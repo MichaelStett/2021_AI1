@@ -5,70 +5,84 @@ session_start();
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 
+$loginController = new LoginController(new UserRepository());
+
 switch ($action) {
     case 'invoice-list':
-        //InvoiceController::index();
         break;
     case 'invoiceSale-show':
-        //InvoiceController::show();
         echo InvoiceSaleController::index();
         break;
     case 'invoiceSale-more':
-        //InvoiceController::show();
         echo InvoiceSaleController::moreData();
         break;
     case 'invoiceSale-filter':
-        //InvoiceController::show();
         echo InvoiceSaleController::filterData();
         break;
     case 'invoiceSale-add':
         echo InvoiceSaleController::add();
         break;
     case 'invoicePurchase-show':
-
-        break;
-    case 'invoicePurchase-add':
         echo InvoicePurchaseController::index();
         break;
+    case 'invoicePurchase-more':
+        echo InvoicePurchaseController::moreData();
+        break;
+    case 'invoicePurchase-filter':
+        echo InvoicePurchaseController::filterData();
+        break;
+    case 'invoicePurchase-add':
+        echo InvoicePurchaseController::add();
+        break;
     case 'otherDocuments-show':
-
+        echo OtherDocumentsController::index();
+        break;
+    case 'otherDocuments-more':
+        echo OtherDocumentsController::moreData();
+        break;
+    case 'otherDocuments-filter':
+        echo OtherDocumentsController::filterData();
         break;
     case 'otherDocuments-add':
-
+        echo OtherDocumentsController::add();
         break;
     case 'license-show':
-
+        echo LicenseController::index();
+        break;
+    case 'license-more':
+        echo LicenseController::moreData();
+        break;
+    case 'license-filter':
+        echo LicenseController::filterData();
         break;
     case 'license-add':
-
+        echo LicenseController::add();
         break;
-    case 'generateRaport-show':
-
-        break;
-    case 'generateRaport-set':
-
-        break;
+    case 'generateReport-show':
+    case 'generateReport-set':
     case 'admin':
-
-        break;
     case 'equipment-show':
-
+        echo EquipmentController::index();
+        break;
+    case 'equipment-more':
+        echo EquipmentController::moreData();
+        break;
+    case 'equipment-filter':
+        echo EquipmentController::filterData();
         break;
     case 'equipment-add':
-
+        echo EquipmentController::add();
         break;
-
     case 'login':
-        LoginController::index();
+        $loginController->index();
         break;
     case 'login-set':
-        LoginController::set();
+        $loginController->set();
         break;
     case 'logout':
-        LoginController::logout();
+        $loginController->logout();
         break;
     default:
         header('Location: index.php?action=login');
         break;
 }
-?>
