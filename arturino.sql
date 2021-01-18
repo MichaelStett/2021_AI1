@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 18 Sty 2021, 15:59
--- Wersja serwera: 10.4.14-MariaDB
--- Wersja PHP: 7.4.10
+-- Czas generowania: 16 Sty 2021, 09:33
+-- Wersja serwera: 10.4.11-MariaDB
+-- Wersja PHP: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,8 +37,8 @@ CREATE TABLE `contractor` (
 --
 
 INSERT INTO `contractor` (`vatID`, `name`) VALUES
-(2, 'drugi contractor'),
 (1, 'pierwsza contractor'),
+(2, 'drugi contractor'),
 (3, 'trzeci contractor');
 
 -- --------------------------------------------------------
@@ -65,8 +65,8 @@ CREATE TABLE `equipment` (
 
 INSERT INTO `equipment` (`inventoryNumber`, `name`, `serialNumber`, `purchaseDate`, `warrantyTo`, `amountNet`, `notes`, `assignedFor`, `invoiceId`) VALUES
 (1, 'fotel A', '1234', '2021-01-04', '2021-01-31', 789789, 'x', 1, 1),
-(2, 'biurka', '5678', '2021-01-11', '2021-01-27', 785421, 'x', 1, 2),
-(3, 'mysz', '9101', '2021-01-07', '2021-01-24', 34343434, 'fg', 1, 3);
+(2,  'biurka', '5678', '2021-01-11', '2021-01-27', 785421, 'x', 1, 2),
+(3,    'mysz', '9101', '2021-01-07', '2021-01-24', 34343434, 'fg', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -123,9 +123,9 @@ CREATE TABLE `invoicesale` (
 --
 
 INSERT INTO `invoicesale` (`id`, `invoiceNumber`, `addDate`, `vatID`, `amountNet`, `amountTax`, `amountGross`, `amountNetCurrencyValue`, `amountNetCurrency`) VALUES
-(1, 'PL1234', '2020-12-17', 3, 12.34, 23.45, 34.56, 45.67, 1),
-(2, 'PL5678', '2020-12-08', 2, 456, 67787, 45.45, 2342, 2),
-(3, 'PL9101', '2020-12-10', 1, 4555, 45454, 656.56, 343434, 1);
+(1, 'PL1234', '2020-12-17', 3, 12.34, 23.45,  34.56,  45.67, 1),
+(2, 'PL5678', '2020-12-08', 2,   456, 67787,  45.45,   2342, 2),
+(3, 'PL9101', '2020-12-10', 1,  4555, 45454, 656.56, 343434, 1);
 
 -- --------------------------------------------------------
 
@@ -150,11 +150,11 @@ CREATE TABLE `license` (
 --
 
 INSERT INTO `license` (`inventoryNumber`, `name`, `serialNumber`, `purchaseDate`, `supportTo`, `validTo`, `notes`, `assignedFor`, `invoiceId`) VALUES
-(1, 'licencja1', '123123123', '2021-01-12', '2021-01-28', '2021-01-29', 'w', 1, 4),
-(2, 'windows 10', '456789789', '2021-01-13', '2021-01-29', '2021-01-30', 'x', 2, 5),
+(1, 'licencja1',   '123123123', '2021-01-12', '2021-01-28', '2021-01-29', 'w',   1, 4),
+(2, 'windows 10',  '456789789', '2021-01-13', '2021-01-29', '2021-01-30', 'x',   2, 5),
 (3, 'office 2019', '852852456', '2021-01-12', '2021-01-28', '2021-01-30', 'x,y', 3, 6),
-(4, 'windows 7', '7777777777', '2021-01-11', '2021-01-27', '2021-01-30', 'z', 4, 7),
-(5, 'windwos 8.1', '123456789', '2021-01-06', '2021-01-24', '2021-01-31', 'v', 5, 8);
+(4, 'windows 7',  '7777777777', '2021-01-11', '2021-01-27', '2021-01-30', 'z',   4, 7),
+(5, 'windwos 8.1', '123456789', '2021-01-06', '2021-01-24', '2021-01-31', 'v',   5, 8);
 
 -- --------------------------------------------------------
 
@@ -166,22 +166,21 @@ CREATE TABLE `otherdocuments` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `date` date NOT NULL,
-  `notes` text NOT NULL,
-  `firstSide` varchar(255) NOT NULL,
-  `secondSide` varchar(255) NOT NULL
+  `numOfPage` int(11) NOT NULL,
+  `notes` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `otherdocuments`
 --
 
-INSERT INTO `otherdocuments` (`id`, `name`, `date`, `notes`, `firstSide`, `secondSide`) VALUES
-(1, 'dok1', '2021-01-11', 'p', '', ''),
-(2, 'dok2', '2021-01-11', 'o', '', ''),
-(3, 'dok3', '2021-01-09', 'i', '', ''),
-(4, 'dok4', '2021-01-28', 'u', '', ''),
-(5, 'dokAAA', '2021-01-13', 'y', '', ''),
-(6, 'dokBBB', '2021-01-16', 't', '', '');
+INSERT INTO `otherdocuments` (`id`, `name`, `date`, `numOfPage`, `notes`) VALUES
+(1, 'dok1', '2021-01-11', 456, 'p'),
+(2, 'dok2', '2021-01-11', 4554545, 'o'),
+(3, 'dok3', '2021-01-09', 3434, 'i'),
+(4, 'dok4', '2021-01-28', 343434, 'u'),
+(5, 'dokAAA', '2021-01-13', 4545, 'y'),
+(6, 'dokBBB', '2021-01-16', 45, 't');
 
 -- --------------------------------------------------------
 
@@ -306,7 +305,7 @@ ALTER TABLE `otherdocuments`
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Ograniczenia dla zrzutów tabel
