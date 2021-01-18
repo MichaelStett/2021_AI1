@@ -195,21 +195,21 @@ class equipmentIndexView
                     <nav id="Nav" class="my-navs" aria-label="...">
                         <ul class="pagination justify-content-end">
                             <li id="NavPrev" class="page-item disabled">
-                                <button  class="page-link" onclick="changePageInInvoiceSaleIndexTable('prev');" aria-disabled="true">Previous</button>
+                                <button class="page-link" onclick="changePageInTable('prev');" aria-disabled="true">Previous</button>
                             </li>
                             <li id="NavFirst" class="page-item disabled">
-                                <button  class="page-link" onclick="changePageInInvoiceSaleIndexTable('1');" aria-disabled="true" >1</button>
+                                <button class="page-link" onclick="changePageInTable(1);" aria-disabled="true" >1</button>
                             </li>
                             <li class="page-item" aria-current="page">
                                 <a id="NavPageSelector" class="page-link" href="#">
-                                    <input type="number" maxlength="4" min="1" class="form-control" oninput="changePageInInvoiceSaleIndexTable(this.value);">
+                                    <input type="number" maxlength="4" min="1" class="form-control" oninput="changePageInTable();">
                                 </a>
                             </li>
                             <li id="NavLast" class="page-item">
-                                <button  class="page-link" onclick="changePageInInvoiceSaleIndexTable('0');"><?= $numberOfRecordsInDB ?></button>
+                                <button  class="page-link" onclick="changePageInTable(parseInt(this.innerText));"><?= $numberOfRecordsInDB ?></button>
                             </li>
                             <li id="NavNext" class="page-item">
-                                <button  class="page-link" onclick="changePageInInvoiceSaleIndexTable('next');">Next</button>
+                                <button  class="page-link" onclick="changePageInTable('next');">Next</button>
                             </li>
                         </ul>
                     </nav>

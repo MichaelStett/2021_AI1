@@ -105,7 +105,7 @@ const changeDataInModal = function (){
 
 }();
 
-const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = function () {
+const [filterDataInInvoiceSaleIndexTable,changePageInTable] = function () {
     const tBody = document.querySelector('#'+indexPageName+'Table tbody');
     const actualPosition ={
         firstShowed: 0,
@@ -343,6 +343,7 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
                 if ( actualPage === 0) return;
                 actualPage += 1;
             } else if ( typeof arg === "number") {
+                // if (arg < 0 )
                 actualPage = arg;
             } else {
                 return;
@@ -361,9 +362,13 @@ const [filterDataInInvoiceSaleIndexTable,changePageInInvoiceSaleIndexTable] = fu
                     if (actualPage === data['numOfAllPage']) {
                         navBtn.last.classList.add("disabled");
                         navBtn.next.classList.add("disabled");
+                        navBtn.first.classList.remove("disabled");
+                        navBtn.prev.classList.remove("disabled");
                     } else if ( actualPage === 1) {
                         navBtn.prev.classList.add("disabled");
                         navBtn.first.classList.add("disabled");
+                        navBtn.last.classList.remove("disabled");
+                        navBtn.next.classList.remove("disabled");
                     } else {
                         navBtn.first.classList.remove("disabled");
                         navBtn.prev.classList.remove("disabled");
