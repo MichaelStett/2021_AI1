@@ -1,12 +1,9 @@
 <?php
 
-class InvoiceSaleController
+class InvoicePurchaseController
 {
     private static $limit = 5;
 
-    /**
-     * @throws Exception
-     */
     public static function index() {
         if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
             echo "You are not logged in." . PHP_EOL;
@@ -14,12 +11,12 @@ class InvoiceSaleController
             return;
         }
 
-        $invoiceSaleRepository = new InvoiceSaleRepository();
+        $invoicePurchaseRepository = new InvoicePurchaseRepository();
 
-        $records = $invoiceSaleRepository->getAll(self::$limit);
-        $numOfRecords = $invoiceSaleRepository->getNumberOfRecords();
+        $records = $invoicePurchaseRepository->getAll(self::$limit);
+        $numOfRecords = $invoicePurchaseRepository->getNumberOfRecords();
 
-        echo invoiceSaleIndexView::render($records, ceil($numOfRecords/self::$limit));
+        echo InvoicePurchaseIndexView::render($records, ceil($numOfRecords/self::$limit));
     }
 
     /**
@@ -45,10 +42,10 @@ class InvoiceSaleController
         $page = ceil($page);
         //return $page;
 
-        $invoiceSaleRepository = new InvoiceSaleRepository();
+        $invoicePurchaseRepository = new InvoicePurchaseRepository();
 
-        $numOfPages = ceil($invoiceSaleRepository->getNumberOfRecords()/self::$limit);
-        $records = $page == 0 ? $invoiceSaleRepository->getAll(0) : $invoiceSaleRepository->getAll(self::$limit*$page);
+        $numOfPages = ceil($invoicePurchaseRepository->getNumberOfRecords()/self::$limit);
+        $records = $page == 0 ? $invoicePurchaseRepository->getAll(0) : $invoicePurchaseRepository->getAll(self::$limit*$page);
         if ( $page == 0) {
             $records = array_slice($records,  self::$limit*($numOfPages));
         } else {
@@ -63,12 +60,6 @@ class InvoiceSaleController
      * @return array
      */
     private static function filterGetParameters($params) {
-        if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
-            echo "You are not logged in." . PHP_EOL;
-            echo LoginIndexView::render();
-            return;
-        }
-
         $retParams = [];
         foreach ($params as $val) {
             if(isset($_GET[$val])) {
@@ -93,9 +84,9 @@ class InvoiceSaleController
 
         $params = self::filterGetParameters($getparamNames);
 
-        $invoiceSaleRepository = new InvoiceSaleRepository();
+        $invoicePurchaseRepository = new InvoicePurchaseRepository();
 
-        $records = $invoiceSaleRepository->findBy($params);
+        $records = $invoicePurchaseRepository->findBy($params);
 
         header('Content-type: application/json');
         return  json_encode($records) ;
@@ -107,8 +98,8 @@ class InvoiceSaleController
             echo LoginIndexView::render();
             return;
         }
+        echo InvoicePurchaseFormView::render();
 
-        echo InvoiceSaleFormView::render();
         $x = 0;
         if(isset($_POST['invoiceNumber']) and isset($_POST['vatID']) and isset($_POST['amountNet'])
             and isset($_POST['amountGross']) and isset($_POST['amountTax']) and isset($_POST['currency']) and
@@ -117,7 +108,7 @@ class InvoiceSaleController
                 global $x;
                 $x = 1;
             }
-            else if(strlen($_POST['vatID'])!=10 or !is_numeric($_POST['invoiceNumber'])) {
+            else if(strlen($_POST['vatID'])!=10 or !is_numeric($_POST['vatID'])) {
                 global $x;
                 $x = 1;
             }
@@ -129,12 +120,11 @@ class InvoiceSaleController
                 global $x;
                 $x = 1;
             }
-
-            echo $x;
-
             if($x == 0) {
                 $currencyName = array_search($_POST['currency'],currencyEnum::currencyTable);
-                invoiceSaleToDB::insertToDB($_POST['invoiceNumber'], $_POST['vatID'], $_POST['amountNet'], $_POST['amountGross'],
+
+                InvoicePurchaseToDB::insertToDB($_POST['invoiceNumber'], $_POST['vatID'], $_POST['amountNet'], $_POST['amountGross'],
+
                     $_POST['amountTax'], $currencyName, $_POST['amountNettCurrency'], $_POST['addDate']);
                 global $x;
                 $x = 5;
@@ -143,9 +133,10 @@ class InvoiceSaleController
                 echo '<script>alert("Podano złe dane")</script>';
             }
         }
-        if(isset($_POST['submit']) and $x == 5){
-            invoiceSaleToDB::fileUpload($_POST['invoiceNumber']);
+
+        if(isset($_POST['submit']) and $x==5){
+            InvoicePurchaseToDB::fileUpload($_POST['invoiceNumber']);
+
         }
     }
-
 }
