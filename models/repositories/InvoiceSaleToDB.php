@@ -30,7 +30,7 @@ class InvoiceSaleToDB
         $pdoQuery_run->execute();
         $id = $pdoQuery_run->fetchObject();
         $id = strval($id->id) . '-';
-        $target_dir = "InvoiceSaleUploads/";
+        $target_dir = "uploads/InvoiceSaleUploads/";
         $target_file = $target_dir . $id . basename($_FILES["fileToUpload"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));

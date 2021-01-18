@@ -1,36 +1,32 @@
 <?php
 global $config;
-class InvoicePurchaseToDB
+class OtherDocumentsToDB
 {
-    public static function insertToDB($invoiceNumber, $vatID, $amountNet, $amountGross, $amountTax, $amountNetCurrencyValue, $amountNetCurrency,$addDate)
+    public static function insertToDB($name, $date, $notes, $firstSide, $secondSide)
     {
         global $config;
         $pdo = new PDO($config['dsn'], $config['login'], $config['password']);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdoQuery = "INSERT INTO invoicepurchase (invoiceNumber,addDate, vatID, amountNet, amountGross, amountTax, amountNetCurrencyValue, amountNetCurrency)
-        VALUES(:invoiceNumber, :addDate, :vatID, :amountNet, :amountGross, :amountTax, :amountNetCurrencyValue, :amountNetCurrency)";
+        $pdoQuery = "INSERT INTO otherdocuments (name, date, notes, firstSide, secondSide)
+        VALUES(:name, :date, :notes, :firstSide, :secondSide)";
         $pdoQuery_run = $pdo->prepare($pdoQuery);
         $pdoQuery_exec = $pdoQuery_run->execute([
-            ":invoiceNumber" => $invoiceNumber,
-            ":addDate" => $addDate,
-            ":vatID" => $vatID,
-            ":amountNet" => $amountNet,
-            ":amountGross" => $amountGross,
-            ":amountTax" => $amountTax,
-            ":amountNetCurrencyValue" => $amountNetCurrencyValue,
-            ":amountNetCurrency" => $amountNetCurrency]);
+            ":name" => $name,
+            ":date" => $date,
+            ":notes" => $notes,
+            ":firstSide" => $firstSide,
+            ":secondSide" => $secondSide]);
     }
-    public static function fileUpload($invoiceNumber){
+    public static function fileUpload(){
         global $config;
         $pdo = new PDO($config['dsn'], $config['login'], $config['password']);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdoQuery = "SELECT id FROM invoicepurchase WHERE invoiceNumber=:invoiceNumber";
+        $pdoQuery = "SELECT MAX(id) FROM otherdocuments";
         $pdoQuery_run = $pdo->prepare($pdoQuery);
-        $pdoQuery_run->bindParam(':invoiceNumber', $invoiceNumber, PDO::PARAM_INT);
         $pdoQuery_run->execute();
         $id = $pdoQuery_run->fetchObject();
-        $id = strval($id->id) . '-';
-        $target_dir = "uploads/InvoicePurchaseUploads/";
+        $id = strval(array_values(get_object_vars($id))[0]) . '-';
+        $target_dir = "uploads/OtherDocsUploads/";
         $target_file = $target_dir . $id . basename($_FILES["fileToUpload"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
