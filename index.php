@@ -44,6 +44,8 @@ switch ($action) {
         echo OtherDocumentsController::filterData();
         break;
     case 'otherDocuments-add':
+        echo OtherDocumentsController::add();
+        break;
     case 'license-show':
         echo LicenseController::index();
         break;
@@ -54,6 +56,8 @@ switch ($action) {
         echo LicenseController::filterData();
         break;
     case 'license-add':
+        echo LicenseController::add();
+        break;
     case 'generateReport-show':
     case 'generateReport-set':
     case 'admin':
@@ -67,7 +71,7 @@ switch ($action) {
         echo EquipmentController::filterData();
         break;
     case 'equipment-add':
-        echo NotFoundView::render();
+        echo EquipmentController::add();
         break;
     case 'login':
         $loginController->index();
