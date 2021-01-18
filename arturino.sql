@@ -37,9 +37,9 @@ CREATE TABLE `contractor` (
 --
 
 INSERT INTO `contractor` (`vatID`, `name`) VALUES
-(5, 'drugiDD'),
-(1, 'pierwszaFVKon'),
-(6, 'trzeciDD');
+(1, 'pierwsza contractor'),
+(2, 'drugi contractor'),
+(3, 'trzeci contractor');
 
 -- --------------------------------------------------------
 
@@ -64,14 +64,9 @@ CREATE TABLE `equipment` (
 --
 
 INSERT INTO `equipment` (`inventoryNumber`, `name`, `serialNumber`, `purchaseDate`, `warrantyTo`, `amountNet`, `notes`, `assignedFor`, `invoiceId`) VALUES
-(1, 'fotel A', '123456', '2021-01-04', '2021-01-31', 789789, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 1, 1),
-(2, 'biurka gamingowe', '3333333333333333333333333', '2021-01-11', '2021-01-27', 785421, 'jhhjghjgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg', 1, 8),
-(3, 'mysz 1', '111111111111111', '2021-01-07', '2021-01-24', 34343434, 'fg', 1, 5),
-(4, 'klawiatura', '333333333333333333333', '2021-01-11', '2021-01-26', 56, 'a', 1, 6),
-(5, 'sluchawki', 'dfdsfsdfsf', '2021-01-12', '2021-01-12', 0, '', 1, 7),
-(6, 'mikrofon', 'yututyutut', '2021-01-05', '2021-01-29', 0, 'f', 1, 10),
-(11, 'sluchawki', 'dfdsfsdfsf', '2021-01-12', '2021-01-12', 78, '', 1, 11),
-(12, 'mikrofon', 'yututyutut', '2021-01-05', '2021-01-29', 89, 'f', 1, 12);
+(1, 'fotel A', '1234', '2021-01-04', '2021-01-31', 789789, 'x', 1, 1),
+(2,  'biurka', '5678', '2021-01-11', '2021-01-27', 785421, 'x', 1, 2),
+(3,    'mysz', '9101', '2021-01-07', '2021-01-24', 34343434, 'fg', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -96,15 +91,14 @@ CREATE TABLE `invoicepurchase` (
 --
 
 INSERT INTO `invoicepurchase` (`id`, `invoiceNumber`, `addDate`, `vatID`, `amountNet`, `amountTax`, `amountGross`, `amountNetCurrencyValue`, `amountNetCurrency`) VALUES
-(1, '334455', '2020-12-17', 1, 12.34, 23.45, 34.56, 45.67, 1),
-(5, '45645645', '2020-12-08', 1, 456, 67787, 4545, 2342, 2),
-(6, '12313123', '2020-12-10', 6, 4555, 45454, 65656, 343434, 1),
-(7, '99999999', '2020-12-01', 5, 22, 33, 44, 22, 0),
-(8, '7887878', '2020-12-10', 6, 45, 77, 66, 11, 3),
-(9, '1', '2021-01-15', 5, 1, 1, 1, 0, 1),
-(10, '1', '2021-01-15', 1, 1, 1, 1, 0, 1),
-(11, '5', '2021-01-16', 6, 5, 5, 5, 0, 4),
-(12, '5', '2021-01-14', 5, 5, 5, 5, 0, 4);
+(1, 'PL0987', '2020-12-01', 3, 10, 1, 20, 15, 0),
+(2, 'PL6543', '2020-12-10', 1, 20, 2, 30, 25, 3),
+(3, 'PL2137', '2021-01-12', 2, 30, 3, 40, 35, 1),
+(4, 'PL0864', '2021-01-14', 1, 40, 4, 50, 45, 2),
+(5, 'PL9753', '2021-01-18', 3, 50, 5, 60, 55, 4),
+(6, 'PL1357', '2021-01-18', 3, 60, 6, 70, 65, 3),
+(7, 'PL2468', '2021-01-20', 2, 70, 7, 90, 75, 1),
+(8, 'PL1209', '2021-01-21', 1, 80, 8, 99, 85, 0);
 
 -- --------------------------------------------------------
 
@@ -129,11 +123,9 @@ CREATE TABLE `invoicesale` (
 --
 
 INSERT INTO `invoicesale` (`id`, `invoiceNumber`, `addDate`, `vatID`, `amountNet`, `amountTax`, `amountGross`, `amountNetCurrencyValue`, `amountNetCurrency`) VALUES
-(1, '334455', '2020-12-17', 1, 12.34, 23.45, 34.56, 45.67, 1),
-(5, '45645645', '2020-12-08', 1, 456, 67787, 4545, 2342, 2),
-(6, '12313123', '2020-12-10', 6, 4555, 45454, 65656, 343434, 1),
-(7, '99999999', '2020-12-01', 5, 22, 33, 44, 22, 0),
-(8, '7887878', '2020-12-10', 6, 45, 77, 66, 11, 3);
+(1, 'PL1234', '2020-12-17', 3, 12.34, 23.45,  34.56,  45.67, 1),
+(2, 'PL5678', '2020-12-08', 2,   456, 67787,  45.45,   2342, 2),
+(3, 'PL9101', '2020-12-10', 1,  4555, 45454, 656.56, 343434, 1);
 
 -- --------------------------------------------------------
 
@@ -158,11 +150,11 @@ CREATE TABLE `license` (
 --
 
 INSERT INTO `license` (`inventoryNumber`, `name`, `serialNumber`, `purchaseDate`, `supportTo`, `validTo`, `notes`, `assignedFor`, `invoiceId`) VALUES
-(1, 'licencja1', '123123123', '2021-01-12', '2021-01-28', '2021-01-29', 'notatka moja 1', 1, 8),
-(4, 'windows 10', '456789789', '2021-01-13', '2021-01-29', '2021-01-30', 'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', 1, 1),
-(5, 'office 2019', '852852456', '2021-01-12', '2021-01-28', '2021-01-30', 'ioiouogmhjm,dhgjdgnfghnhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh', 1, 11),
-(6, 'windows 7', '7777777777', '2021-01-11', '2021-01-27', '2021-01-30', 'iooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo', 1, 12),
-(7, 'windwos 8.1', '123456789', '2021-01-06', '2021-01-24', '2021-01-31', 'tytytyty', 1, 9);
+(1, 'licencja1',   '123123123', '2021-01-12', '2021-01-28', '2021-01-29', 'w',   1, 4),
+(2, 'windows 10',  '456789789', '2021-01-13', '2021-01-29', '2021-01-30', 'x',   2, 5),
+(3, 'office 2019', '852852456', '2021-01-12', '2021-01-28', '2021-01-30', 'x,y', 3, 6),
+(4, 'windows 7',  '7777777777', '2021-01-11', '2021-01-27', '2021-01-30', 'z',   4, 7),
+(5, 'windwos 8.1', '123456789', '2021-01-06', '2021-01-24', '2021-01-31', 'v',   5, 8);
 
 -- --------------------------------------------------------
 
@@ -183,12 +175,12 @@ CREATE TABLE `otherdocuments` (
 --
 
 INSERT INTO `otherdocuments` (`id`, `name`, `date`, `numOfPage`, `notes`) VALUES
-(1, 'dok1', '2021-01-11', 456, 'ssssssssssssssssssssssssssssssssssssssssssssssssssss'),
-(2, 'dok2', '2021-01-11', 4554545, 'gfdgdgfdg'),
-(3, 'dok3', '2021-01-09', 3434, 'ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg'),
-(4, 'dok4', '2021-01-28', 343434, ''),
-(5, 'dokAAA', '2021-01-13', 4545, 'fgfgfg'),
-(6, 'dokBBB', '2021-01-16', 45, '');
+(1, 'dok1', '2021-01-11', 456, 'p'),
+(2, 'dok2', '2021-01-11', 4554545, 'o'),
+(3, 'dok3', '2021-01-09', 3434, 'i'),
+(4, 'dok4', '2021-01-28', 343434, 'u'),
+(5, 'dokAAA', '2021-01-13', 4545, 'y'),
+(6, 'dokBBB', '2021-01-16', 45, 't');
 
 -- --------------------------------------------------------
 
@@ -201,15 +193,20 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `firstName` varchar(255) NOT NULL,
   `lastName` varchar(255) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(50) NOT NULL,
+  `role` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `firstName`, `lastName`, `password`) VALUES
-(1, 'admin', 'adminFirstName', 'adminLastName', '21232f297a57a5a743894a0e4a801fc3');
+INSERT INTO `users` (`id`, `username`, `firstName`, `lastName`, `password`, `role`) VALUES
+(1, 'admin', 'adminFirstName', 'adminLastName', '21232f297a57a5a743894a0e4a801fc3', 'Admin'),
+(2, 'user1', 'user1FirstName', 'user1LastName', '5f4dcc3b5aa765d61d8327deb882cf99', 'Employee'),
+(3, 'user2', 'user2FirstName', 'user2LastName', '5f4dcc3b5aa765d61d8327deb882cf99', 'Employee'),
+(4, 'user3', 'user3FirstName', 'user3LastName', '5f4dcc3b5aa765d61d8327deb882cf99', 'Employee'),
+(5, 'user4', 'user4FirstName', 'user4LastName', '5f4dcc3b5aa765d61d8327deb882cf99', 'Auditor');
 
 --
 -- Indeksy dla zrzutów tabel

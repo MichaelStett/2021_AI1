@@ -38,7 +38,6 @@ class OtherDocumentsController
      * @throws Exception
      */
     public static function filterData() {
-
         $getparamNames = array("name","dateAddStart","dateAddEnd");
 
         $params = self::filterGetParameters($getparamNames);

@@ -8,11 +8,6 @@ class InvoiceSaleController
      * @throws Exception
      */
     public static function index() {
-        if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
-            echo "You are not logged in." . PHP_EOL;
-            echo LoginIndexView::render();
-            return;
-        }
 
         $invoiceSaleRepository = new InvoiceSaleRepository();
 
@@ -27,11 +22,6 @@ class InvoiceSaleController
      * @throws Exception
      */
     public static function moreData() {
-        if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
-            echo "You are not logged in." . PHP_EOL;
-            echo LoginIndexView::render();
-            return;
-        }
 
         if(!isset($_GET["page"])) {
             return "";
@@ -63,11 +53,6 @@ class InvoiceSaleController
      * @return array
      */
     private static function filterGetParameters($params) {
-        if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
-            echo "You are not logged in." . PHP_EOL;
-            echo LoginIndexView::render();
-            return;
-        }
 
         $retParams = [];
         foreach ($params as $val) {
@@ -83,11 +68,6 @@ class InvoiceSaleController
      * @throws Exception
      */
     public static function filterData() {
-        if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
-            echo "You are not logged in." . PHP_EOL;
-            echo LoginIndexView::render();
-            return;
-        }
 
         $getparamNames = array("id","invoiceNumber","vatID","name","dateAddStart","dateAddEnd");
 
@@ -102,11 +82,6 @@ class InvoiceSaleController
     }
 
     public static function add() {
-        if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
-            echo "You are not logged in." . PHP_EOL;
-            echo LoginIndexView::render();
-            return;
-        }
 
         echo InvoiceSaleFormView::render();
         $x = 0;

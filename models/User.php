@@ -7,6 +7,7 @@ class User
     private $firstName;
     private $lastName;
     private $password;
+    private $role;
 
     /**
      * @param $params
@@ -16,7 +17,8 @@ class User
             ->setId($params['id'])
             ->setUsername($params['username'])
             ->setFirstName($params['firstName'])
-            ->setLastName($params['lastName']);
+            ->setLastName($params['lastName'])
+            ->setRole($params['role']);
     }
 
     /**
@@ -109,6 +111,26 @@ class User
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param mixed $role
+     * @return User
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+        return $this;
+    }
+
+
+
     public function getName()
     {
         return $this->getFirstName() . ' ' . $this->getLastName();
@@ -116,6 +138,6 @@ class User
 
     public function __toString()
     {
-        return $this->getId() . ' ' . $this->getUsername() . ' ' .$this->getFirstName() . ' ' . $this->getLastName() ;
+        return $this->getId() . ' ' . $this->getUsername() . ' ' .$this->getFirstName() . ' ' . $this->getLastName() . ' ' . $this->getRole();
     }
 }
