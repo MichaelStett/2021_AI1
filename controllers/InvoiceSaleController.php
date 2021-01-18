@@ -113,7 +113,7 @@ class InvoiceSaleController
         if(isset($_POST['invoiceNumber']) and isset($_POST['vatID']) and isset($_POST['amountNet'])
             and isset($_POST['amountGross']) and isset($_POST['amountTax']) and isset($_POST['currency']) and
             isset($_POST['addDate']) and isset($_POST['amountNettCurrency'])){
-            if(strlen($_POST['invoiceNumber'])>25 or !is_numeric($_POST['invoiceNumber'])) {
+            if(strlen($_POST['invoiceNumber'])>25) {
                 global $x;
                 $x = 1;
             }
