@@ -125,31 +125,103 @@ class invoiceSaleIndexView
                 <div class="col"></div>
                 <div class="col-md col-md-auto">
 
-                    <h3 class="title">Podsumowanie</h3>
-                    <table class="table table-striped table-bordered">
-                        <tbody>
-                            <tr>
-                                <th scope="row">Łączna wartosć brutto</th>
-                                <td>Mark</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Łączna wartosć netto</th>
-                                <td>Mark</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Ilość faktur</th>
-                                <td>Mark</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Data najstarszej faktury</th>
-                                <td>Mark</td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+<?php
+
+$con=mysqli_connect("localhost","root","","arturino");
+
+if(mysqli_connect_errno($con))
+
+{
+
+echo "Connection Error: ".mysqli_connect_error();
+
+}
+ 
+
+$qry="SELECT k.name ,sum(amountTax) as total_amountTax, sum(amountNet) AS total_amountNet ,count(id) as ilosc_faktur, min(addDate) as ostatnie_dodanie FROM invoicesale INNER JOIN `contractor` as `k` GROUP BY k.name";
+
+$result =mysqli_query($con,$qry);
+
+        echo "<table  >
+        <div>
+        <tr>
+<h3 class=title >Podsumowanie</h3>
+<th >Łaczna wartość brutto</th>
+<th>Łączna wartość netto</th>
+<th>Ilość faktur</th>
+<th>Data najstarszej faktury</th>
+</tr>
+</div>";
+
+// declare variable to store the price addition in the while loop
+$total_price = 0;
+
+while($rowval = mysqli_fetch_array($result))
+
+  {
+
+  echo "<tr>";
+  
+
+
+  echo "<td >" . $rowval['total_amountTax'] . "</td>";
+echo "<td >" . $rowval['total_amountNet'] . "</td>";
+echo "<td >" . $rowval['ilosc_faktur'] . "</td>";
+echo "<td >" . $rowval['ostatnie_dodanie'] . "</td>";
+  echo "</tr>";
+
+
+// add the price to the tota
+
+}
+
+// add a last row to display only the total price in the last column
+
+
+// closeing table tag
+echo "</table>";
+
+mysqli_close($con);
+ ?>
+                   
+                    
 
                 </div>
+               
                 <div class="col"></div>
             </div>
+
+<div>
+ <div class >
+                 <?php
+
+$con=mysqli_connect('localhost','root','');
+mysqli_select_db($con,'invoicedb');
+?>
+<html>
+	<head>
+       
+	</head>
+	<body style="text-align:center;">
+        
+		Generuj pdf-a:
+		<form method='get' action='raport/invoice-db.php'>
+			<select name='id'>
+				<?php
+					$query=mysqli_query($con,'SELECT * FROM `invoicesale` WHERE 1 ');
+					while($invoice=mysqli_fetch_array($query)){
+						echo "<option value='".$invoice['id']."'>".$invoice['id']."</option>";
+					}
+				?>
+			</select>
+			<input type='submit' value='Generate'>
+            <html>
+		</form>
+            <button onclick="history.go(-1);">Back </button>
+	</body>
+</html> 
+    </div></div>
 
             <div class="row">
                 <div class="col"></div>

@@ -13,13 +13,26 @@ class InvoiceSale implements \JsonSerializable
     private $amountNetCurrencyValue;
     private $amountNetCurrency;
     private $id;
+    private $amounttaxcount;
 
     /**
      * @return int
      */
+    
     public function getId()
     {
         return $this->id;
+    }
+    public function getamounttaxcount()
+    {   
+        require('config.php');
+
+        $sql = "SELECT k.name ,sum(amountTax) AS TOTAL_PRICE FROM invoicesale INNER JOIN `contractor` as `k` GROUP BY k.name";
+                $result = mysqli_query ($config, $sql);
+
+$row=mysqli_fetch_array($result); 
+        $amounttaxcount=$result;
+        return $this->amounttaxcount =$amounttaxcount;
     }
 
     /**
