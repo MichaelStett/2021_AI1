@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 18 Sty 2021, 15:51
+-- Czas generowania: 18 Sty 2021, 15:56
 -- Wersja serwera: 10.4.14-MariaDB
 -- Wersja PHP: 7.4.10
 
