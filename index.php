@@ -51,7 +51,7 @@ else if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
             echo OtherDocumentsController::filterData();
             break;
         case 'otherDocuments-add':
-            echo OtherDocumentsController::add();
+            echo NotFoundView::render();
             break;
         case 'license-show':
             echo LicenseController::index();
@@ -63,7 +63,7 @@ else if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
             echo LicenseController::filterData();
             break;
         case 'license-add':
-            echo LicenseController::add();
+            echo NotFoundView::render();
             break;
         case 'generateReport-show':
             echo NotFoundView::render();
@@ -84,7 +84,7 @@ else if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
             echo EquipmentController::filterData();
             break;
         case 'equipment-add':
-            echo EquipmentController::add();
+            echo NotFoundView::render();
             break;
         case 'login':
             $loginController->index();
