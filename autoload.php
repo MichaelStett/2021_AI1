@@ -18,6 +18,10 @@ require_once __DIR__ . '/models/repositories/InvoicePurchaseRepository.php';
 require_once __DIR__ . '/models/repositories/LicenseRepository.php';
 require_once __DIR__ . '/models/repositories/EquipmentRepository.php';
 require_once __DIR__ . '/models/repositories/OtherDocumentsRepository.php';
+require_once __DIR__ . '/models/repositories/LicenseToDB.php';
+require_once __DIR__ . '/models/repositories/OtherDocumentsToDB.php';
+require_once __DIR__ . '/models/repositories/EquipmentToDB.php';
+
 
 # Views
 require_once __DIR__ . '/views/Layout.php';
@@ -30,6 +34,10 @@ require_once __DIR__ . '/views/license/LicenseIndexView.php';
 require_once __DIR__ . '/views/otherDocs/OtherDocumentsIndexView.php';
 require_once __DIR__ . '/views/invoicePurchase/InvoicePurchaseFormView.php';
 require_once __DIR__ . '/views/invoiceSale/InvoiceSaleFormView.php';
+require_once __DIR__ . '/views/license/LicenseFormView.php';
+require_once __DIR__ . '/views/otherDocs/OtherDocumentsFormView.php';
+require_once __DIR__ . '/views/equipment/EquipmentFormView.php';
+
 
 
 # Controllers 
