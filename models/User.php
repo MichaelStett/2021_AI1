@@ -135,9 +135,27 @@ class User
     {
         return $this->getFirstName() . ' ' . $this->getLastName();
     }
+public function getLogin()
+    {
+        return $this->login;
+    }
 
+ 
+    public function setLogin($login)
+    {
+        $this->login = $login;
+    }
+     public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
     public function __toString()
     {
-        return $this->getId() . ' ' . $this->getUsername() . ' ' .$this->getFirstName() . ' ' . $this->getLastName() . ' ' . $this->getRole();
+        return $this->getId() . ' ' . $this->getUsername() . ' ' .$this->getFirstName() . ' ' . $this->getLastName(). ' ' . $this->getPassword(). ' ' . $this->getLogin(). ' ' . $this->getEmail() ;
     }
 }

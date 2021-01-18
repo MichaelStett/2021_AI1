@@ -338,6 +338,45 @@ ALTER TABLE `license`
   ADD CONSTRAINT `license_ibfk_2` FOREIGN KEY (`invoiceId`) REFERENCES `invoicepurchase` (`id`);
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `firstName` varchar(255) NOT NULL,
+  `lastName` varchar(255) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `login` varchar(128) NOT NULL,
+  `email` varchar(128) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `firstName`, `lastName`, `password`, `login`, `email`) VALUES
+(1, 'admin', 'adminFirstName', 'adminLastName', 'admin', 'adminadmin', 'admin@gmail.com'),
+(2, 'user', 'Jan', 'Kowalski', '12345789', 'jkowalski23', 'jkowalski2@gmail.com'),
+(3, 'user', 'Piotr', 'Sas', '123456', 'psas3', 'psas3@user.com'),
+(4, 'user', 'Radek', 'Sas', '123456', 'rsas4', 'rsas4@user.com'),
+(5, 'user', 'Tadeusz', 'Sas', '123456', 'tsas5', 'tsas5@user.com');
+
+--
+-- Indeksy dla zrzutów tabel
+--
+
+--
+-- Indeksy dla tabeli `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT dla zrzuconych tabel
+--
+
+--
+-- AUTO_INCREMENT dla tabeli `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+COMMIT;
