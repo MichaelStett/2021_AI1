@@ -58,7 +58,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.jetbrains.php.lang.actions.generation.PhpGenerateFieldAccessorHandlerBase$MyMemberChooser.fluent.setters.last.selected" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/InvoiceSaleUploads" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -72,6 +73,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\.repos\2021_AI1\InvoiceSaleUploads" />
       <recent name="C:\Users\GSzwa\source\WEB\2021_AI1_Faktury\views\license" />
       <recent name="C:\Users\GSzwa\source\WEB\2021_AI1_Faktury\views\equipment" />
       <recent name="C:\Users\GSzwa\source\WEB\2021_AI1_Faktury\views\otherDocs" />
@@ -82,17 +84,17 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/test.php">
+    <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/index.php">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP 7.4" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
       <method v="2" />
     </configuration>
     <configuration default="true" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" browser="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" server_name="Unnamed">
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="PHP Script.index.php" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -112,6 +114,7 @@
       <workItem from="1609241119571" duration="4491000" />
       <workItem from="1609314327191" duration="5246000" />
       <workItem from="1610446675832" duration="2463000" />
+      <workItem from="1610911651600" duration="7879000" />
     </task>
     <servers />
   </component>
@@ -135,22 +138,12 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
   </component>
-  <component name="WindowStateProjectService">
-    <state x="86" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1610573350916">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="86" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1610573350916" />
-    <state x="685" y="248" key="NewPhpClassDialog" timestamp="1610573231279">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="685" y="248" key="NewPhpClassDialog/0.0.1920.1050/1920.-480.1080.1890@0.0.1920.1050" timestamp="1610573231279" />
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/models/repositories/InvoiceSaleRepository.php</url>
-          <line>120</line>
+          <line>122</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>

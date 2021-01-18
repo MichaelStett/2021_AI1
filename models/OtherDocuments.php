@@ -6,7 +6,8 @@ class OtherDocuments implements JsonSerializable
     private $id;
     private $name;
     private $date;
-    private $numOfPage;
+    private $firstSide;
+    private $secondSide;
     private $notes;
 
     /**
@@ -62,25 +63,6 @@ class OtherDocuments implements JsonSerializable
         $this->date = $date;
         return $this;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getNumOfPage()
-    {
-        return $this->numOfPage;
-    }
-
-    /**
-     * @param mixed $numOfPage
-     * @return OtherDocuments
-     */
-    public function setNumOfPage($numOfPage)
-    {
-        $this->numOfPage = $numOfPage;
-        return $this;
-    }
-
     /**
      * @return mixed
      */
@@ -89,6 +71,37 @@ class OtherDocuments implements JsonSerializable
         return $this->notes;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFirstSide()
+    {
+        return $this->firstSide;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSecondSide()
+    {
+        return $this->secondSide;
+    }
+
+    /**
+     * @param mixed $firstSide
+     */
+    public function setFirstSide($firstSide)
+    {
+        $this->firstSide = $firstSide;
+    }
+
+    /**
+     * @param mixed $secondSide
+     */
+    public function setSecondSide($secondSide)
+    {
+        $this->secondSide = $secondSide;
+    }
     /**
      * @param mixed $notes
      * @return OtherDocuments

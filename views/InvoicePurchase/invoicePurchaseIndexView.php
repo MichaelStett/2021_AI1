@@ -191,7 +191,7 @@ class invoicePurchaseIndexView
                                         echo '<td class="showDataIndexTableTight"><a href="#" class="badge badge-primary" data-toggle="modal" data-target="#invoicePurchasedIndexModal" onclick=\'changeDataInModal('
                                             .json_encode($val)
                                             .');\'>...</a></td>';
-                                        echo '<td class="showDataIndexTableWider"><a class="btn" href="index.php?action=getFile&fileType=invoiceSale&fileNumber='
+                                        echo '<td class="showDataIndexTableWider"><a class="btn" href="index.php?action=getFile&fileType=invoicePurchase&fileNumber='
                                             .$val->getId()
                                             .'"><img class="pdfIcon" src="./images/pdf_image.png"></a></td>';
                                         echo '<td class="showDataIndexTableRowId">'.$count.'</td>';

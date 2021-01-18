@@ -3,6 +3,38 @@
 
 class OtherDocumentsController
 {
+    public static function add() {
+        if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
+            echo "You are not logged in." . PHP_EOL;
+            echo LoginIndexView::render();
+            return;
+        }
+        echo OtherDocumentsFormView::render();
+        $x = 0;
+        if(isset($_POST['name']) and isset($_POST['date'])
+            and isset($_POST['notes']) and isset($_POST['firstSide']) and isset($_POST['secondSide'])){
+            if(strlen($_POST['name'])<1 and strlen($_POST['notes'])<1) {
+                global $x;
+                $x = 1;
+            }
+            else if(strlen($_POST['firstSide'])<1 and strlen($_POST['secondSide'])<1) {
+                global $x;
+                $x = 1;
+            }
+            if($x == 0) {
+                OtherDocumentsToDB::insertToDB($_POST['name'], $_POST['date'], $_POST['notes'],
+                    $_POST['firstSide'],$_POST['secondSide']);
+                global $x;
+                $x = 5;
+            }
+            else{
+                echo '<script>alert("Podano złe dane")</script>';
+            }
+        }
+        if(isset($_POST['submit']) and $x == 5){
+            OtherDocumentsToDB::fileUpload();
+        }
+    }
     private static $limit = 2;
 
     /**
@@ -38,7 +70,6 @@ class OtherDocumentsController
      * @throws Exception
      */
     public static function filterData() {
-
         $getparamNames = array("name","dateAddStart","dateAddEnd");
 
         $params = self::filterGetParameters($getparamNames);
