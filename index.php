@@ -66,8 +66,14 @@ else if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
             echo LicenseController::add();
             break;
         case 'generateReport-show':
+            echo NotFoundView::render();
+            break;
         case 'generateReport-set':
+            echo NotFoundView::render();
+            break;
         case 'admin':
+            echo NotFoundView::render();
+            break;
         case 'equipment-show':
             echo EquipmentController::index();
             break;
@@ -83,11 +89,11 @@ else if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
         case 'login':
             $loginController->index();
             break;
-        case 'login-set':
-            $loginController->set();
-            break;
         case 'logout':
             $loginController->logout();
+            break;
+        case 'getFile':
+            $fileController->get();
             break;
         default:
             header('Location: index.php?action=login');
