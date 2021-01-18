@@ -3,6 +3,50 @@
 
 class EquipmentController
 {
+    public static function add() {
+        if (!isset($_SESSION['uid']) || $_SESSION['uid'] == '') {
+            echo "You are not logged in." . PHP_EOL;
+            echo LoginIndexView::render();
+            return;
+        }
+        echo EquipmentFormView::render();
+        $invoices = EquipmentToDB::getAll();
+        echo EquipmentFormView::invoices($invoices);
+        $x = 0;
+        if(isset($_POST['name']) and isset($_POST['serialNumber'])
+            and isset($_POST['purchaseDate']) and isset($_POST['warrantyTo']) and
+            isset($_POST['amountNet']) and isset($_POST['notes']) and isset($_POST['assignedFor']) and isset($_POST['invoiceId'])){
+            if(strlen($_POST['name'])<1 or strlen($_POST['serialNumber'])<1) {
+                global $x;
+                $x = 1;
+            }
+            if(strlen($_POST['amountNet'])<1 or !is_numeric($_POST['amountNet'])) {
+                global $x;
+                $x = 1;
+            }
+            else if(strlen($_POST['assignedFor'])<1 or !is_numeric($_POST['assignedFor'])) {
+                global $x;
+                $x = 1;
+            }
+            else if(strlen($_POST['invoiceId'])<1 or !is_numeric($_POST['invoiceId'])) {
+                global $x;
+                $x = 1;
+            }
+
+            if($x == 0) {
+                EquipmentToDB::insertToDB($_POST['name'], $_POST['serialNumber'], $_POST['purchaseDate'],
+                    $_POST['warrantyTo'],$_POST['amountNet'],$_POST['notes'], $_POST['assignedFor'], $_POST['invoiceId']);
+                global $x;
+                $x = 5;
+            }
+            else{
+                echo '<script>alert("Podano złe dane")</script>';
+            }
+        }
+        if(isset($_POST['submit']) and $x == 5){
+            EquipmentToDB::fileUpload($_POST['invoiceId']);
+        }
+    }
     private static $limit = 2;
 
     /**
