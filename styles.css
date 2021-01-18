@@ -51,9 +51,10 @@
 /* === style do komorek z notatkami */
 .notate-tablefield {
     overflow: hidden;
-    text-overflow: ellipsis;
+    max-height: 50px;
     display: block;
     width: 50px;
+    word-wrap: break-word;
 }
 
 .notate-modalfield {
@@ -66,6 +67,12 @@
 /* ==================================================== */
 
 /* === pokazywanie i ukrwyanie kolumn w tabeli glownej w zaleznosci od szerokosci*/
+td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
 th.showDataIndexTableWider,td.showDataIndexTableWider {
     display: none;
 }
@@ -105,7 +112,7 @@ td.showDataIndexTableWider a.btn {
 
 /* === style do navsa (przelacznik nr strony dla tabeli) */
 .my-navs {
-    margin: 20px;
+    margin: 20px 20px 80px 20px;
 }
 #NavPageSelector {
     margin: 0px;

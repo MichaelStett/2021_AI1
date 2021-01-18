@@ -137,7 +137,8 @@ class otherDocumentsIndexView
                             <tr>
                                 <th scope="col">Nazwa własna</th>
                                 <th scope="col">Data dokumentu</th>
-                                <th scope="col">Liczba stron</th>
+                                <th scope="col" style="max-width: 100px;">Strona 1</th>
+                                <th scope="col" style="max-width: 100px;">Strona 2</th>
                                 <th scope="col" class="showDataIndexTableWider">Notatki</th>
                                 <th scope="col" class="showDataIndexTableTight">Szczegóły</th>
                             </tr>
@@ -149,7 +150,8 @@ class otherDocumentsIndexView
                                         echo '<tr>';
                                         echo '<th scope="row">'.$val->getName().'</th>';
                                         echo '<td class="">'.$val->getDate().'</td>';
-                                        echo '<td class="">'.$val->getNumOfPage().'</td>';
+                                        echo '<td class="" style="max-width: 100px;">'.$val->getFirstSide().'</td>';
+                                        echo '<td class="" style="max-width: 100px;">'.$val->getSecondSide().'</td>';
                                         echo '<td class="showDataIndexTableWider"><a href="#" class="notate-tablefield" data-toggle="modal" data-target="#'.$id.'Modal" onclick=\'changeDataInModal('
                                             .json_encode($val)
                                             .');\'>'.$val->getNotes().'</a></td>';
@@ -173,21 +175,21 @@ class otherDocumentsIndexView
                     <nav id="Nav" class="my-navs" aria-label="...">
                         <ul class="pagination justify-content-end">
                             <li id="NavPrev" class="page-item disabled">
-                                <button  class="page-link" onclick="changePageInInvoiceSaleIndexTable('prev');" aria-disabled="true">Previous</button>
+                                <button class="page-link" onclick="changePageInTable('prev');" aria-disabled="true">Previous</button>
                             </li>
                             <li id="NavFirst" class="page-item disabled">
-                                <button  class="page-link" onclick="changePageInInvoiceSaleIndexTable('1');" aria-disabled="true" >1</button>
+                                <button class="page-link" onclick="changePageInTable(1);" aria-disabled="true" >1</button>
                             </li>
                             <li class="page-item" aria-current="page">
                                 <a id="NavPageSelector" class="page-link" href="#">
-                                    <input type="number" maxlength="4" min="1" class="form-control" oninput="changePageInInvoiceSaleIndexTable(this.value);">
+                                    <input type="number" maxlength="4" min="1" class="form-control" oninput="changePageInTable(this.value);">
                                 </a>
                             </li>
                             <li id="NavLast" class="page-item">
-                                <button  class="page-link" onclick="changePageInInvoiceSaleIndexTable('0');"><?= $numberOfRecordsInDB ?></button>
+                                <button  class="page-link" onclick="changePageInTable(parseInt(this.innerText));"><?= $numberOfRecordsInDB ?></button>
                             </li>
                             <li id="NavNext" class="page-item">
-                                <button  class="page-link" onclick="changePageInInvoiceSaleIndexTable('next');">Next</button>
+                                <button  class="page-link" onclick="changePageInTable('next');">Next</button>
                             </li>
                         </ul>
                     </nav>

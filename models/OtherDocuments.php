@@ -89,19 +89,24 @@ class OtherDocuments implements JsonSerializable
 
     /**
      * @param mixed $firstSide
+     * * @return OtherDocuments
      */
     public function setFirstSide($firstSide)
     {
         $this->firstSide = $firstSide;
+        return $this;
     }
 
     /**
      * @param mixed $secondSide
+     * * @return OtherDocuments
      */
     public function setSecondSide($secondSide)
     {
         $this->secondSide = $secondSide;
+        return $this;
     }
+
     /**
      * @param mixed $notes
      * @return OtherDocuments
